@@ -5,8 +5,8 @@ import {
   ExceptionFilter,
   NestInterceptor,
   CanActivate,
-} from '@nestjs/common';
-import { ConfigurationProvider } from '@nestjs/common/interfaces/configuration-provider.interface';
+} from '../common';
+import { ConfigurationProvider } from '../common/interfaces/configuration-provider.interface';
 
 export class ApplicationConfig implements ConfigurationProvider {
   private globalPipes: PipeTransform<any>[] = [];

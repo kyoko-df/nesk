@@ -1,16 +1,16 @@
 import { ModuleTokenFactory } from './injector/module-token-factory';
-import { NestContainer, InstanceWrapper } from './injector/container';
-import { NestModuleMetatype } from '@nestjs/common/interfaces/modules/module-metatype.interface';
-import { Metatype } from '@nestjs/common/interfaces';
-import { isFunction } from '@nestjs/common/utils/shared.utils';
-import { INestApplicationContext } from '@nestjs/common';
+import { NeskContainer, InstanceWrapper } from './injector/container';
+import { NeskModuleMetatype } from '../common/interfaces/modules/module-metatype.interface';
+import { Metatype } from '../common/interfaces';
+import { isFunction } from '../common/utils/shared.utils';
+import { INeskApplicationContext } from '../common';
 
-export class NestApplicationContext implements INestApplicationContext {
+export class NeskApplicationContext implements INeskApplicationContext {
   private readonly moduleTokenFactory = new ModuleTokenFactory();
 
   constructor(
-    protected readonly container: NestContainer,
-    private readonly scope: NestModuleMetatype[],
+    protected readonly container: NeskContainer,
+    private readonly scope: NeskModuleMetatype[],
     protected contextModule,
   ) {}
 
@@ -19,7 +19,7 @@ export class NestApplicationContext implements INestApplicationContext {
     this.contextModule = modules.next().value;
   }
 
-  public select<T>(module: Metatype<T>): INestApplicationContext {
+  public select<T>(module: Metatype<T>): INeskApplicationContext {
     const modules = this.container.getModules();
     const moduleMetatype = this.contextModule.metatype;
     const scope = this.scope.concat(moduleMetatype);
@@ -27,7 +27,7 @@ export class NestApplicationContext implements INestApplicationContext {
     const token = this.moduleTokenFactory.create(module as any, scope);
     const selectedModule = modules.get(token);
     return selectedModule
-      ? new NestApplicationContext(this.container, scope, selectedModule)
+      ? new NeskApplicationContext(this.container, scope, selectedModule)
       : null;
   }
 

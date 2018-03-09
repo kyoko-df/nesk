@@ -1,10 +1,10 @@
 import { HttpException as DeprecatedHttpException } from './http-exception';
 import { messages } from '../constants';
-import { Logger } from '@nestjs/common';
-import { ExceptionFilterMetadata } from '@nestjs/common/interfaces/exceptions/exception-filter-metadata.interface';
-import { isEmpty, isObject } from '@nestjs/common/utils/shared.utils';
+import { Logger } from '../../common';
+import { ExceptionFilterMetadata } from '../../common/interfaces/exceptions/exception-filter-metadata.interface';
+import { isEmpty, isObject } from '../../common/utils/shared.utils';
 import { InvalidExceptionFilterException } from '../errors/exceptions/invalid-exception-filter.exception';
-import { HttpException } from '@nestjs/common';
+import { HttpException } from '../../common';
 
 export class ExceptionsHandler {
   private static readonly logger = new Logger(ExceptionsHandler.name);

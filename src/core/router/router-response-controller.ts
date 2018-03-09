@@ -1,5 +1,5 @@
-import { RequestMethod, HttpStatus } from '@nestjs/common';
-import { isNil, isObject, isFunction } from '@nestjs/common/utils/shared.utils';
+import { RequestMethod, HttpStatus } from '../../common';
+import { isNil, isObject, isFunction } from '../../common/utils/shared.utils';
 import 'rxjs/add/operator/toPromise';
 
 export class RouterResponseController {

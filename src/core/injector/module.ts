@@ -1,13 +1,13 @@
-import { InstanceWrapper, NestContainer } from './container';
+import { InstanceWrapper, NeskContainer } from './container';
 import {
   Injectable,
   Controller,
-  NestModule,
+  NeskModule,
   DynamicModule,
-} from '@nestjs/common/interfaces';
+} from '../../common/interfaces';
 import { UnknownExportException } from '../errors/exceptions/unknown-export.exception';
-import { NestModuleMetatype } from '@nestjs/common/interfaces/modules/module-metatype.interface';
-import { Metatype } from '@nestjs/common/interfaces/metatype.interface';
+import { NestModuleMetatype } from '../../common/interfaces/modules/module-metatype.interface';
+import { Metatype } from '../../common/interfaces/metatype.interface';
 import { ModuleRef } from './module-ref';
 import {
   isFunction,
@@ -15,7 +15,7 @@ import {
   isUndefined,
   isString,
   isSymbol,
-} from '@nestjs/common/utils/shared.utils';
+} from '../../common/utils/shared.utils';
 import { RuntimeException } from '../errors/exceptions/runtime.exception';
 import { ExternalContextCreator } from './../helpers/external-context-creator';
 import { GuardsContextCreator } from './../guards/guards-context-creator';
@@ -82,19 +82,19 @@ export class Module {
     return this._exports;
   }
 
-  get instance(): NestModule {
+  get instance(): NeskModule {
     if (!this._components.has(this._metatype.name)) {
       throw new RuntimeException();
     }
     const module = this._components.get(this._metatype.name);
-    return module.instance as NestModule;
+    return module.instance as NeskModule;
   }
 
   get metatype(): NestModuleMetatype {
     return this._metatype;
   }
 
-  public addCoreInjectables(container: NestContainer) {
+  public addCoreInjectables(container: NeskContainer) {
     this.addModuleRef();
     this.addModuleAsComponent();
     this.addReflector();
@@ -155,7 +155,7 @@ export class Module {
     });
   }
 
-  public addModulesContainer(container: NestContainer) {
+  public addModulesContainer(container: NeskContainer) {
     this._components.set(ModulesContainer.name, {
       name: ModulesContainer.name,
       metatype: ModulesContainer,

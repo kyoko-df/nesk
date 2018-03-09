@@ -3,9 +3,9 @@ import { GuardsContextCreator } from './../guards/guards-context-creator';
 import { GuardsConsumer } from './../guards/guards-consumer';
 import { InterceptorsContextCreator } from './../interceptors/interceptors-context-creator';
 import { InterceptorsConsumer } from './../interceptors/interceptors-consumer';
-import { Controller } from '@nestjs/common/interfaces';
+import { Controller } from '../../common/interfaces';
 import { FORBIDDEN_MESSAGE } from '../guards/constants';
-import { HttpStatus, HttpException } from '@nestjs/common';
+import { HttpStatus, HttpException } from '../../common';
 import { Module } from './../injector/module';
 import { ModulesContainer } from './../injector/modules-container';
 

@@ -1,5 +1,5 @@
 import * as clc from 'cli-color';
-import { NestEnvironment } from '../enums/nest-environment.enum';
+import { NeskEnvironment } from '../enums/nesk-environment.enum';
 import { Constructor } from '../utils/merge-with-values.util';
 
 declare const process;
@@ -12,7 +12,7 @@ export interface LoggerService {
 
 export class Logger implements LoggerService {
   private static prevTimestamp = null;
-  private static contextEnv = NestEnvironment.RUN;
+  private static contextEnv = NeskEnvironment.RUN;
   private static logger: typeof Logger | LoggerService = Logger;
 
   private static readonly yellow = clc.xterm(3);
@@ -85,7 +85,7 @@ export class Logger implements LoggerService {
     context: string = '',
     isTimeDiffEnabled?: boolean,
   ) {
-    if (Logger.contextEnv === NestEnvironment.TEST) return;
+    if (Logger.contextEnv === NeskEnvironment.TEST) return;
 
     process.stdout.write(color(`[Nest] ${process.pid}   - `));
     process.stdout.write(`${new Date(Date.now()).toLocaleString()}   `);
@@ -107,7 +107,7 @@ export class Logger implements LoggerService {
   }
 
   private static printStackTrace(trace: string) {
-    if (this.contextEnv === NestEnvironment.TEST || !trace) return;
+    if (this.contextEnv === NeskEnvironment.TEST || !trace) return;
 
     process.stdout.write(trace);
     process.stdout.write(`\n`);

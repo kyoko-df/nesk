@@ -1,5 +1,5 @@
-import { Transform, Paramtype } from '@nestjs/common/interfaces';
-import { RouteParamtypes } from '@nestjs/common/enums/route-paramtypes.enum';
+import { Transform, Paramtype } from '../../common/interfaces';
+import { RouteParamtypes } from '../../common/enums/route-paramtypes.enum';
 import { ParamsTokenFactory } from './../pipes/params-token-factory';
 
 export class PipesConsumer {

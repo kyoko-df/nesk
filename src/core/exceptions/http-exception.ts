@@ -1,4 +1,4 @@
-import { Logger } from '@nestjs/common';
+import { Logger } from '../../common';
 
 export class HttpException {
   private readonly logger = new Logger(HttpException.name);

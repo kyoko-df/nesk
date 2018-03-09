@@ -1,20 +1,20 @@
 import 'reflect-metadata';
-import { Controller, Injectable } from '@nestjs/common/interfaces';
-import { GLOBAL_MODULE_METADATA } from '@nestjs/common/constants';
-import { NestModuleMetatype } from '@nestjs/common/interfaces/modules/module-metatype.interface';
-import { Metatype } from '@nestjs/common/interfaces/metatype.interface';
-import { SHARED_MODULE_METADATA } from '@nestjs/common/constants';
-import { isUndefined } from '@nestjs/common/utils/shared.utils';
+import { Controller, Injectable } from '../../common/interfaces';
+import { GLOBAL_MODULE_METADATA } from '../../common/constants';
+import { NestModuleMetatype } from '../../common/interfaces/modules/module-metatype.interface';
+import { Metatype } from '../../common/interfaces/metatype.interface';
+import { SHARED_MODULE_METADATA } from '../../common/constants';
+import { isUndefined } from '../../common/utils/shared.utils';
 import { Module } from './module';
 import { UnknownModuleException } from '../errors/exceptions/unknown-module.exception';
 import { ModuleTokenFactory } from './module-token-factory';
 import { InvalidModuleException } from './../errors/exceptions/invalid-module.exception';
-import { DynamicModule } from '@nestjs/common';
+import { DynamicModule } from '../../common';
 import { ModulesContainer } from './modules-container';
-import { NestApplicationContext } from './../nest-application-context';
+import { NeskApplicationContext } from './../nesk-application-context';
 import { ApplicationConfig } from './../application-config';
 
-export class NestContainer {
+export class NeskContainer {
   private readonly globalModules = new Set<Module>();
   private readonly modules = new ModulesContainer();
   private readonly dynamicModulesMetadata = new Map<

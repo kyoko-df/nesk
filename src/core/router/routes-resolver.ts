@@ -1,8 +1,8 @@
-import { Application } from 'express';
-import { NestContainer, InstanceWrapper } from '../injector/container';
+import { Application } from 'koa';
+import { NeskContainer, InstanceWrapper } from '../injector/container';
 import { RouterProxy } from './router-proxy';
-import { Controller } from '@nestjs/common/interfaces/controllers/controller.interface';
-import { Logger } from '@nestjs/common/services/logger.service';
+import { Controller } from '../../common/interfaces/controllers/controller.interface';
+import { Logger } from '../../common/services/logger.service';
 import { ControllerMappingMessage } from '../helpers/messages';
 import { Resolver } from './interfaces/resolver.interface';
 import { RouterExceptionFilters } from './router-exception-filters';
@@ -10,8 +10,8 @@ import { MetadataScanner } from '../metadata-scanner';
 import { RouterExplorer } from './interfaces/explorer.inteface';
 import { ExpressRouterExplorer } from './router-explorer';
 import { ApplicationConfig } from './../application-config';
-import { NotFoundException, BadRequestException } from '@nestjs/common';
-import { MODULE_PATH } from '@nestjs/common/constants';
+import { NotFoundException, BadRequestException } from '../../common';
+import { MODULE_PATH } from '../../common/constants';
 
 export class RoutesResolver implements Resolver {
   private readonly logger = new Logger(RoutesResolver.name, true);
@@ -20,7 +20,7 @@ export class RoutesResolver implements Resolver {
   private readonly routerBuilder: RouterExplorer;
 
   constructor(
-    private readonly container: NestContainer,
+    private readonly container: NeskContainer,
     private readonly expressAdapter,
     private readonly config: ApplicationConfig,
   ) {

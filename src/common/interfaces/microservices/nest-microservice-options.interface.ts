@@ -1,7 +1,7 @@
 import { MicroserviceConfiguration } from './microservice-configuration.interface';
 import { LoggerService } from '../../services/logger.service';
-import { NestApplicationContextOptions } from '../nest-application-context-options.interface';
+import { NeskApplicationContextOptions } from '../nesk-application-context-options.interface';
 
-export interface NestMicroserviceOptions
+export interface NeskMicroserviceOptions
   extends MicroserviceConfiguration,
-    NestApplicationContextOptions {}
+    NeskApplicationContextOptions {}

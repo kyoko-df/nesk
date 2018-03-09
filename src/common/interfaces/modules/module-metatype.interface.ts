@@ -1,4 +1,4 @@
-import { NestModule } from './nest-module.interface';
+import { NeskModule } from './nesk-module.interface';
 import { Metatype } from '../metatype.interface';
 
-export interface NestModuleMetatype extends Metatype<NestModule> {}
+export interface NeskModuleMetatype extends Metatype<NeskModule> {}

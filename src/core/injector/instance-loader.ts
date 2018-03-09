@@ -1,18 +1,18 @@
 import iterate from 'iterare';
-import { NestContainer } from './container';
+import { NeskContainer } from './container';
 import { Injector } from './injector';
-import { Injectable } from '@nestjs/common/interfaces/injectable.interface';
-import { Controller } from '@nestjs/common/interfaces/controllers/controller.interface';
+import { Injectable } from '../../common/interfaces/injectable.interface';
+import { Controller } from '../../common/interfaces/controllers/controller.interface';
 import { Module } from './module';
-import { Logger, OnModuleInit } from '@nestjs/common';
+import { Logger, OnModuleInit } from '../../common';
 import { ModuleInitMessage } from '../helpers/messages';
-import { isUndefined, isNil } from '@nestjs/common/utils/shared.utils';
+import { isUndefined, isNil } from '../../common/utils/shared.utils';
 
 export class InstanceLoader {
   private readonly injector = new Injector();
   private readonly logger = new Logger(InstanceLoader.name, true);
 
-  constructor(private readonly container: NestContainer) {}
+  constructor(private readonly container: NeskContainer) {}
 
   public async createInstancesOfDependencies() {
     const modules = this.container.getModules();

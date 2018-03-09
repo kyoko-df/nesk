@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import iterate from 'iterare';
-import { Controller } from '@nestjs/common/interfaces';
-import { isUndefined, isFunction } from '@nestjs/common/utils/shared.utils';
+import { Controller } from '../../common/interfaces';
+import { isUndefined, isFunction } from '../../common/utils/shared.utils';
 import { ApplicationConfig } from './../application-config';
 
 export abstract class ContextCreator {

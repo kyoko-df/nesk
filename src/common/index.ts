@@ -8,13 +8,13 @@
 export * from './decorators';
 export * from './enums';
 export {
-  NestModule,
-  INestApplication,
-  INestMicroservice,
+  NeskModule,
+  INeskApplication,
+  INeskMicroservice,
   MiddlewareConfigProxy,
   MiddlewareConfiguration,
   NestMiddleware,
-  ExpressMiddleware,
+  KoaMiddleware,
   MiddlewaresConsumer,
   OnModuleInit,
   ExceptionFilter,
@@ -29,7 +29,7 @@ export {
   WsExceptionFilter,
   NestInterceptor,
   DynamicModule,
-  INestApplicationContext,
+  INeskApplicationContext,
 } from './interfaces';
 export * from './interceptors';
 export * from './services/logger.service';

@@ -1,21 +1,21 @@
-import { NestContainer } from '../injector/container';
+import { NeskContainer } from '../injector/container';
 import { MiddlewareBuilder } from './builder';
 import { MiddlewaresContainer, MiddlewareWrapper } from './container';
 import { MiddlewaresResolver } from './resolver';
-import { ControllerMetadata } from '@nestjs/common/interfaces/controllers/controller-metadata.interface';
-import { NestModule } from '@nestjs/common/interfaces/modules/nest-module.interface';
-import { MiddlewareConfiguration } from '@nestjs/common/interfaces/middlewares/middleware-configuration.interface';
+import { ControllerMetadata } from '../../common/interfaces/controllers/controller-metadata.interface';
+import { NeskModule } from '../../common/interfaces/modules/nesk-module.interface';
+import { MiddlewareConfiguration } from '../../common/interfaces/middlewares/middleware-configuration.interface';
 import { InvalidMiddlewareException } from '../errors/exceptions/invalid-middleware.exception';
-import { RequestMethod } from '@nestjs/common/enums/request-method.enum';
+import { RequestMethod } from '../../common/enums/request-method.enum';
 import { RoutesMapper } from './routes-mapper';
 import { RouterProxy } from '../router/router-proxy';
 import { ExceptionsHandler } from '../exceptions/exceptions-handler';
 import { Module } from '../injector/module';
 import { RouterMethodFactory } from '../helpers/router-method-factory';
-import { NestMiddleware } from '@nestjs/common/interfaces/middlewares/nest-middleware.interface';
-import { Metatype } from '@nestjs/common/interfaces/metatype.interface';
+import { NestMiddleware } from '../../common/interfaces/middlewares/nest-middleware.interface';
+import { Metatype } from '../../common/interfaces/metatype.interface';
 import { RuntimeException } from '../errors/exceptions/runtime.exception';
-import { isUndefined } from '@nestjs/common/utils/shared.utils';
+import { isUndefined } from '../../common/utils/shared.utils';
 import { ApplicationConfig } from './../application-config';
 import { RouterExceptionFilters } from './../router/router-exception-filters';
 
@@ -28,7 +28,7 @@ export class MiddlewaresModule {
 
   public async setup(
     middlewaresContainer: MiddlewaresContainer,
-    container: NestContainer,
+    container: NeskContainer,
     config: ApplicationConfig,
   ) {
     this.routerExceptionFilter = new RouterExceptionFilters(config);
@@ -54,7 +54,7 @@ export class MiddlewaresModule {
 
   public loadConfiguration(
     middlewaresContainer: MiddlewaresContainer,
-    instance: NestModule,
+    instance: NeskModule,
     module: string,
   ) {
     if (!instance.configure) return;

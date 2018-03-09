@@ -5,15 +5,15 @@ import {
   HTTP_CODE_METADATA,
   CUSTOM_ROUTE_AGRS_METADATA,
   RENDER_METADATA,
-} from '@nestjs/common/constants';
+} from '../../common/constants';
 import {
   isUndefined,
   isFunction,
   isString,
-} from '@nestjs/common/utils/shared.utils';
-import { RouteParamtypes } from '@nestjs/common/enums/route-paramtypes.enum';
-import { Controller, Transform } from '@nestjs/common/interfaces';
-import { RouteParamsMetadata } from '@nestjs/common/decorators';
+} from '../../common/utils/shared.utils';
+import { RouteParamtypes } from '../../common/enums/route-paramtypes.enum';
+import { Controller, Transform } from '../../common/interfaces';
+import { RouteParamsMetadata } from '../../common/decorators';
 import { IRouteParamsFactory } from './interfaces/route-params-factory.interface';
 import { PipesContextCreator } from './../pipes/pipes-context-creator';
 import { PipesConsumer } from './../pipes/pipes-consumer';
@@ -23,7 +23,7 @@ import {
   HttpStatus,
   RequestMethod,
   HttpException,
-} from '@nestjs/common';
+} from '../../common';
 import { GuardsContextCreator } from '../guards/guards-context-creator';
 import { GuardsConsumer } from '../guards/guards-consumer';
 import { FORBIDDEN_MESSAGE } from '../guards/constants';

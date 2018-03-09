@@ -1,60 +1,60 @@
 import * as optional from 'optional';
 import { DependenciesScanner } from './scanner';
 import { InstanceLoader } from './injector/instance-loader';
-import { NestContainer } from './injector/container';
+import { NeskContainer } from './injector/container';
 import { ExceptionsZone } from './errors/exceptions-zone';
-import { NestModuleMetatype } from '@nestjs/common/interfaces/modules/module-metatype.interface';
-import { Logger } from '@nestjs/common/services/logger.service';
-import { NestApplicationOptions } from '@nestjs/common/interfaces/nest-application-options.interface';
+import { NeskModuleMetatype } from '../common/interfaces/modules/module-metatype.interface';
+import { Logger } from '../common/services/logger.service';
+import { NeskApplicationOptions } from '../common/interfaces/nesk-application-options.interface';
 import { messages } from './constants';
-import { NestApplication } from './nest-application';
-import { isFunction } from '@nestjs/common/utils/shared.utils';
-import { MicroserviceConfiguration } from '@nestjs/common/interfaces/microservices/microservice-configuration.interface';
-import { ExpressAdapter } from './adapters/express-adapter';
+import { NeskApplication } from './nesk-application';
+import { isFunction } from '../common/utils/shared.utils';
+import { MicroserviceConfiguration } from '../common/interfaces/microservices/microservice-configuration.interface';
+import { KoaAdapter } from './adapters/koa-adapter';
 import {
-  INestApplication,
-  INestMicroservice,
-  INestApplicationContext,
-} from '@nestjs/common';
+  INeskApplication,
+  INeskMicroservice,
+  INeskApplicationContext,
+} from '../common';
 import { MetadataScanner } from './metadata-scanner';
 import { MicroservicesPackageNotFoundException } from './errors/exceptions/microservices-package-not-found.exception';
-import { NestApplicationContext } from './nest-application-context';
-import { HttpsOptions } from '@nestjs/common/interfaces/https-options.interface';
-import { NestApplicationContextOptions } from '@nestjs/common/interfaces/nest-application-context-options.interface';
-import { NestMicroserviceOptions } from '@nestjs/common/interfaces/microservices/nest-microservice-options.interface';
+import { NeskApplicationContext } from './nesk-application-context';
+import { HttpsOptions } from '../common/interfaces/https-options.interface';
+import { NeskApplicationContextOptions } from '../common/interfaces/nesk-application-context-options.interface';
+import { NeskMicroserviceOptions } from '../common/interfaces/microservices/nest-microservice-options.interface';
 import { ApplicationConfig } from './application-config';
 
-const { NestMicroservice } =
-  optional('@nestjs/microservices/nest-microservice') || ({} as any);
+const { NeskMicroservice } =
+  optional('@nestjs/microservices/nesk-microservice') || ({} as any);
 
-export class NestFactoryStatic {
+export class NeskFactoryStatic {
   private readonly logger = new Logger('NestFactory', true);
   /**
    * Creates an instance of the NestApplication (returns Promise)
    * @returns an `Promise` of the INestApplication instance
    */
-  public async create(module: any): Promise<INestApplication>;
+  public async create(module: any): Promise<INeskApplication>;
   public async create(
     module: any,
-    options: NestApplicationOptions,
-  ): Promise<INestApplication>;
+    options: NeskApplicationOptions,
+  ): Promise<INeskApplication>;
   public async create(
     module: any,
     express: any,
-    options: NestApplicationOptions,
-  ): Promise<INestApplication>;
+    options: NeskApplicationOptions,
+  ): Promise<INeskApplication>;
   public async create(
     module: any,
     expressOrOptions?: any,
-    options?: NestApplicationOptions,
-  ): Promise<INestApplication> {
+    options?: NeskApplicationOptions,
+  ): Promise<INeskApplication> {
     const isExpressInstance = expressOrOptions && expressOrOptions.response;
     const [expressInstance, appOptions] = isExpressInstance
       ? [expressOrOptions, options]
-      : [ExpressAdapter.create(), expressOrOptions];
+      : [KoaAdapter.create(), expressOrOptions];
 
     const applicationConfig = new ApplicationConfig();
-    const container = new NestContainer(applicationConfig);
+    const container = new NeskContainer(applicationConfig);
 
     this.applyLogger(appOptions);
     await this.initialize(
@@ -63,8 +63,8 @@ export class NestFactoryStatic {
       applicationConfig,
       expressInstance,
     );
-    return this.createNestInstance<NestApplication>(
-      new NestApplication(
+    return this.createNeskInstance<NeskApplication>(
+      new NeskApplication(
         container,
         expressInstance,
         applicationConfig,
@@ -74,59 +74,59 @@ export class NestFactoryStatic {
   }
 
   /**
-   * Creates an instance of the NestMicroservice (returns Promise)
+   * Creates an instance of the NeskMicroservice (returns Promise)
    *
    * @param  {} module Entry (root) application module class
-   * @param  {NestMicroserviceOptions} options Optional microservice configuration
-   * @returns an `Promise` of the INestMicroservice instance
+   * @param  {NeskMicroserviceOptions} options Optional microservice configuration
+   * @returns an `Promise` of the INeskMicroservice instance
    */
   public async createMicroservice(
     module,
-    options?: NestMicroserviceOptions,
-  ): Promise<INestMicroservice> {
-    if (!NestMicroservice) {
+    options?: NeskMicroserviceOptions,
+  ): Promise<INeskMicroservice> {
+    if (!NeskMicroservice) {
       throw new MicroservicesPackageNotFoundException();
     }
     const applicationConfig = new ApplicationConfig();
-    const container = new NestContainer(applicationConfig);
+    const container = new NeskContainer(applicationConfig);
 
     this.applyLogger(options);
     await this.initialize(module, container, applicationConfig);
-    return this.createNestInstance<INestMicroservice>(
-      new NestMicroservice(container, options as any, applicationConfig),
+    return this.createNeskInstance<INeskMicroservice>(
+      new NeskMicroservice(container, options as any, applicationConfig),
     );
   }
 
   /**
-   * Creates an instance of the NestApplicationContext (returns Promise)
+   * Creates an instance of the NeskApplicationContext (returns Promise)
    *
    * @param  {} module Entry (root) application module class
-   * @param  {NestApplicationContextOptions} options Optional Nest application configuration
-   * @returns an `Promise` of the INestApplicationContext instance
+   * @param  {NeskApplicationContextOptions} options Optional Nesk application configuration
+   * @returns an `Promise` of the INeskApplicationContext instance
    */
   public async createApplicationContext(
     module,
-    options?: NestApplicationContextOptions,
-  ): Promise<INestApplicationContext> {
-    const container = new NestContainer();
+    options?: NeskApplicationContextOptions,
+  ): Promise<INeskApplicationContext> {
+    const container = new NeskContainer();
 
     this.applyLogger(options);
     await this.initialize(module, container);
 
     const modules = container.getModules().values();
     const root = modules.next().value;
-    return this.createNestInstance<INestApplicationContext>(
-      new NestApplicationContext(container, [], root),
+    return this.createNeskInstance<INeskApplicationContext>(
+      new NeskApplicationContext(container, [], root),
     );
   }
 
-  private createNestInstance<T>(instance: T) {
+  private createNeskInstance<T>(instance: T) {
     return this.createProxy(instance);
   }
 
   private async initialize(
     module,
-    container: NestContainer,
+    container: NeskContainer,
     config = new ApplicationConfig(),
     express = null,
   ) {
@@ -174,7 +174,7 @@ export class NestFactoryStatic {
     };
   }
 
-  private applyLogger(options: NestApplicationContextOptions | undefined) {
+  private applyLogger(options: NeskApplicationContextOptions | undefined) {
     if (!options || !options.logger) {
       return;
     }
@@ -182,4 +182,4 @@ export class NestFactoryStatic {
   }
 }
 
-export const NestFactory = new NestFactoryStatic();
+export const NeskFactory = new NeskFactoryStatic();

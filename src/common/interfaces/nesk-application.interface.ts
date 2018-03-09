@@ -1,11 +1,11 @@
-import { INestMicroservice, ExceptionFilter, PipeTransform } from './index';
+import { INeskMicroservice, ExceptionFilter, PipeTransform } from './index';
 import { WebSocketAdapter } from './web-socket-adapter.interface';
 import { CanActivate } from './can-activate.interface';
 import { NestInterceptor } from './nest-interceptor.interface';
-import { INestApplicationContext } from './nest-application-context.interface';
+import { INeskApplicationContext } from './nesk-application-context.interface';
 import { CorsOptions } from './external/cors-options.interface';
 
-export interface INestApplication extends INestApplicationContext {
+export interface INeskApplication extends INeskApplicationContext {
   /**
    * Initializes application. It is not necessary to call this method directly.
    *
@@ -103,14 +103,14 @@ export interface INestApplication extends INestApplicationContext {
    * @param  {MicroserviceConfiguration} config Microservice configuration objet
    * @returns INestMicroservice
    */
-  connectMicroservice(config): INestMicroservice;
+  connectMicroservice(config): INeskMicroservice;
 
   /**
    * Returns array of the connected microservices to the NestApplication.
    *
    * @returns INestMicroservice[]
    */
-  getMicroservices(): INestMicroservice[];
+  getMicroservices(): INeskMicroservice[];
 
   /**
    * Returns underlying, native HTTP server.

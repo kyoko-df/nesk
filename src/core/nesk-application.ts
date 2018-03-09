@@ -11,24 +11,24 @@ import {
   OnModuleDestroy,
   PipeTransform,
   WebSocketAdapter,
-} from '@nestjs/common';
+} from '../common';
 import {
-  INestApplication,
-  INestMicroservice,
+  INeskApplication,
+  INeskMicroservice,
   OnModuleInit,
-} from '@nestjs/common';
-import { Logger } from '@nestjs/common/services/logger.service';
+} from '../common';
+import { Logger } from '../common/services/logger.service';
 import {
   isNil,
   isUndefined,
   validatePath,
   isObject,
-} from '@nestjs/common/utils/shared.utils';
-import { MicroserviceConfiguration } from '@nestjs/common/interfaces/microservices/microservice-configuration.interface';
-import { ExpressAdapter } from './adapters/express-adapter';
+} from '../common/utils/shared.utils';
+import { MicroserviceConfiguration } from '../common/interfaces/microservices/microservice-configuration.interface';
+import { KoaAdapter } from './adapters/koa-adapter';
 import { ApplicationConfig } from './application-config';
 import { messages } from './constants';
-import { NestContainer } from './injector/container';
+import { NeskContainer } from './injector/container';
 import { Module } from './injector/module';
 import { MiddlewaresModule } from './middlewares/middlewares-module';
 import { Resolver } from './router/interfaces/resolver.interface';
@@ -49,9 +49,9 @@ const { NestMicroservice } =
 const { IoAdapter } =
   optional('@nestjs/websockets/adapters/io-adapter') || ({} as any);
 
-export class NestApplication extends NestApplicationContext
-  implements INestApplication {
-  private readonly logger = new Logger(NestApplication.name, true);
+export class NeskApplication extends NeskApplicationContext
+  implements INeskApplication {
+  private readonly logger = new Logger(NeskApplication.name, true);
   private readonly middlewaresModule = new MiddlewaresModule();
   private readonly middlewaresContainer = new MiddlewaresContainer();
   private readonly microservicesModule = MicroservicesModule
@@ -64,7 +64,7 @@ export class NestApplication extends NestApplicationContext
   private isInitialized = false;
 
   constructor(
-    container: NestContainer,
+    container: NeskContainer,
     private readonly express: any,
     private readonly config: ApplicationConfig,
     private readonly appOptions: NestApplicationOptions = {},
@@ -79,7 +79,7 @@ export class NestApplication extends NestApplicationContext
     this.config.setIoAdapter(ioAdapter);
     this.routesResolver = new RoutesResolver(
       container,
-      ExpressAdapter,
+      KoaAdapter,
       this.config,
     );
   }
@@ -150,7 +150,7 @@ export class NestApplication extends NestApplicationContext
   }
 
   public async setupRouter() {
-    const router = ExpressAdapter.createRouter();
+    const router = koaAdapter.createRouter();
     await this.setupMiddlewares(router);
 
     this.routesResolver.resolve(router, this.express);
@@ -159,7 +159,7 @@ export class NestApplication extends NestApplicationContext
 
   public connectMicroservice(
     config: MicroserviceConfiguration,
-  ): INestMicroservice {
+  ): INeskMicroservice {
     if (!NestMicroservice) {
       throw new MicroservicesPackageNotFoundException();
     }
@@ -177,7 +177,7 @@ export class NestApplication extends NestApplicationContext
     return instance;
   }
 
-  public getMicroservices(): INestMicroservice[] {
+  public getMicroservices(): INeskMicroservice[] {
     return this.microservices;
   }
 
@@ -292,7 +292,7 @@ export class NestApplication extends NestApplicationContext
     );
   }
 
-  private listenToPromise(microservice: INestMicroservice) {
+  private listenToPromise(microservice: INeskMicroservice) {
     return new Promise(async (resolve, reject) => {
       await microservice.listen(resolve);
     });

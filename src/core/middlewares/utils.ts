@@ -1,5 +1,5 @@
-import { isFunction } from '@nestjs/common/utils/shared.utils';
-import { Metatype } from '@nestjs/common/interfaces';
+import { isFunction } from '../../common/utils/shared.utils';
+import { Metatype } from '../../common/interfaces';
 
 export const filterMiddlewares = middlewares => {
   return []

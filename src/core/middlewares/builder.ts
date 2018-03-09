@@ -1,16 +1,16 @@
-import { MiddlewareConfiguration } from '@nestjs/common/interfaces/middlewares/middleware-configuration.interface';
+import { MiddlewareConfiguration } from '../../common/interfaces/middlewares/middleware-configuration.interface';
 import { InvalidMiddlewareConfigurationException } from '../errors/exceptions/invalid-middleware-configuration.exception';
 import {
   isUndefined,
   isNil,
   isFunction,
-} from '@nestjs/common/utils/shared.utils';
-import { BindResolveMiddlewareValues } from '@nestjs/common/utils/bind-resolve-values.util';
-import { Logger } from '@nestjs/common/services/logger.service';
-import { Metatype, MiddlewaresConsumer } from '@nestjs/common/interfaces';
-import { MiddlewareConfigProxy } from '@nestjs/common/interfaces/middlewares';
+} from '../../common/utils/shared.utils';
+import { BindResolveMiddlewareValues } from '../../common/utils/bind-resolve-values.util';
+import { Logger } from '../../common/services/logger.service';
+import { Metatype, MiddlewaresConsumer } from '../../common/interfaces';
+import { MiddlewareConfigProxy } from '../../common/interfaces/middlewares';
 import { RoutesMapper } from './routes-mapper';
-import { NestMiddleware } from '@nestjs/common';
+import { NestMiddleware } from '../../common';
 import { filterMiddlewares } from './utils';
 
 export class MiddlewareBuilder implements MiddlewaresConsumer {

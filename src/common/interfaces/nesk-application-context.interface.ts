@@ -1,12 +1,12 @@
 import { Metatype } from './metatype.interface';
 import { LoggerService } from '../services/logger.service';
 
-export interface INestApplicationContext {
+export interface INeskApplicationContext {
   /**
    * Allows you to navigate through the modules tree, for example, to pull out a specific instance from the selected module.
    * @returns INestApplicationContext
    */
-  select<T>(module: Metatype<T>): INestApplicationContext;
+  select<T>(module: Metatype<T>): INeskApplicationContext;
 
   /**
    * Makes possible to retrieve the instance of the component or controller available inside the processed module.

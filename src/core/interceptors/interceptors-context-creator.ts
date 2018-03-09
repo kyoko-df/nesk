@@ -1,22 +1,22 @@
 import 'reflect-metadata';
 import iterate from 'iterare';
-import { Controller, NestInterceptor } from '@nestjs/common/interfaces';
-import { INTERCEPTORS_METADATA } from '@nestjs/common/constants';
+import { Controller, NestInterceptor } from '../../common/interfaces';
+import { INTERCEPTORS_METADATA } from '../../common/constants';
 import {
   isUndefined,
   isFunction,
   isNil,
   isEmpty,
-} from '@nestjs/common/utils/shared.utils';
+} from '../../common/utils/shared.utils';
 import { ContextCreator } from './../helpers/context-creator';
-import { NestContainer } from '../injector/container';
-import { ConfigurationProvider } from '@nestjs/common/interfaces/configuration-provider.interface';
+import { NeskContainer } from '../injector/container';
+import { ConfigurationProvider } from '../../common/interfaces/configuration-provider.interface';
 
 export class InterceptorsContextCreator extends ContextCreator {
   private moduleContext: string;
 
   constructor(
-    private readonly container: NestContainer,
+    private readonly container: NeskContainer,
     private readonly config?: ConfigurationProvider,
   ) {
     super();

@@ -4,13 +4,13 @@ import {
   Controller,
   PipeTransform,
   Transform,
-} from '@nestjs/common/interfaces';
-import { PIPES_METADATA } from '@nestjs/common/constants';
+} from '../../common/interfaces';
+import { PIPES_METADATA } from '../../common/constants';
 import {
   isUndefined,
   isFunction,
   isEmpty,
-} from '@nestjs/common/utils/shared.utils';
+} from '../../common/utils/shared.utils';
 import { ApplicationConfig } from './../application-config';
 import { ContextCreator } from './../helpers/context-creator';
 
