@@ -5,7 +5,7 @@ export class KoaAdapter {
     return new koa();
   }
 
-  // public static createRouter(): any {
-  //   return express.Router({ mergeParams: true });
-  // }
+  public static createRouter(): any {
+    return koa.Router({ mergeParams: true });
+  }
 }

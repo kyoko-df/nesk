@@ -35,19 +35,19 @@ import { Resolver } from './router/interfaces/resolver.interface';
 import { RoutesResolver } from './router/routes-resolver';
 import { MicroservicesPackageNotFoundException } from './errors/exceptions/microservices-package-not-found.exception';
 import { MiddlewaresContainer } from './middlewares/container';
-import { NestApplicationContext } from './nest-application-context';
-import { HttpsOptions } from '@nestjs/common/interfaces/https-options.interface';
-import { NestApplicationOptions } from '@nestjs/common/interfaces/nest-application-options.interface';
-import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
+import { NeskApplicationContext } from './nesk-application-context';
+import { HttpsOptions } from '../common/interfaces/https-options.interface';
+import { NeskApplicationOptions } from '../common/interfaces/nesk-application-options.interface';
+import { CorsOptions } from '../common/interfaces/external/cors-options.interface';
 
 const { SocketModule } =
-  optional('@nestjs/websockets/socket-module') || ({} as any);
+  optional('../websockets/socket-module') || ({} as any);
 const { MicroservicesModule } =
-  optional('@nestjs/microservices/microservices-module') || ({} as any);
-const { NestMicroservice } =
-  optional('@nestjs/microservices/nest-microservice') || ({} as any);
+  optional('../microservices/microservices-module') || ({} as any);
+const { NeskMicroservice } =
+  optional('../microservices/nesk-microservice') || ({} as any);
 const { IoAdapter } =
-  optional('@nestjs/websockets/adapters/io-adapter') || ({} as any);
+  optional('../websockets/adapters/io-adapter') || ({} as any);
 
 export class NeskApplication extends NeskApplicationContext
   implements INeskApplication {
@@ -67,7 +67,7 @@ export class NeskApplication extends NeskApplicationContext
     container: NeskContainer,
     private readonly express: any,
     private readonly config: ApplicationConfig,
-    private readonly appOptions: NestApplicationOptions = {},
+    private readonly appOptions: NeskApplicationOptions = {},
   ) {
     super(container, [], null);
 
@@ -160,11 +160,11 @@ export class NeskApplication extends NeskApplicationContext
   public connectMicroservice(
     config: MicroserviceConfiguration,
   ): INeskMicroservice {
-    if (!NestMicroservice) {
+    if (!NeskMicroservice) {
       throw new MicroservicesPackageNotFoundException();
     }
     const applicationConfig = new ApplicationConfig();
-    const instance = new NestMicroservice(
+    const instance = new NeskMicroservice(
       this.container as any,
       config as any,
       applicationConfig,

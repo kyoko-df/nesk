@@ -1,20 +1,20 @@
 import 'reflect-metadata';
-import { NestContainer } from './injector/container';
-import { Controller } from '@nestjs/common/interfaces/controllers/controller.interface';
-import { Injectable } from '@nestjs/common/interfaces/injectable.interface';
+import { NeskContainer } from './injector/container';
+import { Controller } from '../common/interfaces/controllers/controller.interface';
+import { Injectable } from '../common/interfaces/injectable.interface';
 import {
   metadata,
   GATEWAY_MIDDLEWARES,
   EXCEPTION_FILTERS_METADATA,
   GUARDS_METADATA,
   INTERCEPTORS_METADATA,
-} from '@nestjs/common/constants';
-import { NestModuleMetatype } from '@nestjs/common/interfaces/modules/module-metatype.interface';
-import { Metatype } from '@nestjs/common/interfaces/metatype.interface';
+} from '../common/constants';
+import { NeskModuleMetatype } from '../common/interfaces/modules/module-metatype.interface';
+import { Metatype } from '../common/interfaces/metatype.interface';
 import { MetadataScanner } from '../core/metadata-scanner';
-import { DynamicModule } from '@nestjs/common';
+import { DynamicModule } from '../common';
 import { ApplicationConfig } from './application-config';
-import { isNil } from '@nestjs/common/utils/shared.utils';
+import { isNil } from '../common/utils/shared.utils';
 import { APP_INTERCEPTOR, APP_PIPE, APP_GUARD, APP_FILTER } from './constants';
 
 interface ApplicationProviderWrapper {
@@ -25,20 +25,20 @@ interface ApplicationProviderWrapper {
 export class DependenciesScanner {
   private readonly applicationProvidersApplyMap: ApplicationProviderWrapper[] = [];
   constructor(
-    private readonly container: NestContainer,
+    private readonly container: NeskContainer,
     private readonly metadataScanner: MetadataScanner,
     private readonly applicationConfig = new ApplicationConfig(),
   ) {}
 
-  public scan(module: NestModuleMetatype) {
+  public scan(module: NeskModuleMetatype) {
     this.scanForModules(module);
     this.scanModulesForDependencies();
     this.container.bindGlobalScope();
   }
 
   public scanForModules(
-    module: NestModuleMetatype | DynamicModule,
-    scope: NestModuleMetatype[] = [],
+    module: NeskModuleMetatype | DynamicModule,
+    scope: NeskModuleMetatype[] = [],
   ) {
     this.storeModule(module, scope);
 
@@ -48,7 +48,7 @@ export class DependenciesScanner {
     });
   }
 
-  public storeModule(module: any, scope: NestModuleMetatype[]) {
+  public storeModule(module: any, scope: NeskModuleMetatype[]) {
     if (module && module.forwardRef) {
       return this.container.addModule(module.forwardRef(), scope);
     }
@@ -66,7 +66,7 @@ export class DependenciesScanner {
     });
   }
 
-  public reflectRelatedModules(module: NestModuleMetatype, token: string) {
+  public reflectRelatedModules(module: NeskModuleMetatype, token: string) {
     const modules = [
       ...this.reflectMetadata(module, metadata.MODULES),
       ...this.container.getDynamicMetadataByToken(
@@ -81,7 +81,7 @@ export class DependenciesScanner {
     modules.map(related => this.storeRelatedModule(related, token));
   }
 
-  public reflectComponents(module: NestModuleMetatype, token: string) {
+  public reflectComponents(module: NeskModuleMetatype, token: string) {
     const components = [
       ...this.reflectMetadata(module, metadata.COMPONENTS),
       ...this.container.getDynamicMetadataByToken(
@@ -103,7 +103,7 @@ export class DependenciesScanner {
     this.reflectGatewaysMiddlewares(component, token);
   }
 
-  public reflectControllers(module: NestModuleMetatype, token: string) {
+  public reflectControllers(module: NeskModuleMetatype, token: string) {
     const routes = [
       ...this.reflectMetadata(module, metadata.CONTROLLERS),
       ...this.container.getDynamicMetadataByToken(
@@ -125,7 +125,7 @@ export class DependenciesScanner {
     this.reflectInterceptors(obj, token);
   }
 
-  public reflectExports(module: NestModuleMetatype, token: string) {
+  public reflectExports(module: NeskModuleMetatype, token: string) {
     const exports = [
       ...this.reflectMetadata(module, metadata.EXPORTS),
       ...this.container.getDynamicMetadataByToken(
