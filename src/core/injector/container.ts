@@ -1,15 +1,15 @@
 import 'reflect-metadata';
-import { Controller, Injectable } from '../../common/interfaces';
-import { GLOBAL_MODULE_METADATA } from '../../common/constants';
-import { NestModuleMetatype } from '../../common/interfaces/modules/module-metatype.interface';
-import { Metatype } from '../../common/interfaces/metatype.interface';
-import { SHARED_MODULE_METADATA } from '../../common/constants';
-import { isUndefined } from '../../common/utils/shared.utils';
+import { Controller, Injectable } from '@neskjs/common/interfaces';
+import { GLOBAL_MODULE_METADATA } from '@neskjs/common/constants';
+import { NeskModuleMetatype } from '@neskjs/common/interfaces/modules/module-metatype.interface';
+import { Metatype } from '@neskjs/common/interfaces/metatype.interface';
+import { SHARED_MODULE_METADATA } from '@neskjs/common/constants';
+import { isUndefined } from '@neskjs/common/utils/shared.utils';
 import { Module } from './module';
 import { UnknownModuleException } from '../errors/exceptions/unknown-module.exception';
 import { ModuleTokenFactory } from './module-token-factory';
 import { InvalidModuleException } from './../errors/exceptions/invalid-module.exception';
-import { DynamicModule } from '../../common';
+import { DynamicModule } from '@neskjs/common';
 import { ModulesContainer } from './modules-container';
 import { NeskApplicationContext } from './../nesk-application-context';
 import { ApplicationConfig } from './../application-config';
@@ -41,8 +41,8 @@ export class NeskContainer {
   }
 
   public addModule(
-    metatype: NestModuleMetatype | DynamicModule,
-    scope: NestModuleMetatype[],
+    metatype: NeskModuleMetatype | DynamicModule,
+    scope: NeskModuleMetatype[],
   ) {
     if (!metatype) {
       throw new InvalidModuleException(scope);
@@ -60,9 +60,9 @@ export class NeskContainer {
   }
 
   public extractMetadata(
-    metatype: NestModuleMetatype | DynamicModule,
+    metatype: NeskModuleMetatype | DynamicModule,
   ): {
-    type: NestModuleMetatype;
+    type: NeskModuleMetatype;
     dynamicMetadata?: Partial<DynamicModule> | undefined;
   } {
     if (!this.isDynamicModule(metatype)) {
@@ -73,7 +73,7 @@ export class NeskContainer {
   }
 
   public isDynamicModule(
-    module: NestModuleMetatype | DynamicModule,
+    module: NeskModuleMetatype | DynamicModule,
   ): module is DynamicModule {
     return (module as DynamicModule).module;
   }
@@ -81,7 +81,7 @@ export class NeskContainer {
   public addDynamicMetadata(
     token: string,
     dynamicModuleMetadata: Partial<DynamicModule>,
-    scope: NestModuleMetatype[],
+    scope: NeskModuleMetatype[],
   ) {
     if (!dynamicModuleMetadata) {
       return undefined;
@@ -93,14 +93,14 @@ export class NeskContainer {
     this.addDynamicModules(imports, scope);
   }
 
-  public addDynamicModules(modules: any[], scope: NestModuleMetatype[]) {
+  public addDynamicModules(modules: any[], scope: NeskModuleMetatype[]) {
     if (!modules) {
       return;
     }
     modules.map(module => this.addModule(module, scope));
   }
 
-  public isGlobalModule(metatype: NestModuleMetatype): boolean {
+  public isGlobalModule(metatype: NeskModuleMetatype): boolean {
     return !!Reflect.getMetadata(GLOBAL_MODULE_METADATA, metatype);
   }
 
@@ -113,7 +113,7 @@ export class NeskContainer {
   }
 
   public addRelatedModule(
-    relatedModule: NestModuleMetatype | DynamicModule,
+    relatedModule: NeskModuleMetatype | DynamicModule,
     token: string,
   ) {
     if (!this.modules.has(token)) return;

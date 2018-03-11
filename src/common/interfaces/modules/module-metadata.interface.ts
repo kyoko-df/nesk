@@ -1,4 +1,4 @@
-import { NestModule } from './nest-module.interface';
+import { NeskModule } from './nesk-module.interface';
 import { Controller } from '../controllers/controller.interface';
 import { DynamicModule } from './dynamic-module.interface';
 

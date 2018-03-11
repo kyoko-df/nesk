@@ -3,19 +3,19 @@ import { InstanceWrapper } from './container';
 import { UnknownDependenciesException } from '../errors/exceptions/unknown-dependencies.exception';
 import { RuntimeException } from '../errors/exceptions/runtime.exception';
 import { Module } from './module';
-import { Metatype } from '../../common/interfaces/metatype.interface';
-import { Controller } from '../../common/interfaces/controllers/controller.interface';
-import { Injectable } from '../../common/interfaces/injectable.interface';
+import { Metatype } from '@neskjs/common/interfaces/metatype.interface';
+import { Controller } from '@neskjs/common/interfaces/controllers/controller.interface';
+import { Injectable } from '@neskjs/common/interfaces/injectable.interface';
 import { MiddlewareWrapper } from '../middlewares/container';
 import {
   isUndefined,
   isNil,
   isFunction,
-} from '../../common/utils/shared.utils';
+} from '@neskjs/common/utils/shared.utils';
 import {
   PARAMTYPES_METADATA,
   SELF_DECLARED_DEPS_METADATA,
-} from '../../common/constants';
+} from '@neskjs/common/constants';
 import { UndefinedDependencyException } from './../errors/exceptions/undefined-dependency.exception';
 
 export class Injector {

@@ -1,6 +1,6 @@
 import * as WebSocket from 'ws';
-import { WebSocketAdapter } from '@nestjs/common';
-import { MessageMappingProperties } from '@nestjs/websockets';
+import { WebSocketAdapter } from '@neskjs/common';
+import { MessageMappingProperties } from '@neskjs/websockets';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/observable/empty';

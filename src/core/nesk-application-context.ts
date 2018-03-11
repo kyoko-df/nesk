@@ -1,9 +1,9 @@
 import { ModuleTokenFactory } from './injector/module-token-factory';
 import { NeskContainer, InstanceWrapper } from './injector/container';
-import { NeskModuleMetatype } from '../common/interfaces/modules/module-metatype.interface';
-import { Metatype } from '../common/interfaces';
-import { isFunction } from '../common/utils/shared.utils';
-import { INeskApplicationContext } from '../common';
+import { NeskModuleMetatype } from '@neskjs/common/interfaces/modules/module-metatype.interface';
+import { Metatype } from '@neskjs/common/interfaces';
+import { isFunction } from '@neskjs/common/utils/shared.utils';
+import { INeskApplicationContext } from '@neskjs/common';
 
 export class NeskApplicationContext implements INeskApplicationContext {
   private readonly moduleTokenFactory = new ModuleTokenFactory();

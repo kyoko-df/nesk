@@ -12,7 +12,7 @@
     "sourceMap": false,
     "allowJs": false,
     "baseUrl": "./../../",
-    "outDir": "../../node_modules/@nestjs/testing"
+    "outDir": "../../node_modules/@neskjs/testing"
   },
   "include": [
     "*.ts",

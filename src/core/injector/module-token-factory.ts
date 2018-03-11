@@ -1,11 +1,11 @@
-import { NestModuleMetatype } from '../../common/interfaces/modules/module-metatype.interface';
-import { SHARED_MODULE_METADATA } from '../../common/constants';
-import { DynamicModule } from '../../common';
+import { NeskModuleMetatype } from '@neskjs/common/interfaces/modules/module-metatype.interface';
+import { SHARED_MODULE_METADATA } from '@neskjs/common/constants';
+import { DynamicModule } from '@neskjs/common';
 
 export class ModuleTokenFactory {
   public create(
-    metatype: NestModuleMetatype,
-    scope: NestModuleMetatype[],
+    metatype: NeskModuleMetatype,
+    scope: NeskModuleMetatype[],
     dynamicModuleMetadata?: Partial<DynamicModule> | undefined,
   ) {
     const reflectedScope = this.reflectScope(metatype);
@@ -24,11 +24,11 @@ export class ModuleTokenFactory {
     return dynamicModuleMetadata ? JSON.stringify(dynamicModuleMetadata) : '';
   }
 
-  public getModuleName(metatype: NestModuleMetatype): string {
+  public getModuleName(metatype: NeskModuleMetatype): string {
     return metatype.name;
   }
 
-  public getScopeStack(scope: NestModuleMetatype[]): string[] {
+  public getScopeStack(scope: NeskModuleMetatype[]): string[] {
     const reversedScope = scope.reverse();
     const firstGlobalIndex = reversedScope.findIndex(
       s => this.reflectScope(s) === 'global',
@@ -42,7 +42,7 @@ export class ModuleTokenFactory {
     return stack.map(module => module.name);
   }
 
-  private reflectScope(metatype: NestModuleMetatype) {
+  private reflectScope(metatype: NeskModuleMetatype) {
     const reflectedScope = Reflect.getMetadata(
       SHARED_MODULE_METADATA,
       metatype,

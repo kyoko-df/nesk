@@ -1,4 +1,4 @@
-import { Controller } from '../../../common/interfaces/controllers/controller.interface';
+import { Controller } from '@neskjs/common/interfaces/controllers/controller.interface';
 import { ExceptionsHandler } from '../../exceptions/exceptions-handler';
 
 export interface ExceptionsFilter {

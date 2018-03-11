@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as path from 'path';
-import { NestFactory } from '@nestjs/core';
+import { NestFactory } from '@neskjs/core';
 import { ApplicationModule } from './app.module';
 
 async function bootstrap() {

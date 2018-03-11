@@ -1,8 +1,8 @@
 import { Application } from 'koa';
 import { NeskContainer, InstanceWrapper } from '../injector/container';
 import { RouterProxy } from './router-proxy';
-import { Controller } from '../../common/interfaces/controllers/controller.interface';
-import { Logger } from '../../common/services/logger.service';
+import { Controller } from '@neskjs/common/interfaces/controllers/controller.interface';
+import { Logger } from '@neskjs/common/services/logger.service';
 import { ControllerMappingMessage } from '../helpers/messages';
 import { Resolver } from './interfaces/resolver.interface';
 import { RouterExceptionFilters } from './router-exception-filters';
@@ -10,8 +10,8 @@ import { MetadataScanner } from '../metadata-scanner';
 import { RouterExplorer } from './interfaces/explorer.inteface';
 import { ExpressRouterExplorer } from './router-explorer';
 import { ApplicationConfig } from './../application-config';
-import { NotFoundException, BadRequestException } from '../../common';
-import { MODULE_PATH } from '../../common/constants';
+import { NotFoundException, BadRequestException } from '@neskjs/common';
+import { MODULE_PATH } from '@neskjs/common/constants';
 
 export class RoutesResolver implements Resolver {
   private readonly logger = new Logger(RoutesResolver.name, true);

@@ -1,4 +1,4 @@
-import { Interceptor, NestInterceptor, ExecutionContext } from '@nestjs/common';
+import { Interceptor, NestInterceptor, ExecutionContext } from '@neskjs/common';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 

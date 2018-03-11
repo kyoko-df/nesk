@@ -1,9 +1,9 @@
 import * as express from 'express';
 import * as request from 'supertest';
-import { Test } from '@nestjs/testing';
+import { Test } from '@neskjs/testing';
 import { CatsModule } from '../../src/cats/cats.module';
 import { CatsService } from '../../src/cats/cats.service';
-import { INestApplication } from '@nestjs/common';
+import { INestApplication } from '@neskjs/common';
 
 describe('Cats', () => {
   let server;

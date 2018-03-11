@@ -4,13 +4,13 @@ import {
   Controller,
   PipeTransform,
   Transform,
-} from '../../common/interfaces';
-import { PIPES_METADATA } from '../../common/constants';
+} from '@neskjs/common/interfaces';
+import { PIPES_METADATA } from '@neskjs/common/constants';
 import {
   isUndefined,
   isFunction,
   isEmpty,
-} from '../../common/utils/shared.utils';
+} from '@neskjs/common/utils/shared.utils';
 import { ApplicationConfig } from './../application-config';
 import { ContextCreator } from './../helpers/context-creator';
 

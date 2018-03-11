@@ -5,7 +5,7 @@ import { Controller } from '../../../common/decorators/core/controller.decorator
 import { RequestMapping } from '../../../common/decorators/http/request-mapping.decorator';
 import { RequestMethod } from '../../../common/enums/request-method.enum';
 import { ApplicationConfig } from '../../application-config';
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException } from '@neskjs/common';
 
 describe('RoutesResolver', () => {
   @Controller('global')

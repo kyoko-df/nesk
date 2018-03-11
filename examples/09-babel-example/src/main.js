@@ -1,7 +1,7 @@
 require('babel-core/register');
 require('babel-polyfill');
 
-import { NestFactory } from '@nestjs/core';
+import { NestFactory } from '@neskjs/core';
 import { ApplicationModule } from './app.module';
 
 async function bootstrap() {

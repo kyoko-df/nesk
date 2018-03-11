@@ -1,9 +1,9 @@
-import { Logger } from '@nestjs/common/services/logger.service';
+import { Logger } from '@neskjs/common/services/logger.service';
 import { MessageHandlers } from '../interfaces/message-handlers.interface';
 import { Observable } from 'rxjs/Observable';
 import { MicroserviceResponse } from '../index';
 import { Subscription } from 'rxjs/Subscription';
-import { isFunction } from '@nestjs/common/utils/shared.utils';
+import { isFunction } from '@neskjs/common/utils/shared.utils';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/observable/empty';

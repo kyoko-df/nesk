@@ -1,10 +1,10 @@
-import { Logger } from '@nestjs/common';
-import { isEmpty, isObject } from '@nestjs/common/utils/shared.utils';
-import { InvalidExceptionFilterException } from '@nestjs/core/errors/exceptions/invalid-exception-filter.exception';
-import { messages } from '@nestjs/core/constants';
+import { Logger } from '@neskjs/common';
+import { isEmpty, isObject } from '@neskjs/common/utils/shared.utils';
+import { InvalidExceptionFilterException } from '@neskjs/core/errors/exceptions/invalid-exception-filter.exception';
+import { messages } from '@neskjs/core/constants';
 import { Observable } from 'rxjs/Observable';
 import { RpcException } from './rpc-exception';
-import { RpcExceptionFilterMetadata } from '@nestjs/common/interfaces/exceptions';
+import { RpcExceptionFilterMetadata } from '@neskjs/common/interfaces/exceptions';
 import 'rxjs/add/observable/throw';
 
 export class RpcExceptionsHandler {

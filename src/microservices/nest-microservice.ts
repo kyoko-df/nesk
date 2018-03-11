@@ -1,9 +1,9 @@
 import * as optional from 'optional';
 import iterate from 'iterare';
-import { NestContainer } from '@nestjs/core/injector/container';
+import { NestContainer } from '@neskjs/core/injector/container';
 import { MicroservicesModule } from './microservices-module';
-import { messages } from '@nestjs/core/constants';
-import { Logger } from '@nestjs/common/services/logger.service';
+import { messages } from '@neskjs/core/constants';
+import { Logger } from '@neskjs/common/services/logger.service';
 import { Server } from './server/server';
 import { MicroserviceConfiguration } from './interfaces/microservice-configuration.interface';
 import { ServerFactory } from './server/server-factory';
@@ -16,18 +16,18 @@ import {
   NestInterceptor,
   ExceptionFilter,
   OnModuleInit,
-} from '@nestjs/common';
-import { ApplicationConfig } from '@nestjs/core/application-config';
-import { CustomTransportStrategy } from '@nestjs/microservices';
-import { Module } from '@nestjs/core/injector/module';
-import { isNil, isUndefined } from '@nestjs/common/utils/shared.utils';
-import { OnModuleDestroy } from '@nestjs/common/interfaces';
-import { NestApplicationContext } from '@nestjs/core/nest-application-context';
+} from '@neskjs/common';
+import { ApplicationConfig } from '@neskjs/core/application-config';
+import { CustomTransportStrategy } from '@neskjs/microservices';
+import { Module } from '@neskjs/core/injector/module';
+import { isNil, isUndefined } from '@neskjs/common/utils/shared.utils';
+import { OnModuleDestroy } from '@neskjs/common/interfaces';
+import { NestApplicationContext } from '@neskjs/core/nest-application-context';
 
 const { SocketModule } =
-  optional('@nestjs/websockets/socket-module') || ({} as any);
+  optional('@neskjs/websockets/socket-module') || ({} as any);
 const { IoAdapter } =
-  optional('@nestjs/websockets/adapters/io-adapter') || ({} as any);
+  optional('@neskjs/websockets/adapters/io-adapter') || ({} as any);
 
 export class NestMicroservice extends NestApplicationContext
   implements INestMicroservice {

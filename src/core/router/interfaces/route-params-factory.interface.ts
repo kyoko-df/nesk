@@ -1,4 +1,4 @@
-import { RouteParamtypes } from '../../../common/enums/route-paramtypes.enum';
+import { RouteParamtypes } from '@neskjs/common/enums/route-paramtypes.enum';
 
 export interface IRouteParamsFactory {
   exchangeKeyForValue(key: RouteParamtypes | string, data, { req, res, next });

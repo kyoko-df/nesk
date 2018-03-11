@@ -4,7 +4,7 @@ import {
   NestModule,
   MiddlewaresConsumer,
   RequestMethod,
-} from '@nestjs/common';
+} from '@neskjs/common';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './passport/jwt.strategy';
 import { AuthController } from './auth.controller';

@@ -3,9 +3,9 @@ import {
   MiddlewaresConsumer,
   NestModule,
   RequestMethod,
-} from '@nestjs/common';
+} from '@neskjs/common';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
-import { GraphQLModule, GraphQLFactory } from '@nestjs/graphql';
+import { GraphQLModule, GraphQLFactory } from '@neskjs/graphql';
 
 import { CatsModule } from './cats/cats.module';
 import { SubscriptionsModule } from './subscriptions/subscriptions.module';

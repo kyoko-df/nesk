@@ -1,5 +1,5 @@
 import { RuntimeException } from './exceptions/runtime.exception';
-import { Logger } from '@nestjs/common/services/logger.service';
+import { Logger } from '@neskjs/common/services/logger.service';
 
 export class ExceptionHandler {
   private static readonly logger = new Logger(ExceptionHandler.name);

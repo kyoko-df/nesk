@@ -12,7 +12,7 @@ import { RouterProxy } from '../router/router-proxy';
 import { ExceptionsHandler } from '../exceptions/exceptions-handler';
 import { Module } from '../injector/module';
 import { RouterMethodFactory } from '../helpers/router-method-factory';
-import { NestMiddleware } from '../../common/interfaces/middlewares/nest-middleware.interface';
+import { NeskMiddleware } from '../../common/interfaces/middlewares/nesk-middleware.interface';
 import { Metatype } from '../../common/interfaces/metatype.interface';
 import { RuntimeException } from '../errors/exceptions/runtime.exception';
 import { isUndefined } from '../../common/utils/shared.utils';
@@ -122,7 +122,7 @@ export class MiddlewaresModule {
 
     const middlewares = [].concat(config.middlewares);
     await Promise.all(
-      middlewares.map(async (metatype: Metatype<NestMiddleware>) => {
+      middlewares.map(async (metatype: Metatype<NeskMiddleware>) => {
         const collection = middlewaresContainer.getMiddlewares(module);
         const middleware = collection.get(metatype.name);
         if (isUndefined(middleware)) {
@@ -136,8 +136,8 @@ export class MiddlewaresModule {
   }
 
   private async setupHandler(
-    instance: NestMiddleware,
-    metatype: Metatype<NestMiddleware>,
+    instance: NeskMiddleware,
+    metatype: Metatype<NeskMiddleware>,
     app: any,
     method: RequestMethod,
     path: string,

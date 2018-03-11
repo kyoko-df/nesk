@@ -1,6 +1,6 @@
-import { MiddlewareConfiguration } from '../../common/interfaces/middlewares/middleware-configuration.interface';
-import { NestMiddleware } from '../../common/interfaces/middlewares/nest-middleware.interface';
-import { Metatype } from '../../common/interfaces/metatype.interface';
+import { MiddlewareConfiguration } from '@neskjs/common/interfaces/middlewares/middleware-configuration.interface';
+import { NeskMiddleware } from '@neskjs/common/interfaces/middlewares/nesk-middleware.interface';
+import { Metatype } from '@neskjs/common/interfaces/metatype.interface';
 
 export class MiddlewaresContainer {
   private readonly middlewares = new Map<
@@ -50,6 +50,6 @@ export class MiddlewaresContainer {
 }
 
 export interface MiddlewareWrapper {
-  instance: NestMiddleware;
-  metatype: Metatype<NestMiddleware>;
+  instance: NeskMiddleware;
+  metatype: Metatype<NeskMiddleware>;
 }

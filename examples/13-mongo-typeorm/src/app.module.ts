@@ -1,5 +1,5 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { Module } from '@neskjs/common';
+import { TypeOrmModule } from '@neskjs/typeorm';
 import { PhotoModule } from './photo/photo.module';
 
 @Module({

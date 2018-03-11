@@ -1,4 +1,4 @@
-import { RuntimeException } from '@nestjs/core/errors/exceptions/runtime.exception';
+import { RuntimeException } from '@neskjs/core/errors/exceptions/runtime.exception';
 
 export class InvalidMessageException extends RuntimeException {
   constructor() {

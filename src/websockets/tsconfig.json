@@ -12,7 +12,7 @@
     "sourceMap": false,
     "allowJs": false,
     "baseUrl": "./../../",
-    "outDir": "../../node_modules/@nestjs/websockets"
+    "outDir": "../../node_modules/@neskjs/websockets"
   },
   "include": [
     "*.ts",

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module } from '@neskjs/common';
 import { MathController } from './math.controller';
 
 @Module({

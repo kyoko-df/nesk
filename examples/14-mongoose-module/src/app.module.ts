@@ -1,5 +1,5 @@
-import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
+import { Module } from '@neskjs/common';
+import { MongooseModule } from '@neskjs/mongoose';
 import { CatsModule } from './cats/cats.module';
 
 @Module({

@@ -1,10 +1,10 @@
-import { Controller, Get, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, UseInterceptors } from '@neskjs/common';
 import {
   ClientProxy,
   Client,
   Transport,
   MessagePattern,
-} from '@nestjs/microservices';
+} from '@neskjs/microservices';
 import { Observable } from 'rxjs/Observable';
 import { LoggingInterceptor } from '../common/interceptors/logging.interceptor';
 

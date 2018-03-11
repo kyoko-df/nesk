@@ -1,4 +1,4 @@
-import { CanActivate, Guard, ExecutionContext } from '@nestjs/common';
+import { CanActivate, Guard, ExecutionContext } from '@neskjs/common';
 
 @Guard()
 export class CatsGuard implements CanActivate {

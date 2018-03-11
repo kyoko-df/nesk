@@ -4,10 +4,10 @@ import {
   Controller,
   NeskModule,
   DynamicModule,
-} from '../../common/interfaces';
+} from '@neskjs/common/interfaces';
 import { UnknownExportException } from '../errors/exceptions/unknown-export.exception';
-import { NeskModuleMetatype } from '../../common/interfaces/modules/module-metatype.interface';
-import { Metatype } from '../../common/interfaces/metatype.interface';
+import { NeskModuleMetatype } from '@neskjs/common/interfaces/modules/module-metatype.interface';
+import { Metatype } from '@neskjs/common/interfaces/metatype.interface';
 import { ModuleRef } from './module-ref';
 import {
   isFunction,
@@ -15,7 +15,7 @@ import {
   isUndefined,
   isString,
   isSymbol,
-} from '../../common/utils/shared.utils';
+} from '@neskjs/common/utils/shared.utils';
 import { RuntimeException } from '../errors/exceptions/runtime.exception';
 import { ExternalContextCreator } from './../helpers/external-context-creator';
 import { GuardsContextCreator } from './../guards/guards-context-creator';
@@ -24,7 +24,7 @@ import { InterceptorsConsumer } from './../interceptors/interceptors-consumer';
 import { GuardsConsumer } from './../guards/guards-consumer';
 import { ModulesContainer } from './modules-container';
 import { Reflector } from '../services/reflector.service';
-import { EXPRESS_REF } from './tokens';
+import { KOA_REF } from './tokens';
 
 export interface CustomComponent {
   provide: any;
@@ -51,14 +51,14 @@ export class Module {
   private _exports = new Set<string>();
 
   constructor(
-    private readonly _metatype: NestModuleMetatype,
-    private readonly _scope: NestModuleMetatype[],
-    container: NestContainer,
+    private readonly _metatype: NeskModuleMetatype,
+    private readonly _scope: NeskModuleMetatype[],
+    container: NeskContainer,
   ) {
     this.addCoreInjectables(container);
   }
 
-  get scope(): NestModuleMetatype[] {
+  get scope(): NeskModuleMetatype[] {
     return this._scope;
   }
 
@@ -90,7 +90,7 @@ export class Module {
     return module.instance as NeskModule;
   }
 
-  get metatype(): NestModuleMetatype {
+  get metatype(): NeskModuleMetatype {
     return this._metatype;
   }
 
@@ -132,15 +132,15 @@ export class Module {
   }
 
   public addApplicationRef(applicationRef: any) {
-    this._components.set(EXPRESS_REF, {
-      name: EXPRESS_REF,
+    this._components.set(KOA_REF, {
+      name: KOA_REF,
       metatype: {} as any,
       isResolved: true,
       instance: applicationRef,
     });
   }
 
-  public addExternalContextCreator(container: NestContainer) {
+  public addExternalContextCreator(container: NeskContainer) {
     this._components.set(ExternalContextCreator.name, {
       name: ExternalContextCreator.name,
       metatype: ExternalContextCreator,

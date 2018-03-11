@@ -12,7 +12,7 @@ const packages = {
 const modules = Object.keys(packages);
 const source = 'src';
 const distId = process.argv.indexOf('--dist');
-const dist = distId < 0 ? 'node_modules/@nestjs' : process.argv[distId + 1];
+const dist = distId < 0 ? 'node_modules/@neskjs' : process.argv[distId + 1];
 
 gulp.task('default', function() {
 	modules.forEach(module => {
@@ -37,29 +37,29 @@ gulp.task('build', function(cb) {
 });
 
 gulp.task('move', function() {
-	gulp.src(['node_modules/@nestjs/**/*']).pipe(
-    gulp.dest('examples/01-cats-app/node_modules/@nestjs')
+	gulp.src(['node_modules/@neskjs/**/*']).pipe(
+    gulp.dest('examples/01-cats-app/node_modules/@neskjs')
   ).pipe(
-    gulp.dest('examples/02-gateways/node_modules/@nestjs')
+    gulp.dest('examples/02-gateways/node_modules/@neskjs')
   ).pipe(
-    gulp.dest('examples/03-microservices/node_modules/@nestjs')
+    gulp.dest('examples/03-microservices/node_modules/@neskjs')
   ).pipe(
-    gulp.dest('examples/04-injector/node_modules/@nestjs')
+    gulp.dest('examples/04-injector/node_modules/@neskjs')
   ).pipe(
-    gulp.dest('examples/05-sql-typeorm/node_modules/@nestjs')
+    gulp.dest('examples/05-sql-typeorm/node_modules/@neskjs')
   ).pipe(
-    gulp.dest('examples/06-mongoose/node_modules/@nestjs')
+    gulp.dest('examples/06-mongoose/node_modules/@neskjs')
   ).pipe(
-    gulp.dest('examples/07-sequelize/node_modules/@nestjs')
+    gulp.dest('examples/07-sequelize/node_modules/@neskjs')
   ).pipe(
-    gulp.dest('examples/08-passport/node_modules/@nestjs')
+    gulp.dest('examples/08-passport/node_modules/@neskjs')
   ).pipe(
-    gulp.dest('examples/09-babel-example/node_modules/@nestjs')
+    gulp.dest('examples/09-babel-example/node_modules/@neskjs')
   ).pipe(
-    gulp.dest('examples/11-swagger/node_modules/@nestjs')
+    gulp.dest('examples/11-swagger/node_modules/@neskjs')
   ).pipe(
-    gulp.dest('examples/12-graphql-apollo/node_modules/@nestjs')
+    gulp.dest('examples/12-graphql-apollo/node_modules/@neskjs')
   ).pipe(
-    gulp.dest('examples/15-mvc/node_modules/@nestjs')
+    gulp.dest('examples/15-mvc/node_modules/@neskjs')
   );
 });

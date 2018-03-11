@@ -1,5 +1,5 @@
 import * as amqp from 'amqplib';
-import { Server, CustomTransportStrategy } from '@nestjs/microservices';
+import { Server, CustomTransportStrategy } from '@neskjs/microservices';
 import { Observable } from 'rxjs/Observable';
 
 export class RabbitMQServer extends Server implements CustomTransportStrategy {

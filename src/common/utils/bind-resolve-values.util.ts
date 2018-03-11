@@ -1,9 +1,9 @@
 import { Constructor } from './merge-with-values.util';
-import { NestMiddleware } from '../interfaces/middlewares/nest-middleware.interface';
+import { NeskMiddleware } from '../interfaces/middlewares/nesk-middleware.interface';
 import { Component } from '../decorators/core/component.decorator';
 
 export const BindResolveMiddlewareValues = <
-  T extends Constructor<NestMiddleware>
+  T extends Constructor<NeskMiddleware>
 >(
   data: Array<any>,
 ) => {

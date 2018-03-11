@@ -1,4 +1,4 @@
-import { Component } from '@nestjs/common';
+import { Component } from '@neskjs/common';
 import { Cat } from './interfaces/cat.interface';
 
 @Component()

@@ -3,19 +3,19 @@ import iterate from 'iterare';
 import {
   NestContainer,
   InstanceWrapper,
-} from '@nestjs/core/injector/container';
+} from '@neskjs/core/injector/container';
 import { NestGateway } from './index';
 import { GATEWAY_MIDDLEWARES } from './constants';
-import { UnknownModuleException } from '@nestjs/core/errors/exceptions/unknown-module.exception';
-import { Injectable } from '@nestjs/common/interfaces/injectable.interface';
-import { RuntimeException } from '@nestjs/core/errors/exceptions/runtime.exception';
+import { UnknownModuleException } from '@neskjs/core/errors/exceptions/unknown-module.exception';
+import { Injectable } from '@neskjs/common/interfaces/injectable.interface';
+import { RuntimeException } from '@neskjs/core/errors/exceptions/runtime.exception';
 import { GatewayMiddleware } from './interfaces/gateway-middleware.interface';
 import {
   isUndefined,
   isFunction,
   isNil,
-} from '@nestjs/common/utils/shared.utils';
-import { ApplicationConfig } from '@nestjs/core/application-config';
+} from '@neskjs/common/utils/shared.utils';
+import { ApplicationConfig } from '@neskjs/core/application-config';
 
 export class MiddlewaresInjector {
   constructor(

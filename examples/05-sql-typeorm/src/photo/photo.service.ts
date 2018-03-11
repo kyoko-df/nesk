@@ -1,5 +1,5 @@
-import { Component } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Component } from '@neskjs/common';
+import { InjectRepository } from '@neskjs/typeorm';
 import { Repository } from 'typeorm';
 import { Photo } from './photo.entity';
 

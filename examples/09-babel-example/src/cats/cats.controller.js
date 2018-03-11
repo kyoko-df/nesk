@@ -7,7 +7,7 @@ import {
   Dependencies,
   ReflectMetadata,
   Param,
-} from '@nestjs/common';
+} from '@neskjs/common';
 import { CatsService } from './cats.service';
 
 @Controller('cats')

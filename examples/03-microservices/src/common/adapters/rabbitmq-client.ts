@@ -1,5 +1,5 @@
 import * as amqp from 'amqplib';
-import { ClientProxy } from '@nestjs/microservices';
+import { ClientProxy } from '@neskjs/microservices';
 
 export class RabbitMQClient extends ClientProxy {
   constructor(private readonly host: string, private readonly queue: string) {

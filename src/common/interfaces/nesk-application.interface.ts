@@ -1,7 +1,7 @@
 import { INeskMicroservice, ExceptionFilter, PipeTransform } from './index';
 import { WebSocketAdapter } from './web-socket-adapter.interface';
 import { CanActivate } from './can-activate.interface';
-import { NestInterceptor } from './nest-interceptor.interface';
+import { NestInterceptor } from './nesk-interceptor.interface';
 import { INeskApplicationContext } from './nesk-application-context.interface';
 import { CorsOptions } from './external/cors-options.interface';
 

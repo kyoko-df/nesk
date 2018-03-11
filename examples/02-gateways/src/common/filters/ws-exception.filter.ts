@@ -1,5 +1,5 @@
-import { Catch, WsExceptionFilter } from '@nestjs/common';
-import { WsException } from '@nestjs/websockets';
+import { Catch, WsExceptionFilter } from '@neskjs/common';
+import { WsException } from '@neskjs/websockets';
 
 @Catch(WsException)
 export class ExceptionFilter implements WsExceptionFilter {

@@ -2,7 +2,7 @@ import * as net from 'net';
 import * as JsonSocket from 'json-socket';
 import { ClientProxy } from './client-proxy';
 import { ClientMetadata } from '../interfaces/client-metadata.interface';
-import { Logger } from '@nestjs/common';
+import { Logger } from '@neskjs/common';
 
 const DEFAULT_PORT = 3000;
 const DEFAULT_HOST = 'localhost';

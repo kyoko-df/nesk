@@ -6,5 +6,5 @@
  */
 
 export * from './common';
-export * from './core/nest-factory';
-export * from './core/nest-application';
+export * from './core/nesk-factory';
+export * from './core/nesk-application';

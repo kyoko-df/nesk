@@ -1,20 +1,20 @@
 import 'reflect-metadata';
 import { NeskContainer } from './injector/container';
-import { Controller } from '../common/interfaces/controllers/controller.interface';
-import { Injectable } from '../common/interfaces/injectable.interface';
+import { Controller } from '@neskjs/common/interfaces/controllers/controller.interface';
+import { Injectable } from '@neskjs/common/interfaces/injectable.interface';
 import {
   metadata,
   GATEWAY_MIDDLEWARES,
   EXCEPTION_FILTERS_METADATA,
   GUARDS_METADATA,
   INTERCEPTORS_METADATA,
-} from '../common/constants';
-import { NeskModuleMetatype } from '../common/interfaces/modules/module-metatype.interface';
-import { Metatype } from '../common/interfaces/metatype.interface';
+} from '@neskjs/common/constants';
+import { NeskModuleMetatype } from '@neskjs/common/interfaces/modules/module-metatype.interface';
+import { Metatype } from '@neskjs/common/interfaces/metatype.interface';
 import { MetadataScanner } from '../core/metadata-scanner';
-import { DynamicModule } from '../common';
+import { DynamicModule } from '@neskjs/common';
 import { ApplicationConfig } from './application-config';
-import { isNil } from '../common/utils/shared.utils';
+import { isNil } from '@neskjs/common/utils/shared.utils';
 import { APP_INTERCEPTOR, APP_PIPE, APP_GUARD, APP_FILTER } from './constants';
 
 interface ApplicationProviderWrapper {

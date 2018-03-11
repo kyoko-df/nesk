@@ -12,7 +12,7 @@
     "sourceMap": false,
     "allowJs": false,
     "rootDir": "./",
-    "outDir": "../../node_modules/@nestjs/common"
+    "outDir": "../../node_modules/@neskjs/common"
   },
   "include": [
     "*.ts",

@@ -3,10 +3,10 @@ import {
   Pipe,
   ArgumentMetadata,
   HttpStatus,
-} from '@nestjs/common';
+} from '@neskjs/common';
 import { validate } from 'class-validator';
 import { plainToClass } from 'class-transformer';
-import { WsException } from '@nestjs/websockets';
+import { WsException } from '@neskjs/websockets';
 
 @Pipe()
 export class ValidationPipe implements PipeTransform<any> {

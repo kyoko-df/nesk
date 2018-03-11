@@ -1,4 +1,4 @@
-import { RequestMethod } from '../../common/enums/request-method.enum';
+import { RequestMethod } from '@neskjs/common/enums/request-method.enum';
 
 export const ModuleInitMessage = (module: string) =>
   `${module} dependencies initialized`;

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module } from '@neskjs/common';
 import { FeatureService } from './feature.service';
 import { CoreModule } from '../core/core.module';
 

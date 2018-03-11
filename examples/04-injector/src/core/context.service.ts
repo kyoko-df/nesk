@@ -1,4 +1,4 @@
-import { Component } from '@nestjs/common';
+import { Component } from '@neskjs/common';
 import { CommonService } from '../common/common.service';
 import { CoreService } from './core.service';
 

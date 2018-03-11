@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { expect } from 'chai';
 import { Bind } from '../../decorators/core/bind.decorator';
-import { ROUTE_ARGS_METADATA } from '@nestjs/common/constants';
+import { ROUTE_ARGS_METADATA } from '@neskjs/common/constants';
 import { Req } from '../../decorators/http/route-params.decorator';
 
 describe('@Bind', () => {

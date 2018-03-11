@@ -1,5 +1,5 @@
-import { Controller } from '../../../common/interfaces/index';
-import { Metatype } from '../../../common/interfaces/metatype.interface';
+import { Controller } from '@neskjs/common/interfaces/index';
+import { Metatype } from '@neskjs/common/interfaces/metatype.interface';
 
 export interface RouterExplorer {
   explore(instance: Controller, metatype: Metatype<Controller>, module: string);

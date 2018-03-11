@@ -1,5 +1,5 @@
-import { Controller } from '@nestjs/common/interfaces/controllers/controller.interface';
-import { isFunction, isUndefined } from '@nestjs/common/utils/shared.utils';
+import { Controller } from '@neskjs/common/interfaces/controllers/controller.interface';
+import { isFunction, isUndefined } from '@neskjs/common/utils/shared.utils';
 import {
   PATTERN_METADATA,
   PATTERN_HANDLER_METADATA,
@@ -8,7 +8,7 @@ import {
 } from './constants';
 import { PatternMetadata } from './interfaces/pattern-metadata.interface';
 import { ClientMetadata } from './interfaces/client-metadata.interface';
-import { MetadataScanner } from '@nestjs/core/metadata-scanner';
+import { MetadataScanner } from '@neskjs/core/metadata-scanner';
 
 export class ListenerMetadataExplorer {
   constructor(private readonly metadataScanner: MetadataScanner) {}

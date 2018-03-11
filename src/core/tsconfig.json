@@ -13,7 +13,7 @@
     "allowJs": false,
     "rootDir": "./",
     "baseUrl": "./../../",
-    "outDir": "../../node_modules/@nestjs/core"
+    "outDir": "../../node_modules/@neskjs/core"
   },
   "include": [
     "*.ts",

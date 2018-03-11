@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { NestGateway } from './interfaces/nest-gateway.interface';
-import { Injectable } from '@nestjs/common/interfaces/injectable.interface';
+import { Injectable } from '@neskjs/common/interfaces/injectable.interface';
 import { ObservableSocketServer } from './interfaces/observable-socket-server.interface';
 import { InvalidSocketPortException } from './exceptions/invalid-socket-port.exception';
 import {
@@ -10,14 +10,14 @@ import {
 import { Subject } from 'rxjs/Subject';
 import { SocketServerProvider } from './socket-server-provider';
 import { NAMESPACE_METADATA, PORT_METADATA } from './constants';
-import { Metatype } from '@nestjs/common/interfaces/metatype.interface';
-import { MetadataScanner } from '@nestjs/core/metadata-scanner';
-import { NestContainer } from '@nestjs/core/injector/container';
+import { Metatype } from '@neskjs/common/interfaces/metatype.interface';
+import { MetadataScanner } from '@neskjs/core/metadata-scanner';
+import { NestContainer } from '@neskjs/core/injector/container';
 import { MiddlewaresInjector } from './middlewares-injector';
-import { ApplicationConfig } from '@nestjs/core/application-config';
+import { ApplicationConfig } from '@neskjs/core/application-config';
 import { WsContextCreator } from './context/ws-context-creator';
 import { Observable } from 'rxjs/Observable';
-import { isFunction } from '@nestjs/common/utils/shared.utils';
+import { isFunction } from '@neskjs/common/utils/shared.utils';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/switchMap';

@@ -1,5 +1,5 @@
-import { HttpException } from '@nestjs/common';
-import { HttpStatus } from '@nestjs/common';
+import { HttpException } from '@neskjs/common';
+import { HttpStatus } from '@neskjs/common';
 
 export class ForbiddenException extends HttpException {
   constructor() {

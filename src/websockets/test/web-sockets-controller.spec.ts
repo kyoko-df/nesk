@@ -6,7 +6,7 @@ import { WebSocketGateway } from '../utils/socket-gateway.decorator';
 import { InvalidSocketPortException } from '../exceptions/invalid-socket-port.exception';
 import { GatewayMetadataExplorer } from '../gateway-metadata-explorer';
 import { MetadataScanner } from '../../core/metadata-scanner';
-import { ApplicationConfig } from '@nestjs/core/application-config';
+import { ApplicationConfig } from '@neskjs/core/application-config';
 import { WsContextCreator } from '../context/ws-context-creator';
 import { Observable } from 'rxjs/Observable';
 import { IoAdapter } from '../index';

@@ -1,9 +1,9 @@
 import 'reflect-metadata';
-import { Controller } from '@nestjs/common/interfaces/controllers/controller.interface';
+import { Controller } from '@neskjs/common/interfaces/controllers/controller.interface';
 import { ListenerMetadataExplorer } from './listener-metadata-explorer';
 import { Server } from './server/server';
 import { ClientProxyFactory } from './client/client-proxy-factory';
-import { MetadataScanner } from '@nestjs/core/metadata-scanner';
+import { MetadataScanner } from '@neskjs/core/metadata-scanner';
 import { CustomTransportStrategy } from './interfaces';
 import { ClientsContainer } from './container';
 import { RpcContextCreator } from './context/rpc-context-creator';

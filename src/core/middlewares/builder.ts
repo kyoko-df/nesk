@@ -1,16 +1,16 @@
-import { MiddlewareConfiguration } from '../../common/interfaces/middlewares/middleware-configuration.interface';
+import { MiddlewareConfiguration } from '@neskjs/common/interfaces/middlewares/middleware-configuration.interface';
 import { InvalidMiddlewareConfigurationException } from '../errors/exceptions/invalid-middleware-configuration.exception';
 import {
   isUndefined,
   isNil,
   isFunction,
-} from '../../common/utils/shared.utils';
-import { BindResolveMiddlewareValues } from '../../common/utils/bind-resolve-values.util';
-import { Logger } from '../../common/services/logger.service';
-import { Metatype, MiddlewaresConsumer } from '../../common/interfaces';
-import { MiddlewareConfigProxy } from '../../common/interfaces/middlewares';
+} from '@neskjs/common/utils/shared.utils';
+import { BindResolveMiddlewareValues } from '@neskjs/common/utils/bind-resolve-values.util';
+import { Logger } from '@neskjs/common/services/logger.service';
+import { Metatype, MiddlewaresConsumer } from '@neskjs/common/interfaces';
+import { MiddlewareConfigProxy } from '@neskjs/common/interfaces/middlewares';
 import { RoutesMapper } from './routes-mapper';
-import { NestMiddleware } from '../../common';
+import { NeskMiddleware } from '@neskjs/common';
 import { filterMiddlewares } from './utils';
 
 export class MiddlewareBuilder implements MiddlewaresConsumer {

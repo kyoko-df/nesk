@@ -3,7 +3,7 @@ import { Controller } from '../../common/interfaces/controllers/controller.inter
 import { RequestMethod } from '../../common/enums/request-method.enum';
 import { RouterProxy, RouterProxyCallback } from './router-proxy';
 import { UnknownRequestMappingException } from '../errors/exceptions/unknown-request-mapping.exception';
-import { ExpressAdapter } from '../adapters/express-adapter';
+import { KoaAdapter } from '../adapters/koa-adapter';
 import { Metatype } from '../../common/interfaces/metatype.interface';
 import { isUndefined, validatePath } from '../../common/utils/shared.utils';
 import { RouterMethodFactory } from '../helpers/router-method-factory';
@@ -32,7 +32,7 @@ export class ExpressRouterExplorer implements RouterExplorer {
   constructor(
     private readonly metadataScanner?: MetadataScanner,
     private readonly routerProxy?: RouterProxy,
-    private readonly expressAdapter?: ExpressAdapter,
+    private readonly expressAdapter?: KoaAdapter,
     private readonly exceptionsFilter?: ExceptionsFilter,
     private readonly config?: ApplicationConfig,
     container?: NeskContainer,

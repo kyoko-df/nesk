@@ -1,20 +1,20 @@
 import 'reflect-metadata';
 import iterate from 'iterare';
-import { Controller } from '../../common/interfaces/controllers/controller.interface';
+import { Controller } from '@neskjs/common/interfaces/controllers/controller.interface';
 import { ExceptionsHandler } from '../exceptions/exceptions-handler';
 import {
   EXCEPTION_FILTERS_METADATA,
   FILTER_CATCH_EXCEPTIONS,
-} from '../../common/constants';
+} from '@neskjs/common/constants';
 import {
   isEmpty,
   isFunction,
   isUndefined,
-} from '../../common/utils/shared.utils';
-import { Metatype } from '../../common/interfaces/index';
-import { ExceptionFilterMetadata } from '../../common/interfaces/exceptions/exception-filter-metadata.interface';
+} from '@neskjs/common/utils/shared.utils';
+import { Metatype } from '@neskjs/common/interfaces/index';
+import { ExceptionFilterMetadata } from '@neskjs/common/interfaces/exceptions/exception-filter-metadata.interface';
 import { UnknownModuleException } from '../errors/exceptions/unknown-module.exception';
-import { ExceptionFilter } from '../../common/interfaces/exceptions/exception-filter.interface';
+import { ExceptionFilter } from '@neskjs/common/interfaces/exceptions/exception-filter.interface';
 import { RouterProxyCallback } from './../router/router-proxy';
 import { ContextCreator } from './../helpers/context-creator';
 import { ApplicationConfig } from './../application-config';

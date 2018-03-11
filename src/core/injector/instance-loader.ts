@@ -1,12 +1,12 @@
 import iterate from 'iterare';
 import { NeskContainer } from './container';
 import { Injector } from './injector';
-import { Injectable } from '../../common/interfaces/injectable.interface';
-import { Controller } from '../../common/interfaces/controllers/controller.interface';
+import { Injectable } from '@neskjs/common/interfaces/injectable.interface';
+import { Controller } from '@neskjs/common/interfaces/controllers/controller.interface';
 import { Module } from './module';
-import { Logger, OnModuleInit } from '../../common';
+import { Logger, OnModuleInit } from '@neskjs/common';
 import { ModuleInitMessage } from '../helpers/messages';
-import { isUndefined, isNil } from '../../common/utils/shared.utils';
+import { isUndefined, isNil } from '@neskjs/common/utils/shared.utils';
 
 export class InstanceLoader {
   private readonly injector = new Injector();

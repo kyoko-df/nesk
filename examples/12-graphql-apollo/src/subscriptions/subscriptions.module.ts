@@ -1,5 +1,5 @@
 import * as WebSocket from 'ws';
-import { Module, DynamicModule, Inject, OnModuleDestroy } from '@nestjs/common';
+import { Module, DynamicModule, Inject, OnModuleDestroy } from '@neskjs/common';
 import { SubscriptionServer, ServerOptions } from 'subscriptions-transport-ws';
 import { execute, subscribe } from 'graphql';
 

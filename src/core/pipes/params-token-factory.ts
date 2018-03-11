@@ -1,5 +1,5 @@
-import { RouteParamtypes } from '../../common/enums/route-paramtypes.enum';
-import { Paramtype } from '../../common';
+import { RouteParamtypes } from '@neskjs/common/enums/route-paramtypes.enum';
+import { Paramtype } from '@neskjs/common';
 
 export class ParamsTokenFactory {
   public exchangeEnumForString(type: RouteParamtypes): Paramtype {

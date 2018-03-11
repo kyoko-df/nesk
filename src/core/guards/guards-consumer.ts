@@ -1,13 +1,13 @@
 import iterate from 'iterare';
-import { GUARDS_METADATA } from '../../common/constants';
+import { GUARDS_METADATA } from '@neskjs/common/constants';
 import {
   isUndefined,
   isFunction,
   isNil,
   isEmpty,
-} from '../../common/utils/shared.utils';
-import { Controller } from '../../common/interfaces';
-import { CanActivate, HttpStatus, ExecutionContext } from '../../common';
+} from '@neskjs/common/utils/shared.utils';
+import { Controller } from '@neskjs/common/interfaces';
+import { CanActivate, HttpStatus, ExecutionContext } from '@neskjs/common';
 import { Observable } from 'rxjs/Observable';
 import { FORBIDDEN_MESSAGE } from './constants';
 import 'rxjs/add/operator/toPromise';

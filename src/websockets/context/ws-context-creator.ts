@@ -2,16 +2,16 @@ import { Observable } from 'rxjs/Observable';
 import { WsProxy } from './ws-proxy';
 import { WsExceptionsHandler } from '../exceptions/ws-exceptions-handler';
 import { ExceptionFiltersContext } from './exception-filters-context';
-import { Controller } from '@nestjs/common/interfaces';
-import { PipesContextCreator } from '@nestjs/core/pipes/pipes-context-creator';
-import { PipesConsumer } from '@nestjs/core/pipes/pipes-consumer';
-import { PARAMTYPES_METADATA } from '@nestjs/common/constants';
-import { GuardsContextCreator } from '@nestjs/core/guards/guards-context-creator';
-import { GuardsConsumer } from '@nestjs/core/guards/guards-consumer';
-import { FORBIDDEN_MESSAGE } from '@nestjs/core/guards/constants';
+import { Controller } from '@neskjs/common/interfaces';
+import { PipesContextCreator } from '@neskjs/core/pipes/pipes-context-creator';
+import { PipesConsumer } from '@neskjs/core/pipes/pipes-consumer';
+import { PARAMTYPES_METADATA } from '@neskjs/common/constants';
+import { GuardsContextCreator } from '@neskjs/core/guards/guards-context-creator';
+import { GuardsConsumer } from '@neskjs/core/guards/guards-consumer';
+import { FORBIDDEN_MESSAGE } from '@neskjs/core/guards/constants';
 import { WsException } from '../exceptions/ws-exception';
-import { InterceptorsConsumer } from '@nestjs/core/interceptors/interceptors-consumer';
-import { InterceptorsContextCreator } from '@nestjs/core/interceptors/interceptors-context-creator';
+import { InterceptorsConsumer } from '@neskjs/core/interceptors/interceptors-consumer';
+import { InterceptorsContextCreator } from '@neskjs/core/interceptors/interceptors-context-creator';
 
 export class WsContextCreator {
   constructor(

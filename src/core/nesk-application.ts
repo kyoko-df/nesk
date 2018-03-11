@@ -11,20 +11,20 @@ import {
   OnModuleDestroy,
   PipeTransform,
   WebSocketAdapter,
-} from '../common';
+} from '@neskjs/common';
 import {
   INeskApplication,
   INeskMicroservice,
   OnModuleInit,
-} from '../common';
-import { Logger } from '../common/services/logger.service';
+} from '@neskjs/common';
+import { Logger } from '@neskjs/common/services/logger.service';
 import {
   isNil,
   isUndefined,
   validatePath,
   isObject,
-} from '../common/utils/shared.utils';
-import { MicroserviceConfiguration } from '../common/interfaces/microservices/microservice-configuration.interface';
+} from '@neskjs/common/utils/shared.utils';
+import { MicroserviceConfiguration } from '@neskjs/common/interfaces/microservices/microservice-configuration.interface';
 import { KoaAdapter } from './adapters/koa-adapter';
 import { ApplicationConfig } from './application-config';
 import { messages } from './constants';
@@ -36,18 +36,18 @@ import { RoutesResolver } from './router/routes-resolver';
 import { MicroservicesPackageNotFoundException } from './errors/exceptions/microservices-package-not-found.exception';
 import { MiddlewaresContainer } from './middlewares/container';
 import { NeskApplicationContext } from './nesk-application-context';
-import { HttpsOptions } from '../common/interfaces/https-options.interface';
-import { NeskApplicationOptions } from '../common/interfaces/nesk-application-options.interface';
-import { CorsOptions } from '../common/interfaces/external/cors-options.interface';
+import { HttpsOptions } from '@neskjs/common/interfaces/https-options.interface';
+import { NeskApplicationOptions } from '@neskjs/common/interfaces/nesk-application-options.interface';
+import { CorsOptions } from '@neskjs/common/interfaces/external/cors-options.interface';
 
 const { SocketModule } =
-  optional('../websockets/socket-module') || ({} as any);
+  optional('@neskjs/websockets/socket-module') || ({} as any);
 const { MicroservicesModule } =
-  optional('../microservices/microservices-module') || ({} as any);
+  optional('@neskjs/microservices/microservices-module') || ({} as any);
 const { NeskMicroservice } =
-  optional('../microservices/nesk-microservice') || ({} as any);
+  optional('@neskjs/microservices/nesk-microservice') || ({} as any);
 const { IoAdapter } =
-  optional('../websockets/adapters/io-adapter') || ({} as any);
+  optional('@neskjs/websockets/adapters/io-adapter') || ({} as any);
 
 export class NeskApplication extends NeskApplicationContext
   implements INeskApplication {

@@ -5,8 +5,8 @@ import {
   ExceptionFilter,
   NestInterceptor,
   CanActivate,
-} from '../common';
-import { ConfigurationProvider } from '../common/interfaces/configuration-provider.interface';
+} from '@neskjs/common';
+import { ConfigurationProvider } from '@neskjs/common/interfaces/configuration-provider.interface';
 
 export class ApplicationConfig implements ConfigurationProvider {
   private globalPipes: PipeTransform<any>[] = [];

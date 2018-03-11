@@ -2,23 +2,23 @@ import 'reflect-metadata';
 import {
   NestContainer,
   InstanceWrapper,
-} from '@nestjs/core/injector/container';
+} from '@neskjs/core/injector/container';
 import { NestGateway } from './interfaces/nest-gateway.interface';
 import { SocketsContainer } from './container';
 import { WebSocketsController } from './web-sockets-controller';
-import { Injectable } from '@nestjs/common/interfaces/injectable.interface';
+import { Injectable } from '@neskjs/common/interfaces/injectable.interface';
 import { SocketServerProvider } from './socket-server-provider';
 import { GATEWAY_METADATA } from './constants';
-import { ApplicationConfig } from '@nestjs/core/application-config';
+import { ApplicationConfig } from '@neskjs/core/application-config';
 import { WsContextCreator } from './context/ws-context-creator';
 import { WsProxy } from './context/ws-proxy';
 import { ExceptionFiltersContext } from './context/exception-filters-context';
-import { PipesConsumer } from '@nestjs/core/pipes/pipes-consumer';
-import { PipesContextCreator } from '@nestjs/core/pipes/pipes-context-creator';
-import { GuardsContextCreator } from '@nestjs/core/guards/guards-context-creator';
-import { GuardsConsumer } from '@nestjs/core/guards/guards-consumer';
-import { InterceptorsContextCreator } from '@nestjs/core/interceptors/interceptors-context-creator';
-import { InterceptorsConsumer } from '@nestjs/core/interceptors/interceptors-consumer';
+import { PipesConsumer } from '@neskjs/core/pipes/pipes-consumer';
+import { PipesContextCreator } from '@neskjs/core/pipes/pipes-context-creator';
+import { GuardsContextCreator } from '@neskjs/core/guards/guards-context-creator';
+import { GuardsConsumer } from '@neskjs/core/guards/guards-consumer';
+import { InterceptorsContextCreator } from '@neskjs/core/interceptors/interceptors-context-creator';
+import { InterceptorsConsumer } from '@neskjs/core/interceptors/interceptors-consumer';
 
 export class SocketModule {
   private socketsContainer = new SocketsContainer();

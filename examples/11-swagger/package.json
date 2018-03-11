@@ -1,5 +1,5 @@
 {
-  "name": "nest-typescript-starter",
+  "name": "nesk-typescript-starter",
   "version": "1.0.0",
   "description": "Nest TypeScript starter repository",
   "license": "MIT",
@@ -14,12 +14,12 @@
     "e2e:watch": "jest --watch --config=e2e/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/common": "^4.4.2",
-    "@nestjs/core": "^4.4.2",
-    "@nestjs/microservices": "^4.3.0",
-    "@nestjs/swagger": "^1.1.2",
-    "@nestjs/testing": "^4.3.0",
-    "@nestjs/websockets": "^4.3.0",
+    "@neskjs/common": "^4.4.2",
+    "@neskjs/core": "^4.4.2",
+    "@neskjs/microservices": "^4.3.0",
+    "@neskjs/swagger": "^1.1.2",
+    "@neskjs/testing": "^4.3.0",
+    "@neskjs/websockets": "^4.3.0",
     "class-transformer": "^0.1.7",
     "class-validator": "^0.7.2",
     "redis": "^2.7.1",

@@ -13,7 +13,7 @@ export {
   INeskMicroservice,
   MiddlewareConfigProxy,
   MiddlewareConfiguration,
-  NestMiddleware,
+  NeskMiddleware,
   KoaMiddleware,
   MiddlewaresConsumer,
   OnModuleInit,

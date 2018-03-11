@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module } from '@neskjs/common';
 import { EventsGateway } from './events.gateway';
 
 @Module({

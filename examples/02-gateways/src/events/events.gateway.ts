@@ -4,7 +4,7 @@ import {
   WsResponse,
   WebSocketServer,
   WsException,
-} from '@nestjs/websockets';
+} from '@neskjs/websockets';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/map';

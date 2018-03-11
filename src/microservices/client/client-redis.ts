@@ -1,6 +1,6 @@
 import * as redis from 'redis';
 import { ClientProxy } from './client-proxy';
-import { Logger } from '@nestjs/common/services/logger.service';
+import { Logger } from '@neskjs/common/services/logger.service';
 import { ClientMetadata } from '../interfaces/client-metadata.interface';
 
 const DEFAULT_URL = 'redis://localhost:6379';

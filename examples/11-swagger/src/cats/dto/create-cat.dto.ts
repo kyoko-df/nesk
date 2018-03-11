@@ -1,5 +1,5 @@
 import { IsString, IsInt } from 'class-validator';
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiModelProperty } from '@neskjs/swagger';
 
 export class CreateCatDto {
   @ApiModelProperty({ type: String })

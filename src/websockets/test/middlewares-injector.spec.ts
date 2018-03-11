@@ -4,7 +4,7 @@ import { MiddlewaresInjector } from '../middlewares-injector';
 import { UnknownModuleException } from '../../core/errors/exceptions/unknown-module.exception';
 import { WebSocketGateway, IoAdapter } from '../index';
 import { RuntimeException } from '../../core/errors/exceptions/runtime.exception';
-import { ApplicationConfig } from '@nestjs/core/application-config';
+import { ApplicationConfig } from '@neskjs/core/application-config';
 
 describe('MiddlewaresInjector', () => {
   let injector: MiddlewaresInjector;

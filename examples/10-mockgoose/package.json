@@ -11,11 +11,11 @@
     "e2e:watch": "jest --watch --config=e2e/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/common": "^4.3.0",
-    "@nestjs/core": "^4.3.0",
-    "@nestjs/microservices": "^4.3.0",
-    "@nestjs/testing": "^4.3.0",
-    "@nestjs/websockets": "^4.3.0",
+    "@neskjs/common": "^4.3.0",
+    "@neskjs/core": "^4.3.0",
+    "@neskjs/microservices": "^4.3.0",
+    "@neskjs/testing": "^4.3.0",
+    "@neskjs/websockets": "^4.3.0",
     "mongoose": "^4.11.13",
     "redis": "^2.7.1",
     "reflect-metadata": "^0.1.10",

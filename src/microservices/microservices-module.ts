@@ -1,5 +1,5 @@
-import { InstanceWrapper } from '@nestjs/core/injector/container';
-import { Controller } from '@nestjs/common/interfaces/controllers/controller.interface';
+import { InstanceWrapper } from '@neskjs/core/injector/container';
+import { Controller } from '@neskjs/common/interfaces/controllers/controller.interface';
 import { ListenersController } from './listeners-controller';
 import { CustomTransportStrategy } from './interfaces';
 import { Server } from './server/server';
@@ -7,13 +7,13 @@ import { ClientsContainer } from './container';
 import { RpcContextCreator } from './context/rpc-context-creator';
 import { RpcProxy } from './context/rpc-proxy';
 import { ExceptionFiltersContext } from './context/exception-filters-context';
-import { PipesContextCreator } from '@nestjs/core/pipes/pipes-context-creator';
-import { PipesConsumer } from '@nestjs/core/pipes/pipes-consumer';
-import { GuardsContextCreator } from '@nestjs/core/guards/guards-context-creator';
-import { RuntimeException } from '@nestjs/core/errors/exceptions/runtime.exception';
-import { GuardsConsumer } from '@nestjs/core/guards/guards-consumer';
-import { InterceptorsContextCreator } from '@nestjs/core/interceptors/interceptors-context-creator';
-import { InterceptorsConsumer } from '@nestjs/core/interceptors/interceptors-consumer';
+import { PipesContextCreator } from '@neskjs/core/pipes/pipes-context-creator';
+import { PipesConsumer } from '@neskjs/core/pipes/pipes-consumer';
+import { GuardsContextCreator } from '@neskjs/core/guards/guards-context-creator';
+import { RuntimeException } from '@neskjs/core/errors/exceptions/runtime.exception';
+import { GuardsConsumer } from '@neskjs/core/guards/guards-consumer';
+import { InterceptorsContextCreator } from '@neskjs/core/interceptors/interceptors-context-creator';
+import { InterceptorsConsumer } from '@neskjs/core/interceptors/interceptors-consumer';
 
 export class MicroservicesModule {
   private readonly clientsContainer = new ClientsContainer();

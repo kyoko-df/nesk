@@ -3,29 +3,29 @@ import { DependenciesScanner } from './scanner';
 import { InstanceLoader } from './injector/instance-loader';
 import { NeskContainer } from './injector/container';
 import { ExceptionsZone } from './errors/exceptions-zone';
-import { NeskModuleMetatype } from '../common/interfaces/modules/module-metatype.interface';
-import { Logger } from '../common/services/logger.service';
-import { NeskApplicationOptions } from '../common/interfaces/nesk-application-options.interface';
+import { NeskModuleMetatype } from '@neskjs/common/interfaces/modules/module-metatype.interface';
+import { Logger } from '@neskjs/common/services/logger.service';
+import { NeskApplicationOptions } from '@neskjs/common/interfaces/nesk-application-options.interface';
 import { messages } from './constants';
 import { NeskApplication } from './nesk-application';
-import { isFunction } from '../common/utils/shared.utils';
-import { MicroserviceConfiguration } from '../common/interfaces/microservices/microservice-configuration.interface';
+import { isFunction } from '@neskjs/common/utils/shared.utils';
+import { MicroserviceConfiguration } from '@neskjs/common/interfaces/microservices/microservice-configuration.interface';
 import { KoaAdapter } from './adapters/koa-adapter';
 import {
   INeskApplication,
   INeskMicroservice,
   INeskApplicationContext,
-} from '../common';
+} from '@neskjs/common';
 import { MetadataScanner } from './metadata-scanner';
 import { MicroservicesPackageNotFoundException } from './errors/exceptions/microservices-package-not-found.exception';
 import { NeskApplicationContext } from './nesk-application-context';
-import { HttpsOptions } from '../common/interfaces/https-options.interface';
-import { NeskApplicationContextOptions } from '../common/interfaces/nesk-application-context-options.interface';
-import { NeskMicroserviceOptions } from '../common/interfaces/microservices/nest-microservice-options.interface';
+import { HttpsOptions } from '@neskjs/common/interfaces/https-options.interface';
+import { NeskApplicationContextOptions } from '@neskjs/common/interfaces/nesk-application-context-options.interface';
+import { NeskMicroserviceOptions } from '@neskjs/common/interfaces/microservices/nest-microservice-options.interface';
 import { ApplicationConfig } from './application-config';
 
 const { NeskMicroservice } =
-  optional('@nestjs/microservices/nesk-microservice') || ({} as any);
+  optional('@neskjs/microservices/nesk-microservice') || ({} as any);
 
 export class NeskFactoryStatic {
   private readonly logger = new Logger('NestFactory', true);
@@ -128,7 +128,7 @@ export class NeskFactoryStatic {
     module,
     container: NeskContainer,
     config = new ApplicationConfig(),
-    express = null,
+    koa = null,
   ) {
     const instanceLoader = new InstanceLoader(container);
     const dependenciesScanner = new DependenciesScanner(
@@ -136,7 +136,7 @@ export class NeskFactoryStatic {
       new MetadataScanner(),
       config,
     );
-    container.setApplicationRef(express);
+    container.setApplicationRef(koa);
     try {
       this.logger.log(messages.APPLICATION_START);
       await ExceptionsZone.asyncRun(async () => {

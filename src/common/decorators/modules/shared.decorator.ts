@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { ControllerMetadata } from '../../interfaces/controllers/controller-metadata.interface';
 import { isString } from '../../utils/shared.utils';
 import { PATH_METADATA, SHARED_MODULE_METADATA } from '../../constants';
-import { NestModuleMetatype } from '../../interfaces/modules/module-metatype.interface';
+import { NeskModuleMetatype } from '../../interfaces/modules/module-metatype.interface';
 import { Logger } from '../../index';
 
 /**

@@ -5,15 +5,15 @@ import {
   HTTP_CODE_METADATA,
   CUSTOM_ROUTE_AGRS_METADATA,
   RENDER_METADATA,
-} from '../../common/constants';
+} from '@neskjs/common/constants';
 import {
   isUndefined,
   isFunction,
   isString,
-} from '../../common/utils/shared.utils';
-import { RouteParamtypes } from '../../common/enums/route-paramtypes.enum';
-import { Controller, Transform } from '../../common/interfaces';
-import { RouteParamsMetadata } from '../../common/decorators';
+} from '@neskjs/common/utils/shared.utils';
+import { RouteParamtypes } from '@neskjs/common/enums/route-paramtypes.enum';
+import { Controller, Transform } from '@neskjs/common/interfaces';
+import { RouteParamsMetadata } from '@neskjs/common/decorators';
 import { IRouteParamsFactory } from './interfaces/route-params-factory.interface';
 import { PipesContextCreator } from './../pipes/pipes-context-creator';
 import { PipesConsumer } from './../pipes/pipes-consumer';
@@ -23,7 +23,7 @@ import {
   HttpStatus,
   RequestMethod,
   HttpException,
-} from '../../common';
+} from '@neskjs/common';
 import { GuardsContextCreator } from '../guards/guards-context-creator';
 import { GuardsConsumer } from '../guards/guards-consumer';
 import { FORBIDDEN_MESSAGE } from '../guards/constants';

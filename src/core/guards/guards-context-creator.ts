@@ -1,23 +1,23 @@
 import 'reflect-metadata';
 import iterate from 'iterare';
-import { Controller } from '../../common/interfaces';
-import { GUARDS_METADATA } from '../../common/constants';
+import { Controller } from '@neskjs/common/interfaces';
+import { GUARDS_METADATA } from '@neskjs/common/constants';
 import {
   isUndefined,
   isFunction,
   isNil,
   isEmpty,
-} from '../../common/utils/shared.utils';
+} from '@neskjs/common/utils/shared.utils';
 import { ContextCreator } from './../helpers/context-creator';
-import { NestContainer } from '../injector/container';
-import { CanActivate } from '../../common';
-import { ConfigurationProvider } from '../../common/interfaces/configuration-provider.interface';
+import { NeskContainer } from '../injector/container';
+import { CanActivate } from '@neskjs/common';
+import { ConfigurationProvider } from '@neskjs/common/interfaces/configuration-provider.interface';
 
 export class GuardsContextCreator extends ContextCreator {
   private moduleContext: string;
 
   constructor(
-    private readonly container: NestContainer,
+    private readonly container: NeskContainer,
     private readonly config?: ConfigurationProvider,
   ) {
     super();
