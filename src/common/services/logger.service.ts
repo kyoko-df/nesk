@@ -57,7 +57,7 @@ export class Logger implements LoggerService {
     this.logger = logger;
   }
 
-  static setMode(mode: NestEnvironment) {
+  static setMode(mode: NeskEnvironment) {
     this.contextEnv = mode;
   }
 

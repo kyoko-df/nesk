@@ -1,11 +1,12 @@
-import * as koa from 'koa';
+import * as Koa from 'koa';
+import * as Router from 'koa-router';
 
 export class KoaAdapter {
   public static create(): any {
-    return new koa();
+    return new Koa();
   }
 
   public static createRouter(): any {
-    return koa.Router({ mergeParams: true });
+    return new Router();
   }
 }

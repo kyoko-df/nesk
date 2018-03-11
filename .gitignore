@@ -26,3 +26,6 @@ yarn-error.log
 /test
 /coverage
 /.nyc_output
+
+# temp
+/lib

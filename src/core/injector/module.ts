@@ -6,7 +6,7 @@ import {
   DynamicModule,
 } from '../../common/interfaces';
 import { UnknownExportException } from '../errors/exceptions/unknown-export.exception';
-import { NestModuleMetatype } from '../../common/interfaces/modules/module-metatype.interface';
+import { NeskModuleMetatype } from '../../common/interfaces/modules/module-metatype.interface';
 import { Metatype } from '../../common/interfaces/metatype.interface';
 import { ModuleRef } from './module-ref';
 import {

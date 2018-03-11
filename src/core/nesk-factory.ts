@@ -45,13 +45,13 @@ export class NeskFactoryStatic {
   ): Promise<INeskApplication>;
   public async create(
     module: any,
-    expressOrOptions?: any,
+    koaOrOptions?: any,
     options?: NeskApplicationOptions,
   ): Promise<INeskApplication> {
-    const isExpressInstance = expressOrOptions && expressOrOptions.response;
-    const [expressInstance, appOptions] = isExpressInstance
-      ? [expressOrOptions, options]
-      : [KoaAdapter.create(), expressOrOptions];
+    const isKoaInstance = koaOrOptions && koaOrOptions.response;
+    const [koaInstance, appOptions] = isKoaInstance
+      ? [koaOrOptions, options]
+      : [KoaAdapter.create(), koaOrOptions];
 
     const applicationConfig = new ApplicationConfig();
     const container = new NeskContainer(applicationConfig);
@@ -61,12 +61,12 @@ export class NeskFactoryStatic {
       module,
       container,
       applicationConfig,
-      expressInstance,
+      koaInstance,
     );
     return this.createNeskInstance<NeskApplication>(
       new NeskApplication(
         container,
-        expressInstance,
+        koaInstance,
         applicationConfig,
         appOptions,
       ),
