@@ -3,7 +3,7 @@ export const UnknownDependenciesMessage = (
   index: number,
   length: number,
 ) => {
-  let message = `Nest can't resolve dependencies of the ${type}`;
+  let message = `Nesk can't resolve dependencies of the ${type}`;
   message += ` (`;
 
   const args = new Array(length).fill('+');
@@ -18,7 +18,7 @@ export const InvalidMiddlewareMessage = (name: string) =>
   `The middleware doesn't provide the 'resolve' method (${name})`;
 
 export const InvalidModuleMessage = (scope: string) =>
-  `Nest can't create the module instance. The frequent reason of this exception is the circular dependency between modules. Use forwardRef() to avoid it (read more https://docs.nestjs.com/advanced/circular-dependency). Scope [${scope}]`;
+  `Nesk can't create the module instance. The frequent reason of this exception is the circular dependency between modules. Use forwardRef() to avoid it (read more https://docs.nestjs.com/advanced/circular-dependency). Scope [${scope}]`;
 
 export const UnknownExportMessage = (name: string) =>
   `You are trying to export unknown component (${name}). Remember - your component should be listed both in exports and components arrays!`;

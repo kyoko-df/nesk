@@ -1,12 +1,13 @@
-import * as express from 'express';
+import * as koa from 'koa';
 import * as path from 'path';
-import { NestFactory } from '@neskjs/core';
+import * as serve from 'koa-static';
+import { NeskFactory } from '@neskjs/core';
 import { ApplicationModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(ApplicationModule);
+  const app = await NeskFactory.create(ApplicationModule);
 
-  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(serve(path.join(__dirname, 'public')));
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
 

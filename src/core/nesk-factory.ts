@@ -40,7 +40,7 @@ export class NeskFactoryStatic {
   ): Promise<INeskApplication>;
   public async create(
     module: any,
-    express: any,
+    koa: any,
     options: NeskApplicationOptions,
   ): Promise<INeskApplication>;
   public async create(

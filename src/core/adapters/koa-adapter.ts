@@ -5,8 +5,4 @@ export class KoaAdapter {
   public static create(): any {
     return new Koa();
   }
-
-  public static createRouter(): any {
-    return new Router();
-  }
 }

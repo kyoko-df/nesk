@@ -8,7 +8,7 @@ import { Resolver } from './interfaces/resolver.interface';
 import { RouterExceptionFilters } from './router-exception-filters';
 import { MetadataScanner } from '../metadata-scanner';
 import { RouterExplorer } from './interfaces/explorer.inteface';
-import { ExpressRouterExplorer } from './router-explorer';
+import { KoaRouterExplorer } from './router-explorer';
 import { ApplicationConfig } from './../application-config';
 import { NotFoundException, BadRequestException } from '@neskjs/common';
 import { MODULE_PATH } from '@neskjs/common/constants';
@@ -21,21 +21,21 @@ export class RoutesResolver implements Resolver {
 
   constructor(
     private readonly container: NeskContainer,
-    private readonly expressAdapter,
+    private readonly koaAdapter,
     private readonly config: ApplicationConfig,
   ) {
     this.routerExceptionsFilter = new RouterExceptionFilters(config);
-    this.routerBuilder = new ExpressRouterExplorer(
+    this.routerBuilder = new koaRouterExplorer(
       new MetadataScanner(),
       this.routerProxy,
-      expressAdapter,
+      koaAdapter,
       this.routerExceptionsFilter,
       config,
       this.container,
     );
   }
 
-  public resolve(router, express: Application) {
+  public resolve(router, koa: Application) {
     const modules = this.container.getModules();
     modules.forEach(({ routes, metatype }, moduleName) => {
       const path = metatype
@@ -45,14 +45,14 @@ export class RoutesResolver implements Resolver {
     });
     this.setupNotFoundHandler(router);
     this.setupExceptionHandler(router);
-    this.setupExceptionHandler(express);
+    this.setupExceptionHandler(koa);
   }
 
   public setupRouters(
     routes: Map<string, InstanceWrapper<Controller>>,
     moduleName: string,
     modulePath: string,
-    express: Application,
+    koa: Application,
   ) {
     routes.forEach(({ instance, metatype }) => {
       const path = this.routerBuilder.fetchRouterPath(metatype, modulePath);
@@ -61,11 +61,11 @@ export class RoutesResolver implements Resolver {
       this.logger.log(ControllerMappingMessage(controllerName, path));
 
       const router = this.routerBuilder.explore(instance, metatype, moduleName);
-      express.use(path, router);
+      koa.use(path, router);
     });
   }
 
-  public setupNotFoundHandler(express: Application) {
+  public setupNotFoundHandler(koa: Application) {
     const callback = (req, res) => {
       throw new NotFoundException(`Cannot ${req.method} ${req.url}`);
     };
@@ -74,10 +74,10 @@ export class RoutesResolver implements Resolver {
       callback as any,
     );
     const proxy = this.routerProxy.createProxy(callback, exceptionHandler);
-    express.use(proxy);
+    koa.use(proxy);
   }
 
-  public setupExceptionHandler(express: Application) {
+  public setupExceptionHandler(koa: Application) {
     const callback = (err, req, res, next) => {
       throw this.mapExternalException(err);
     };
@@ -89,7 +89,7 @@ export class RoutesResolver implements Resolver {
       callback,
       exceptionHandler,
     );
-    express.use(proxy);
+    koa.use(proxy);
   }
 
   public mapExternalException(err: any) {

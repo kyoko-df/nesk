@@ -1,8 +1,8 @@
-import * as cors from 'cors';
+import * as cors from 'koa-cors';
 import * as http from 'http';
 import * as https from 'https';
 import * as optional from 'optional';
-import * as bodyParser from 'body-parser';
+import * as bodyParser from 'koa-bodyparser';
 import iterate from 'iterare';
 import {
   CanActivate,
@@ -65,7 +65,7 @@ export class NeskApplication extends NeskApplicationContext
 
   constructor(
     container: NeskContainer,
-    private readonly express: any,
+    private readonly koa: any,
     private readonly config: ApplicationConfig,
     private readonly appOptions: NeskApplicationOptions = {},
   ) {
@@ -97,9 +97,9 @@ export class NeskApplication extends NeskApplicationContext
 
   public createServer(): any {
     if (this.appOptions && this.appOptions.httpsOptions) {
-      return https.createServer(this.appOptions.httpsOptions, this.express);
+      return https.createServer(this.appOptions.httpsOptions, this.koa);
     }
-    return http.createServer(this.express);
+    return http.createServer(this.koa);
   }
 
   public async setupModules() {
@@ -131,20 +131,23 @@ export class NeskApplication extends NeskApplicationContext
   }
 
   public setupParserMiddlewares() {
-    const parserMiddlewares = {
-      jsonParser: bodyParser.json(),
-      urlencodedParser: bodyParser.urlencoded({ extended: true }),
-    };
-    Object.keys(parserMiddlewares)
-      .filter(parser => !this.isMiddlewareApplied(this.express, parser))
-      .forEach(parserKey => this.express.use(parserMiddlewares[parserKey]));
+    // const parserMiddlewares = {
+    //   jsonParser: bodyParser.json(),
+    //   urlencodedParser: bodyParser.urlencoded({ extended: true }),
+    // };
+    // Object.keys(parserMiddlewares)
+    //   .filter(parser => !this.isMiddlewareApplied(this.koa, parser, bodyParser))
+    //   .forEach(parserKey => this.koa.use(parserMiddlewares[parserKey]));
+    if (!this.isMiddlewareApplied(this.koa, bodyParser)) {
+      this.koa.use(bodyParser());
+    }
   }
 
-  public isMiddlewareApplied(app, name: string): boolean {
+  public isMiddlewareApplied(app, ctor: any): boolean {
     return (
-      !!app._router &&
-      !!app._router.stack.filter(
-        layer => layer && layer.handle && layer.handle.name === name,
+      !!app.middleware &&
+      !!app.middleware.filter(
+        layer => layer instanceof ctor,
       ).length
     );
   }
@@ -153,8 +156,8 @@ export class NeskApplication extends NeskApplicationContext
     const router = koaAdapter.createRouter();
     await this.setupMiddlewares(router);
 
-    this.routesResolver.resolve(router, this.express);
-    this.express.use(validatePath(this.config.getGlobalPrefix()), router);
+    this.routesResolver.resolve(router, this.koa);
+    this.koa.use(validatePath(this.config.getGlobalPrefix()), router);
   }
 
   public connectMicroservice(
@@ -197,32 +200,32 @@ export class NeskApplication extends NeskApplicationContext
   }
 
   public use(...args): this {
-    this.express.use(...args);
+    this.koa.use(...args);
     return this;
   }
 
   public engine(...args): this {
-    this.express.engine(...args);
+    this.koa.engine(...args);
     return this;
   }
 
   public set(...args): this {
-    this.express.set(...args);
+    this.koa.set(...args);
     return this;
   }
 
   public disable(...args): this {
-    this.express.disable(...args);
+    this.koa.disable(...args);
     return this;
   }
 
   public enable(...args): this {
-    this.express.enable(...args);
+    this.koa.enable(...args);
     return this;
   }
 
   public enableCors(options?: CorsOptions): this {
-    this.express.use(cors(options));
+    this.koa.use(cors(options));
     return this;
   }
 
