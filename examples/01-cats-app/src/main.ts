@@ -1,9 +1,9 @@
-import { NestFactory } from '@neskjs/core';
+import { NeskFactory } from '@neskjs/core';
 import { ApplicationModule } from './app.module';
 import { ValidationPipe } from './common/pipes/validation.pipe';
 
 async function bootstrap() {
-  const app = await NestFactory.create(ApplicationModule);
+  const app = await NeskFactory.create(ApplicationModule);
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(3000);
 }

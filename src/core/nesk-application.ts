@@ -3,6 +3,7 @@ import * as http from 'http';
 import * as https from 'https';
 import * as optional from 'optional';
 import * as bodyParser from 'koa-bodyparser';
+import * as router from 'koa-router';
 import iterate from 'iterare';
 import {
   CanActivate,

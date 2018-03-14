@@ -1,34 +1,36 @@
 import { ExceptionsHandler } from '../exceptions/exceptions-handler';
 
-export type RouterProxyCallback = (req?, res?, next?) => void;
+export type RouterProxyCallback = (ctx?, next?) => void;
 
 export class RouterProxy {
   public createProxy(
     targetCallback: RouterProxyCallback,
     exceptionsHandler: ExceptionsHandler,
   ) {
-    return (req, res, next) => {
+    return async(ctx, next) => {
       try {
-        Promise.resolve(targetCallback(req, res, next)).catch(e => {
-          exceptionsHandler.next(e, res);
-        });
+        await targetCallback(ctx, next);
+        // Promise.resolve(targetCallback(ctx, next)).catch(e => {
+        //   exceptionsHandler.next(e, ctx.response);
+        // });
       } catch (e) {
-        exceptionsHandler.next(e, res);
+        exceptionsHandler.next(e, ctx);
       }
     };
   }
 
   public createExceptionLayerProxy(
-    targetCallback: (err, req, res, next) => void,
+    targetCallback: (err, ctx, next) => void,
     exceptionsHandler: ExceptionsHandler,
   ) {
-    return (err, req, res, next) => {
+    return async(err, ctx, next) => {
       try {
-        Promise.resolve(targetCallback(err, req, res, next)).catch(e => {
-          exceptionsHandler.next(e, res);
-        });
+        await targetCallback(err, ctx, next);
+        // Promise.resolve(targetCallback(err, ctx, next)).catch(e => {
+        //   exceptionsHandler.next(e, ctx.response);
+        // });
       } catch (e) {
-        exceptionsHandler.next(e, res);
+        exceptionsHandler.next(e, ctx.response);
       }
     };
   }

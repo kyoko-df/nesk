@@ -1,9 +1,9 @@
-import { NestFactory } from '@neskjs/core';
+import { NeskFactory } from '@neskjs/core';
 import { Transport } from '@neskjs/microservices';
 import { ApplicationModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.createMicroservice(ApplicationModule);
+  const app = await NeskFactory.createMicroservice(ApplicationModule);
   await app.listenAsync();
 
   /** Hybrid application (HTTP + (n)Microservices)

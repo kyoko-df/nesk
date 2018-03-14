@@ -70,7 +70,7 @@ export class MiddlewaresModule {
 
   public async setupMiddlewares(
     middlewaresContainer: MiddlewaresContainer,
-    app,
+    app,  // app 为 new router()
   ) {
     const configs = middlewaresContainer.getConfigs();
     await Promise.all(
@@ -165,7 +165,7 @@ export class MiddlewaresModule {
   private setupHandlerWithProxy(
     exceptionsHandler: ExceptionsHandler,
     router: (...args) => void,
-    middleware: (req, res, next) => void,
+    middleware: (ctx, next) => void,
     path: string,
   ) {
     const proxy = this.routerProxy.createProxy(middleware, exceptionsHandler);
