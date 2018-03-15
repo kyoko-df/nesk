@@ -30,7 +30,7 @@ export class RouterProxy {
         //   exceptionsHandler.next(e, ctx.response);
         // });
       } catch (e) {
-        exceptionsHandler.next(e, ctx.response);
+        exceptionsHandler.next(e, ctx);
       }
     };
   }

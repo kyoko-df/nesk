@@ -25,7 +25,7 @@ export class RoutesResolver implements Resolver {
     private readonly config: ApplicationConfig,
   ) {
     this.routerExceptionsFilter = new RouterExceptionFilters(config);
-    this.routerBuilder = new koaRouterExplorer(
+    this.routerBuilder = new KoaRouterExplorer(
       new MetadataScanner(),
       this.routerProxy,
       koaAdapter,
@@ -78,7 +78,7 @@ export class RoutesResolver implements Resolver {
   }
 
   public setupExceptionHandler(koa: Application) {
-    const callback = (err, req, res, next) => {
+    const callback = (err, ctx, next) => {
       throw this.mapExternalException(err);
     };
     const exceptionHandler = this.routerExceptionsFilter.create(

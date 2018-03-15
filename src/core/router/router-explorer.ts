@@ -24,7 +24,7 @@ import { GuardsConsumer } from '../guards/guards-consumer';
 import { InterceptorsContextCreator } from '../interceptors/interceptors-context-creator';
 import { InterceptorsConsumer } from '../interceptors/interceptors-consumer';
 
-export class ExpressRouterExplorer implements RouterExplorer {
+export class KoaRouterExplorer implements RouterExplorer {
   private readonly executionContextCreator: RouterExecutionContext;
   private readonly routerMethodFactory = new RouterMethodFactory();
   private readonly logger = new Logger('RouterExplorer', true);
