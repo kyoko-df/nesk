@@ -32,7 +32,7 @@ export class KoaRouterExplorer implements RouterExplorer {
   constructor(
     private readonly metadataScanner?: MetadataScanner,
     private readonly routerProxy?: RouterProxy,
-    private readonly expressAdapter?: KoaAdapter,
+    private readonly koaAdapter?: KoaAdapter,
     private readonly exceptionsFilter?: ExceptionsFilter,
     private readonly config?: ApplicationConfig,
     container?: NeskContainer,
@@ -53,7 +53,7 @@ export class KoaRouterExplorer implements RouterExplorer {
     metatype: Metatype<Controller>,
     module: string,
   ) {
-    const router = (this.expressAdapter as any).createRouter();
+    const router = (this.koaAdapter as any).createRouter();
     const routerPaths = this.scanForPaths(instance);
 
     this.applyPathsToRouterProxy(router, routerPaths, instance, module);
@@ -142,6 +142,7 @@ export class KoaRouterExplorer implements RouterExplorer {
       module,
       requestMethod,
     );
+    // 这里构造完成了router[method](path, controller)
     routerMethod(path, proxy);
   }
 

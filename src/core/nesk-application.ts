@@ -154,7 +154,7 @@ export class NeskApplication extends NeskApplicationContext
   }
 
   public async setupRouter() {
-    const router = koaAdapter.createRouter();
+    const router = KoaAdapter.createRouter();
     await this.setupMiddlewares(router);
 
     this.routesResolver.resolve(router, this.koa);

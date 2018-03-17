@@ -1,4 +1,5 @@
-import { Application } from 'koa';
+import * as Application from 'koa';
+import * as Router from 'koa-router';
 import { NeskContainer, InstanceWrapper } from '../injector/container';
 import { RouterProxy } from './router-proxy';
 import { Controller } from '@neskjs/common/interfaces/controllers/controller.interface';
@@ -52,7 +53,7 @@ export class RoutesResolver implements Resolver {
     routes: Map<string, InstanceWrapper<Controller>>,
     moduleName: string,
     modulePath: string,
-    koa: Application,
+    router: Router,
   ) {
     routes.forEach(({ instance, metatype }) => {
       const path = this.routerBuilder.fetchRouterPath(metatype, modulePath);
@@ -61,7 +62,7 @@ export class RoutesResolver implements Resolver {
       this.logger.log(ControllerMappingMessage(controllerName, path));
 
       const router = this.routerBuilder.explore(instance, metatype, moduleName);
-      koa.use(path, router);
+      router.use(path, router);
     });
   }
 

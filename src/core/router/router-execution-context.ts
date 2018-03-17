@@ -88,22 +88,22 @@ export class RouterExecutionContext {
       httpStatusCode,
     );
 
-    return async (req, res, next) => {
+    return async (ctx, next) => {
       const args = this.createNullArray(argsLength);
-      fnCanActivate && (await fnCanActivate(req));
+      fnCanActivate && (await fnCanActivate(ctx.request));
 
       const handler = async () => {
-        fnApplyPipes && (await fnApplyPipes(args, req, res, next));
+        fnApplyPipes && (await fnApplyPipes(args, ctx, next));
         return callback.apply(instance, args);
       };
       const result = await this.interceptorsConsumer.intercept(
         interceptors,
-        req,
+        ctx.request,
         instance,
         callback,
         handler,
       );
-      await fnHandleResponse(result, res);
+      await fnHandleResponse(result, ctx.response);
     };
   }
 
