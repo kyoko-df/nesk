@@ -98,9 +98,9 @@ export class NeskApplication extends NeskApplicationContext
 
   public createServer(): any {
     if (this.appOptions && this.appOptions.httpsOptions) {
-      return https.createServer(this.appOptions.httpsOptions, this.koa);
+      return https.createServer(this.appOptions.httpsOptions, this.koa.callback());
     }
-    return http.createServer(this.koa);
+    return http.createServer(this.koa.callback());
   }
 
   public async setupModules() {
@@ -158,7 +158,8 @@ export class NeskApplication extends NeskApplicationContext
     await this.setupMiddlewares(router);
 
     this.routesResolver.resolve(router, this.koa);
-    this.koa.use(validatePath(this.config.getGlobalPrefix()), router);
+    // this.koa.use(validatePath(this.config.getGlobalPrefix()), router);
+    router.prefix(validatePath(this.config.getGlobalPrefix()));
   }
 
   public connectMicroservice(

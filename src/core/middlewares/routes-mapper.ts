@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { ExpressRouterExplorer } from '../router/router-explorer';
+import { KoaRouterExplorer } from '../router/router-explorer';
 import { UnknownRequestMappingException } from '../errors/exceptions/unknown-request-mapping.exception';
 import { RequestMethod } from '@neskjs/common/enums/request-method.enum';
 import { isUndefined, validatePath } from '@neskjs/common/utils/shared.utils';
@@ -7,7 +7,7 @@ import { PATH_METADATA } from '@neskjs/common/constants';
 import { MetadataScanner } from '../metadata-scanner';
 
 export class RoutesMapper {
-  private readonly routerExplorer = new ExpressRouterExplorer(
+  private readonly routerExplorer = new KoaRouterExplorer(
     new MetadataScanner(),
   );
 

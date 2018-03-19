@@ -36,7 +36,7 @@ export interface ParamProperties {
   type: RouteParamtypes | string;
   data: ParamData;
   pipes: PipeTransform<any>[];
-  extractValue: (req, res, next) => any;
+  extractValue: (ctx, next) => any;
 }
 
 export class RouterExecutionContext {
@@ -159,7 +159,7 @@ export class RouterExecutionContext {
         return { index, extractValue: customExtractValue, type, data, pipes };
       }
       const nType = Number(type);
-      const extractValue = (req, res, next) =>
+      const extractValue = (ctx, next) =>
         this.paramsFactory.exchangeKeyForValue(nType, data, { req, res, next });
       return { index, extractValue, type: nType, data, pipes };
     });
@@ -167,7 +167,7 @@ export class RouterExecutionContext {
 
   public getCustomFactory(factory: (...args) => void, data): (...args) => any {
     return !isUndefined(factory) && isFunction(factory)
-      ? (req, res, next) => factory(data, req)
+      ? (ctx, next) => factory(data, ctx.req)
       : () => null;
   }
 
@@ -227,7 +227,7 @@ export class RouterExecutionContext {
     pipes: any[],
     paramsOptions: (ParamProperties & { metatype?: any })[],
   ) {
-    const pipesFn = async (args, req, res, next) => {
+    const pipesFn = async (args, ctx, next) => {
       await Promise.all(
         paramsOptions.map(async param => {
           const {

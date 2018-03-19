@@ -44,16 +44,16 @@ export class RoutesResolver implements Resolver {
         : undefined;
       this.setupRouters(routes, moduleName, path, router);
     });
-    this.setupNotFoundHandler(router);
-    this.setupExceptionHandler(router);
-    this.setupExceptionHandler(koa);
+    // this.setupNotFoundHandler(router);
+    // this.setupExceptionHandler(router);
+    // this.setupExceptionHandler(koa);
   }
 
   public setupRouters(
     routes: Map<string, InstanceWrapper<Controller>>,
     moduleName: string,
     modulePath: string,
-    router: Router,
+    koaRouter: Router,
   ) {
     routes.forEach(({ instance, metatype }) => {
       const path = this.routerBuilder.fetchRouterPath(metatype, modulePath);
@@ -62,43 +62,43 @@ export class RoutesResolver implements Resolver {
       this.logger.log(ControllerMappingMessage(controllerName, path));
 
       const router = this.routerBuilder.explore(instance, metatype, moduleName);
-      router.use(path, router);
+      koaRouter.use(path, router.routes(), router.allowedMethods());
     });
   }
 
-  public setupNotFoundHandler(koa: Application) {
-    const callback = (req, res) => {
-      throw new NotFoundException(`Cannot ${req.method} ${req.url}`);
-    };
-    const exceptionHandler = this.routerExceptionsFilter.create(
-      {},
-      callback as any,
-    );
-    const proxy = this.routerProxy.createProxy(callback, exceptionHandler);
-    koa.use(proxy);
-  }
+  // public setupNotFoundHandler(koa: Application) {
+  //   const callback = (ctx, next) => {
+  //     throw new NotFoundException(`Cannot ${ctx.method} ${ctx.url}`);
+  //   };
+  //   const exceptionHandler = this.routerExceptionsFilter.create(
+  //     {},
+  //     callback as any,
+  //   );
+  //   const proxy = this.routerProxy.createProxy(callback, exceptionHandler);
+  //   koa.use(proxy);
+  // }
 
-  public setupExceptionHandler(koa: Application) {
-    const callback = (err, ctx, next) => {
-      throw this.mapExternalException(err);
-    };
-    const exceptionHandler = this.routerExceptionsFilter.create(
-      {},
-      callback as any,
-    );
-    const proxy = this.routerProxy.createExceptionLayerProxy(
-      callback,
-      exceptionHandler,
-    );
-    koa.use(proxy);
-  }
+  // public setupExceptionHandler(koa: Application) {
+  //   const callback = (err, ctx, next) => {
+  //     throw this.mapExternalException(err);
+  //   };
+  //   const exceptionHandler = this.routerExceptionsFilter.create(
+  //     {},
+  //     callback as any,
+  //   );
+  //   const proxy = this.routerProxy.createExceptionLayerProxy(
+  //     callback,
+  //     exceptionHandler,
+  //   );
+  //   koa.use(proxy);
+  // }
 
-  public mapExternalException(err: any) {
-    switch (true) {
-      case (err instanceof SyntaxError): 
-        return new BadRequestException(err.message);
-      default: 
-        return err; 
-    }
-  }
+  // public mapExternalException(err: any) {
+  //   switch (true) {
+  //     case (err instanceof SyntaxError): 
+  //       return new BadRequestException(err.message);
+  //     default: 
+  //       return err; 
+  //   }
+  // }
 }
