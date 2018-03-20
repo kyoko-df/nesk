@@ -76,6 +76,7 @@ export class KoaRouterExplorer implements RouterExplorer {
     return validatePath(path);
   }
 
+  // 返回当前controller下的route信息
   public scanForPaths(instance: Controller, prototype?): RoutePathProperties[] {
     const instancePrototype = isUndefined(prototype)
       ? Object.getPrototypeOf(instance)

@@ -88,6 +88,7 @@ export class RouterExecutionContext {
       httpStatusCode,
     );
 
+    // 执行route回调
     return async (ctx, next) => {
       const args = this.createNullArray(argsLength);
       fnCanActivate && (await fnCanActivate(ctx.request));
@@ -96,6 +97,7 @@ export class RouterExecutionContext {
         fnApplyPipes && (await fnApplyPipes(args, ctx, next));
         return callback.apply(instance, args);
       };
+      // result 是数据用来render
       const result = await this.interceptorsConsumer.intercept(
         interceptors,
         ctx.request,
@@ -103,7 +105,7 @@ export class RouterExecutionContext {
         callback,
         handler,
       );
-      await fnHandleResponse(result, ctx.response);
+      await fnHandleResponse(result, ctx);
     };
   }
 
@@ -160,7 +162,7 @@ export class RouterExecutionContext {
       }
       const nType = Number(type);
       const extractValue = (ctx, next) =>
-        this.paramsFactory.exchangeKeyForValue(nType, data, { req, res, next });
+        this.paramsFactory.exchangeKeyForValue(nType, data, { ctx, next });
       return { index, extractValue, type: nType, data, pipes };
     });
   }
@@ -209,10 +211,10 @@ export class RouterExecutionContext {
     instance: Controller,
     callback: (...args) => any,
   ) {
-    const canActivateFn = async req => {
+    const canActivateFn = async request => {
       const canActivate = await this.guardsConsumer.tryActivate(
         guards,
-        req,
+        request,
         instance,
         callback,
       );
@@ -238,7 +240,7 @@ export class RouterExecutionContext {
             metatype,
             pipes: paramPipes,
           } = param;
-          const value = extractValue(req, res, next);
+          const value = extractValue(ctx, next);
 
           args[index] = await this.getParamValue(
             value,
@@ -260,7 +262,7 @@ export class RouterExecutionContext {
   ) {
     const renderTemplate = this.reflectRenderTemplate(callback);
     if (!!renderTemplate) {
-      return (result, res) => res.render(renderTemplate, result);
+      return (result, ctx) => ctx.render(renderTemplate, result);
     }
     return async (result, res) =>
       !isResponseHandled &&

@@ -5,29 +5,29 @@ export class RouteParamsFactory implements IRouteParamsFactory {
   public exchangeKeyForValue(
     key: RouteParamtypes | string,
     data,
-    { req, res, next },
+    { ctx, next },
   ) {
     switch (key) {
       case RouteParamtypes.NEXT:
         return next;
       case RouteParamtypes.REQUEST:
-        return req;
+        return ctx.request;
       case RouteParamtypes.RESPONSE:
-        return res;
+        return ctx.response;
       case RouteParamtypes.BODY:
-        return data && req.body ? req.body[data] : req.body;
+        return data && ctx.body ? ctx.body[data] : ctx.body;
       case RouteParamtypes.PARAM:
-        return data ? req.params[data] : req.params;
+        return data ? ctx.params[data] : ctx.params;
       case RouteParamtypes.QUERY:
-        return data ? req.query[data] : req.query;
+        return data ? ctx.query[data] : ctx.query;
       case RouteParamtypes.HEADERS:
-        return data ? req.headers[data] : req.headers;
+        return data ? ctx.headers[data] : ctx.headers;
       case RouteParamtypes.SESSION:
-        return req.session;
+        return ctx.session;
       case RouteParamtypes.FILE:
-        return req.file;
+        return ctx.file;
       case RouteParamtypes.FILES:
-        return req.files; 
+        return ctx.files; 
       default:
         return null;
     }
