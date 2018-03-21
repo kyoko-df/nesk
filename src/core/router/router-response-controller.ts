@@ -5,16 +5,16 @@ import 'rxjs/add/operator/toPromise';
 export class RouterResponseController {
   public async apply(resultOrDeffered, response, httpStatusCode: number) {
     const result = await this.transformToResult(resultOrDeffered);
-    const res = response.status(httpStatusCode);
+    response.status = httpStatusCode;
     if (isNil(result)) {
-      return res.send();
+      return response.send();
     }
-    return isObject(result) ? res.json(result) : res.send(String(result));
+    return isObject(result) ? response.json(result) : response.send(String(result));
   }
 
-  public async render(resultOrDeffered, response, template: string) {
+  public async render(resultOrDeffered, ctx, template: string) {
     const result = await this.transformToResult(resultOrDeffered);
-    response.render(template, result);
+    ctx.render(template, result);
   }
 
   public async transformToResult(resultOrDeffered) {
