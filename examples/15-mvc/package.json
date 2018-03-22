@@ -10,8 +10,8 @@
     "start:prod": "node dist/main.js"
   },
   "dependencies": {
-    "@neskjs/common": "^4.4.0",
-    "@neskjs/core": "^4.4.0",
+    "@neskjs/common": "^0.0.1",
+    "@neskjs/core": "^0.0.1",
     "jade": "^1.11.0",
     "redis": "^2.7.1",
     "reflect-metadata": "^0.1.10",

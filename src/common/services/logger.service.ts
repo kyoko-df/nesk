@@ -87,7 +87,7 @@ export class Logger implements LoggerService {
   ) {
     if (Logger.contextEnv === NeskEnvironment.TEST) return;
 
-    process.stdout.write(color(`[Nest] ${process.pid}   - `));
+    process.stdout.write(color(`[Nesk] ${process.pid}   - `));
     process.stdout.write(`${new Date(Date.now()).toLocaleString()}   `);
     process.stdout.write(this.yellow(`[${context}] `));
     process.stdout.write(color(message));

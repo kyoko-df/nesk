@@ -44,6 +44,8 @@ export class RoutesResolver implements Resolver {
         : undefined;
       this.setupRouters(routes, moduleName, path, router);
     });
+    koa.use(router.routes());
+    koa.use(router.allowedMethods());
     // this.setupNotFoundHandler(router);
     // this.setupExceptionHandler(router);
     // this.setupExceptionHandler(koa);

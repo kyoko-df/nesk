@@ -1,4 +1,4 @@
-import { Module } from '@neskjs/common';
+import { Module } from '../../../src/common';
 import { AppController } from './app.controller';
 
 @Module({

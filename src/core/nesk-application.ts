@@ -4,6 +4,7 @@ import * as https from 'https';
 import * as optional from 'optional';
 import * as bodyParser from 'koa-bodyparser';
 import * as router from 'koa-router';
+import * as views from 'koa-views';
 import iterate from 'iterare';
 import {
   CanActivate,
@@ -122,6 +123,9 @@ export class NeskApplication extends NeskApplicationContext
       this.appOptions && this.appOptions.bodyParser !== false;
     useBodyParser && this.setupParserMiddlewares();
 
+    const useViewRender =
+      this.applyOptions && this.applyOptions.view
+
     await this.setupModules();
     await this.setupRouter();
 
@@ -142,6 +146,10 @@ export class NeskApplication extends NeskApplicationContext
     if (!this.isMiddlewareApplied(this.koa, bodyParser)) {
       this.koa.use(bodyParser());
     }
+  }
+
+  public setupRenderMiddlewares() {
+    if (!this.applyOptions || this.applyOptions.view )
   }
 
   public isMiddlewareApplied(app, ctor: any): boolean {

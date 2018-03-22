@@ -264,8 +264,8 @@ export class RouterExecutionContext {
     if (!!renderTemplate) {
       return (result, ctx) => ctx.render(renderTemplate, result);
     }
-    return async (result, res) =>
+    return async (result, ctx) =>
       !isResponseHandled &&
-      (await this.responseController.apply(result, res, httpStatusCode));
+      (await this.responseController.apply(result, ctx.response, httpStatusCode));
   }
 }

@@ -28,7 +28,7 @@ const { NeskMicroservice } =
   optional('@neskjs/microservices/nesk-microservice') || ({} as any);
 
 export class NeskFactoryStatic {
-  private readonly logger = new Logger('NestFactory', true);
+  private readonly logger = new Logger('NeskFactory', true);
   /**
    * Creates an instance of the NestApplication (returns Promise)
    * @returns an `Promise` of the INestApplication instance

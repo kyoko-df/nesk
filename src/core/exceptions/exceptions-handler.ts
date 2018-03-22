@@ -19,7 +19,8 @@ export class ExceptionsHandler {
         exception instanceof DeprecatedHttpException
       )
     ) {
-      response.status(500).json({
+      response.status = 500
+      response.json({
         statusCode: 500,
         message: messages.UNKNOWN_EXCEPTION_MESSAGE,
       });
@@ -38,7 +39,8 @@ export class ExceptionsHandler {
           statusCode: exception.getStatus(),
           message: res,
         };
-    response.status(exception.getStatus()).json(message);
+    response.status = exception.getStatus()
+    response.json(message);
   }
 
   public setCustomFilters(filters: ExceptionFilterMetadata[]) {

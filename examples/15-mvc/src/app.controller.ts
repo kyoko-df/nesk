@@ -1,4 +1,4 @@
-import { Get, Controller, Render } from '@neskjs/common';
+import { Get, Controller, Render } from '../../../src/common';
 
 @Controller()
 export class AppController {

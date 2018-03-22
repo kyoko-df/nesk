@@ -7,7 +7,7 @@
 [linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
 [linux-url]: https://travis-ci.org/nestjs/nest
   
- <p align="center">用于构建高效且可扩展的服务器端应用程序的渐进式 <a href="http://nodejs.cn" target="blank">Node.js</a> 框架，深受 <a href="https://angular.cn" target="_blank">Angular</a> 的启发。</p> 
+ <p align="center">用于构建高效且可扩展的服务器端应用程序的渐进式 <a href="http://nodejs.cn" target="blank">Node.js</a> 框架，nest的 <a href="https://angular.cn" target="_blank">Koa</a> 实现。</p> 
     <p align="center">
 <a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>

@@ -10,28 +10,22 @@ export class RouterProxy {
     return async(ctx, next) => {
       try {
         await targetCallback(ctx, next);
-        // Promise.resolve(targetCallback(ctx, next)).catch(e => {
-        //   exceptionsHandler.next(e, ctx.response);
-        // });
       } catch (e) {
-        exceptionsHandler.next(e, ctx);
+        exceptionsHandler.next(e, ctx.response);
       }
     };
   }
 
-  public createExceptionLayerProxy(
-    targetCallback: (err, ctx, next) => void,
-    exceptionsHandler: ExceptionsHandler,
-  ) {
-    return async(err, ctx, next) => {
-      try {
-        await targetCallback(err, ctx, next);
-        // Promise.resolve(targetCallback(err, ctx, next)).catch(e => {
-        //   exceptionsHandler.next(e, ctx.response);
-        // });
-      } catch (e) {
-        exceptionsHandler.next(e, ctx);
-      }
-    };
-  }
+  // public createExceptionLayerProxy(
+  //   targetCallback: (err, ctx, next) => void,
+  //   exceptionsHandler: ExceptionsHandler,
+  // ) {
+  //   return async(err, ctx, next) => {
+  //     try {
+  //       await targetCallback(err, ctx, next);
+  //     } catch (e) {
+  //       exceptionsHandler.next(e, ctx);
+  //     }
+  //   };
+  // }
 }

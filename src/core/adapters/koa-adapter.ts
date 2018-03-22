@@ -1,24 +1,22 @@
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
-import { reponseExtension } from './response-extension';
-// import * as views from 'koa-views';
+import { BaseExtension } from './base-extension';
 
 class KoaWrapper extends Koa {
-  constructor() {
+  constructor(private readonly extention: BaseExtension) {
     super()
   }
 
   createContext(req, res) {
     const context = super.createContext(req, res);
-    reponseExtension(context.response);
+    this.extention.response(context.response);
     return context;
   }
 }
 
 export class KoaAdapter {
   public static create(): any {
-    return new KoaWrapper();
-    // return new Koa();
+    return new KoaWrapper(new BaseExtension());
   }
 
   public static createRouter(): any {
