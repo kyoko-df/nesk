@@ -75,15 +75,17 @@ export class NeskApplication extends NeskApplicationContext
 
     this.applyOptions();
     this.selectContextModule();
-    this.httpServer = this.createServer();
 
-    const ioAdapter = IoAdapter ? new IoAdapter(this.httpServer) : null;
-    this.config.setIoAdapter(ioAdapter);
     this.routesResolver = new RoutesResolver(
       container,
       KoaAdapter,
       this.config,
     );
+
+    this.httpServer = this.createServer();
+
+    const ioAdapter = IoAdapter ? new IoAdapter(this.httpServer) : null;
+    this.config.setIoAdapter(ioAdapter);
   }
 
   public applyOptions() {
@@ -124,7 +126,8 @@ export class NeskApplication extends NeskApplicationContext
     useBodyParser && this.setupParserMiddlewares();
 
     const useViewRender =
-      this.applyOptions && this.applyOptions.view
+      this.applyOptions && this.appOptions.view && this.appOptions.view.enable !== false;
+    useViewRender && this.setupRenderMiddlewares();
 
     await this.setupModules();
     await this.setupRouter();
@@ -149,7 +152,10 @@ export class NeskApplication extends NeskApplicationContext
   }
 
   public setupRenderMiddlewares() {
-    if (!this.applyOptions || this.applyOptions.view )
+    const { enable, root, ...opts } = this.appOptions.view;
+    if (!this.isMiddlewareApplied(this.koa, views)) {
+      this.koa.use(views(root, opts || {}))
+    }
   }
 
   public isMiddlewareApplied(app, ctor: any): boolean {

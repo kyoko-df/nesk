@@ -1,6 +1,6 @@
-import { Guard, CanActivate, ExecutionContext } from '@neskjs/common';
+import { Guard, CanActivate, ExecutionContext } from '../../../../../src/common';
 import { Observable } from 'rxjs/Observable';
-import { Reflector } from '@neskjs/core';
+import { Reflector } from '../../../../../src/core';
 
 @Guard()
 export class RolesGuard implements CanActivate {

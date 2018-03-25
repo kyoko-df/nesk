@@ -48,7 +48,7 @@ export class NeskFactoryStatic {
     koaOrOptions?: any,
     options?: NeskApplicationOptions,
   ): Promise<INeskApplication> {
-    const isKoaInstance = koaOrOptions && koaOrOptions.response;
+    const isKoaInstance = koaOrOptions && koaOrOptions.listen;
     const [koaInstance, appOptions] = isKoaInstance
       ? [koaOrOptions, options]
       : [KoaAdapter.create(), koaOrOptions];

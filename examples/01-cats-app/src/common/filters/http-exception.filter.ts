@@ -1,5 +1,5 @@
-import { ExceptionFilter, Catch } from '@neskjs/common';
-import { HttpException } from '@neskjs/common';
+import { ExceptionFilter, Catch } from '../../../../../src/common';
+import { HttpException } from '../../../../../src/common';
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {

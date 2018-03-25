@@ -1,4 +1,4 @@
-import { mixin } from '@neskjs/common';
+import { mixin } from '../../../../../src/common';
 import { CacheInterceptor } from './cache.interceptor';
 
 export function mixinCacheInterceptor(isCached: () => boolean) {

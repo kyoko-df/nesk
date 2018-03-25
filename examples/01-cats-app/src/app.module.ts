@@ -1,4 +1,4 @@
-import { Module, NeskModule, MiddlewaresConsumer } from '@neskjs/common';
+import { Module, NeskModule, MiddlewaresConsumer } from '../../../src/common';
 import { LoggerMiddleware } from './common/middlewares/logger.middleware';
 import { CatsModule } from './cats/cats.module';
 import { CatsController } from './cats/cats.controller';

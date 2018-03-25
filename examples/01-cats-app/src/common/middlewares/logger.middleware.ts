@@ -1,11 +1,11 @@
-import { Middleware, NestMiddleware, ExpressMiddleware } from '@neskjs/common';
+import { Middleware, NeskMiddleware, KoaMiddleware } from '../../../../../src/common';
 
 @Middleware()
-export class LoggerMiddleware implements NestMiddleware {
-  resolve(name: string): ExpressMiddleware {
-    return (req, res, next) => {
+export class LoggerMiddleware implements NeskMiddleware {
+  resolve(name: string): KoaMiddleware {
+    return async (ctx, next) => {
       console.log(`[${name}] Request...`); // [ApplicationModule] Request...
-      next();
+      await next();
     };
   }
 }

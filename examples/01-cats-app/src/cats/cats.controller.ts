@@ -7,7 +7,7 @@ import {
   ReflectMetadata,
   UseInterceptors,
   Param,
-} from '@neskjs/common';
+} from '../../../../src/common';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from './interfaces/cat.interface';

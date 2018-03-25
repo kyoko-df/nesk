@@ -1,4 +1,4 @@
-import { Test } from '@neskjs/testing';
+import { Test } from '../../../../src/testing';
 import { CatsController } from './cats.controller';
 import { CatsService } from './cats.service';
 

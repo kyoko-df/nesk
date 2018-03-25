@@ -1,4 +1,4 @@
-import { Component } from '@neskjs/common';
+import { Component } from '../../../../src/common';
 import { Cat } from './interfaces/cat.interface';
 import { CatsModule } from './cats.module';
 

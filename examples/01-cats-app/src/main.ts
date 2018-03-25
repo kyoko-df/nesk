@@ -1,4 +1,4 @@
-import { NeskFactory } from '@neskjs/core';
+import { NeskFactory } from '../../../src/core';
 import { ApplicationModule } from './app.module';
 import { ValidationPipe } from './common/pipes/validation.pipe';
 

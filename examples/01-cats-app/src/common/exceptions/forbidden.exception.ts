@@ -1,5 +1,5 @@
-import { HttpException } from '@neskjs/common';
-import { HttpStatus } from '@neskjs/common';
+import { HttpException } from '../../../../../src/common';
+import { HttpStatus } from '../../../../../src/common';
 
 export class ForbiddenException extends HttpException {
   constructor() {

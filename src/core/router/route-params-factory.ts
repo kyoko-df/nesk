@@ -8,6 +8,8 @@ export class RouteParamsFactory implements IRouteParamsFactory {
     { ctx, next },
   ) {
     switch (key) {
+      case RouteParamtypes.CTX:
+        return ctx;
       case RouteParamtypes.NEXT:
         return next;
       case RouteParamtypes.REQUEST:

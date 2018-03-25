@@ -11,7 +11,8 @@ export class RouterProxy {
       try {
         await targetCallback(ctx, next);
       } catch (e) {
-        exceptionsHandler.next(e, ctx.response);
+        // exceptionsHandler.next(e, ctx.response);
+        console.log(e)
       }
     };
   }

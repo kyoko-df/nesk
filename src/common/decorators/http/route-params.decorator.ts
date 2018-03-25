@@ -56,6 +56,9 @@ const createPipesRouteParamDecorator = (paramtype: RouteParamtypes) => (
   );
 };
 
+export const Ctx: () => ParameterDecorator = createRouteParamDecorator(
+  RouteParamtypes.CTX,
+);
 export const Request: () => ParameterDecorator = createRouteParamDecorator(
   RouteParamtypes.REQUEST,
 );
