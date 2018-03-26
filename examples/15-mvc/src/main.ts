@@ -8,6 +8,11 @@ async function bootstrap() {
     view: { root: __dirname + '/views', extension: 'jade' },
   });
 
+  app.use(async (ctx, next) => {
+    await next();
+    console.log(2)
+  })
+
   await app.listen(3000);
 }
 bootstrap();

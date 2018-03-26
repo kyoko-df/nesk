@@ -65,6 +65,7 @@ export class KoaRouterExplorer implements RouterExplorer {
     prefix?: string,
   ): string {
     let path = Reflect.getMetadata(PATH_METADATA, metatype);
+    if (path === '') return path;
     if (prefix) path = prefix + this.validateRoutePath(path);
     return this.validateRoutePath(path);
   }

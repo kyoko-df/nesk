@@ -10,14 +10,14 @@ export class RouteParamsFactory implements IRouteParamsFactory {
     switch (key) {
       case RouteParamtypes.CTX:
         return ctx;
-      case RouteParamtypes.NEXT:
-        return next;
       case RouteParamtypes.REQUEST:
         return ctx.request;
       case RouteParamtypes.RESPONSE:
         return ctx.response;
+      case RouteParamtypes.NEXT:
+        return next;
       case RouteParamtypes.BODY:
-        return data && ctx.body ? ctx.body[data] : ctx.body;
+        return data ? ctx.request.body[data] : ctx.request.body;
       case RouteParamtypes.PARAM:
         return data ? ctx.params[data] : ctx.params;
       case RouteParamtypes.QUERY:
@@ -29,7 +29,7 @@ export class RouteParamsFactory implements IRouteParamsFactory {
       case RouteParamtypes.FILE:
         return ctx.file;
       case RouteParamtypes.FILES:
-        return ctx.files; 
+        return ctx.files;
       default:
         return null;
     }

@@ -32,6 +32,7 @@ export class PipesContextCreator extends ContextCreator {
     if (isUndefined(metadata) || isEmpty(metadata)) {
       return [] as R;
     }
+
     return iterate(metadata)
       .filter(pipe => pipe && pipe.transform && isFunction(pipe.transform))
       .map(pipe => pipe.transform.bind(pipe))

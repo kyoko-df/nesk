@@ -1,7 +1,7 @@
 import { Get, Post, Controller, Render, Body, Ctx } from '../../../src/common';
 
-@Controller('')
-export class AppController {
+@Controller('test')
+export class TestController {
   @Get()
   @Render('index')
   async root(@Ctx() ctx) {

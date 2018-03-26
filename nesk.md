@@ -1,0 +1,18 @@
+## Nesk - Nest的koa实现
+
+### Nest
+
+Nest是一个深受angular激发的基于express的node框架，虽然说是深受angular激发，但其实从后端开发角度来说类似于大家熟悉的Java Spring架构，使用了大量切面编程技巧，再通过装饰器的结合完全了关注上的分离。同时使用了Typescript(也支持Javascript)为主要开发语言，更保证了整个后端系统的健壮性。
+
+### Nesk
+
+虽然我个人很喜欢Nest，但是我们公司已经有一套基于koa2的成熟框架aconite，而Nest是基于express的，查看了下Nest的源码，对express有一定的依赖，但是koa2和express在支持async语法后，差异属于可控范围下。另外nest接受一个express的实例，在nesk中我们只需要调整为koa实例，那么也可以是继承于koa的任何项目实例，我们的框架在2.0版本也是一个在koa上继承下来的node框架，基于此，我们只需要一个简单的adapter层就可以无缝接入aconite到nesk中，这样减少了nesk和业务的捆绑，而将所以的业务整合保留在aconite中。
+
+### 不足与期待
+
+其实从一个更好的方面来说，我们应当允许nest接受不同的底层框架，即既可以使用express，也可以使用koa，通过一个adapter层抹平差异。不过这一块的改造成本会大一些。
+
+另一方面nest有一些本身的不足，在依赖注入上，还是选择了reflect inject，而angular已经开始使用了static inject，理论上static inject减少了对Map层级的查找，有利于性能的表现，这也是我们决定分叉出一个nesk的原因，可以做一些更大胆的内部代码修改。
+
+最后所有的基于Koa的框架都会问到一个问题，能不能兼容eggjs(笑)，其实无论是Nest还是Nesk都是一个强制开发规范的框架，只要eggjs还建立在koa的基础上，就可以完成集成，只是eggjs在启动层面的改动较大，而且开发范式和nest差异比较多，两者的融合并没有显著的优势。
+

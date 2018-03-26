@@ -241,7 +241,7 @@ export class RouterExecutionContext {
             pipes: paramPipes,
           } = param;
           const value = extractValue(ctx, next);
-
+          
           args[index] = await this.getParamValue(
             value,
             { metatype, type, data },
