@@ -21,7 +21,7 @@ import { MicroservicesPackageNotFoundException } from './errors/exceptions/micro
 import { NeskApplicationContext } from './nesk-application-context';
 import { HttpsOptions } from '@neskjs/common/interfaces/https-options.interface';
 import { NeskApplicationContextOptions } from '@neskjs/common/interfaces/nesk-application-context-options.interface';
-import { NeskMicroserviceOptions } from '@neskjs/common/interfaces/microservices/nest-microservice-options.interface';
+import { NeskMicroserviceOptions } from '@neskjs/common/interfaces/microservices/nesk-microservice-options.interface';
 import { ApplicationConfig } from './application-config';
 
 const { NeskMicroservice } =

@@ -1,11 +1,11 @@
 import * as multer from 'multer';
-import { NestInterceptor } from './../interfaces/nesk-interceptor.interface';
+import { NeskInterceptor } from './../interfaces/nesk-interceptor.interface';
 import { Observable } from 'rxjs/Observable';
 import { MulterOptions } from '../interfaces/external/multer-options.interface';
 import { transformException } from './multer/multer.utils';
 
 export function FilesInterceptor(fieldName: string, maxCount?: number, options?: MulterOptions) {
-  const Interceptor = class implements NestInterceptor {
+  const Interceptor = class implements NeskInterceptor {
     readonly upload = multer(options);
 
     async intercept(

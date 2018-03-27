@@ -1,5 +1,5 @@
 import { InstanceLoader } from '@neskjs/core/injector/instance-loader';
-import { NestContainer } from '@neskjs/core/injector/container';
+import { NeskContainer } from '@neskjs/core/injector/container';
 import { OverrideByFactoryOptions, OverrideBy } from './interfaces';
 import { Module } from '@neskjs/common';
 import { MetadataScanner } from '@neskjs/core/metadata-scanner';
@@ -8,7 +8,7 @@ import { ModuleMetadata } from '@neskjs/common/interfaces';
 import { TestingModule } from './testing-module';
 
 export class TestingModuleBuilder {
-  private readonly container = new NestContainer();
+  private readonly container = new NeskContainer();
   private readonly overloadsMap = new Map();
   private readonly scanner: DependenciesScanner;
   private readonly instanceLoader = new InstanceLoader(this.container);

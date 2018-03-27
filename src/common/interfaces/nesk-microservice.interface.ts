@@ -1,7 +1,7 @@
 import { WebSocketAdapter } from './web-socket-adapter.interface';
 import { ExceptionFilter } from './exceptions/exception-filter.interface';
 import { PipeTransform } from './pipe-transform.interface';
-import { NestInterceptor } from './nesk-interceptor.interface';
+import { NeskInterceptor } from './nesk-interceptor.interface';
 import { CanActivate } from './can-activate.interface';
 import { INeskApplicationContext } from './nesk-application-context.interface';
 
@@ -47,9 +47,9 @@ export interface INeskMicroservice extends INeskApplicationContext {
   /**
    * Setups interceptors as a global interceptors (will be used within every message pattern handler)
    *
-   * @param  {NestInterceptor[]} ...interceptors
+   * @param  {NeskInterceptor[]} ...interceptors
    */
-  useGlobalInterceptors(...interceptors: NestInterceptor[]): this;
+  useGlobalInterceptors(...interceptors: NeskInterceptor[]): this;
 
   /**
    * Setups guards as a global guards (will be used within every message pattern handler)

@@ -1,6 +1,6 @@
 import * as optional from 'optional';
 import iterate from 'iterare';
-import { NestContainer } from '@neskjs/core/injector/container';
+import { NeskContainer } from '@neskjs/core/injector/container';
 import { MicroservicesModule } from './microservices-module';
 import { messages } from '@neskjs/core/constants';
 import { Logger } from '@neskjs/common/services/logger.service';
@@ -9,11 +9,11 @@ import { MicroserviceConfiguration } from './interfaces/microservice-configurati
 import { ServerFactory } from './server/server-factory';
 import { Transport } from './enums/transport.enum';
 import {
-  INestMicroservice,
+  INeskMicroservice,
   WebSocketAdapter,
   CanActivate,
   PipeTransform,
-  NestInterceptor,
+  NeskInterceptor,
   ExceptionFilter,
   OnModuleInit,
 } from '@neskjs/common';
@@ -22,16 +22,16 @@ import { CustomTransportStrategy } from '@neskjs/microservices';
 import { Module } from '@neskjs/core/injector/module';
 import { isNil, isUndefined } from '@neskjs/common/utils/shared.utils';
 import { OnModuleDestroy } from '@neskjs/common/interfaces';
-import { NestApplicationContext } from '@neskjs/core/nest-application-context';
+import { NeskApplicationContext } from '@neskjs/core/nesk-application-context';
 
 const { SocketModule } =
   optional('@neskjs/websockets/socket-module') || ({} as any);
 const { IoAdapter } =
   optional('@neskjs/websockets/adapters/io-adapter') || ({} as any);
 
-export class NestMicroservice extends NestApplicationContext
-  implements INestMicroservice {
-  private readonly logger = new Logger(NestMicroservice.name, true);
+export class NeskMicroservice extends NeskApplicationContext
+  implements INeskMicroservice {
+  private readonly logger = new Logger(NeskMicroservice.name, true);
   private readonly microservicesModule = new MicroservicesModule();
   private readonly socketModule = SocketModule ? new SocketModule() : null;
   private readonly microserviceConfig: MicroserviceConfiguration;
@@ -41,7 +41,7 @@ export class NestMicroservice extends NestApplicationContext
   private isInitHookCalled = false;
 
   constructor(
-    container: NestContainer,
+    container: NeskContainer,
     config: MicroserviceConfiguration = {},
     private readonly applicationConfig: ApplicationConfig,
   ) {
@@ -91,7 +91,7 @@ export class NestMicroservice extends NestApplicationContext
     return this;
   }
 
-  public useGlobalInterceptors(...interceptors: NestInterceptor[]): this {
+  public useGlobalInterceptors(...interceptors: NeskInterceptor[]): this {
     this.applicationConfig.useGlobalInterceptors(...interceptors);
     return this;
   }

@@ -1,7 +1,7 @@
 import { INeskMicroservice, ExceptionFilter, PipeTransform } from './index';
 import { WebSocketAdapter } from './web-socket-adapter.interface';
 import { CanActivate } from './can-activate.interface';
-import { NestInterceptor } from './nesk-interceptor.interface';
+import { NeskInterceptor } from './nesk-interceptor.interface';
 import { INeskApplicationContext } from './nesk-application-context.interface';
 import { CorsOptions } from './external/cors-options.interface';
 
@@ -22,28 +22,12 @@ export interface INeskApplication extends INeskApplicationContext {
   use(...args): this;
 
   /**
-   * A wrapper function around native `express.set()` method.
-   * Example `app.set('trust proxy', 'loopback')`
-   *
-   * @returns void
-   */
-  set(...args): this;
-
-  /**
-   * A wrapper function around native `express.engine()` method.
-   * Example `app.engine('mustache', mustacheExpress())`
+   * A wrapper function around native `koa-views` method.
+   * Example `app.engine(root, opts)`
    *
    * @returns void
    */
   engine(...args): this;
-
-  /**
-   * A wrapper function around native `express.enable()` method.
-   * Example `app.enable('x-powered-by')`
-   *
-   * @returns void
-   */
-  enable(...args): this;
 
   /**
    * Enables CORS (Cross-Origin Resource Sharing)
@@ -51,14 +35,6 @@ export interface INeskApplication extends INeskApplicationContext {
    * @returns void
    */
   enableCors(options?: CorsOptions): this;
-
-  /**
-   * A wrapper function around native `express.disable()` method.
-   * Example `app.disable('x-powered-by')`
-   *
-   * @returns void
-   */
-  disable(...args): this;
 
   /**
    * Starts the application.
@@ -151,9 +127,9 @@ export interface INeskApplication extends INeskApplicationContext {
   /**
    * Setups interceptors as a global interceptors (will be used within every HTTP route handler)
    *
-   * @param  {NestInterceptor[]} ...interceptors
+   * @param  {NeskInterceptor[]} ...interceptors
    */
-  useGlobalInterceptors(...interceptors: NestInterceptor[]): this;
+  useGlobalInterceptors(...interceptors: NeskInterceptor[]): this;
 
   /**
    * Setups guards as a global guards (will be used within every HTTP route handler)

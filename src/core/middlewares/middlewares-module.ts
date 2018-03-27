@@ -2,26 +2,27 @@ import { NeskContainer } from '../injector/container';
 import { MiddlewareBuilder } from './builder';
 import { MiddlewaresContainer, MiddlewareWrapper } from './container';
 import { MiddlewaresResolver } from './resolver';
-import { ControllerMetadata } from '../../common/interfaces/controllers/controller-metadata.interface';
-import { NeskModule } from '../../common/interfaces/modules/nesk-module.interface';
-import { MiddlewareConfiguration } from '../../common/interfaces/middlewares/middleware-configuration.interface';
+import { ControllerMetadata } from '@neskjs/common/interfaces/controllers/controller-metadata.interface';
+import { NeskModule } from '@neskjs/common/interfaces/modules/nesk-module.interface';
+import { MiddlewareConfiguration } from '@neskjs/common/interfaces/middlewares/middleware-configuration.interface';
 import { InvalidMiddlewareException } from '../errors/exceptions/invalid-middleware.exception';
-import { RequestMethod } from '../../common/enums/request-method.enum';
+import { RequestMethod } from '@neskjs/common/enums/request-method.enum';
 import { RoutesMapper } from './routes-mapper';
 import { RouterProxy } from '../router/router-proxy';
+import { RouterExtensionContext } from '../router/router-extension-context';
 import { ExceptionsHandler } from '../exceptions/exceptions-handler';
 import { Module } from '../injector/module';
 import { RouterMethodFactory } from '../helpers/router-method-factory';
-import { NeskMiddleware } from '../../common/interfaces/middlewares/nesk-middleware.interface';
-import { Metatype } from '../../common/interfaces/metatype.interface';
+import { NeskMiddleware } from '@neskjs/common/interfaces/middlewares/nesk-middleware.interface';
+import { Metatype } from '@neskjs/common/interfaces/metatype.interface';
 import { RuntimeException } from '../errors/exceptions/runtime.exception';
-import { isUndefined } from '../../common/utils/shared.utils';
+import { isUndefined } from '@neskjs/common/utils/shared.utils';
 import { ApplicationConfig } from './../application-config';
 import { RouterExceptionFilters } from './../router/router-exception-filters';
 
 export class MiddlewaresModule {
   private readonly routesMapper = new RoutesMapper();
-  private readonly routerProxy = new RouterProxy();
+  private readonly routerProxy = new RouterProxy(new RouterExtensionContext());
   private readonly routerMethodFactory = new RouterMethodFactory();
   private routerExceptionFilter: RouterExceptionFilters;
   private resolver: MiddlewaresResolver;
@@ -70,7 +71,7 @@ export class MiddlewaresModule {
 
   public async setupMiddlewares(
     middlewaresContainer: MiddlewaresContainer,
-    app,  // app 为 new router()
+    app,
   ) {
     const configs = middlewaresContainer.getConfigs();
     await Promise.all(

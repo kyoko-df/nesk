@@ -1,9 +1,9 @@
-import { Interceptor, NestInterceptor, ExecutionContext } from '@neskjs/common';
+import { Interceptor, NeskInterceptor, ExecutionContext } from '@neskjs/common';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 
 @Interceptor()
-export class LoggingInterceptor implements NestInterceptor {
+export class LoggingInterceptor implements NeskInterceptor {
   intercept(
     dataOrRequest,
     context: ExecutionContext,

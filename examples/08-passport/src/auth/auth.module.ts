@@ -1,7 +1,7 @@
 import * as passport from 'passport';
 import {
   Module,
-  NestModule,
+  NeskModule,
   MiddlewaresConsumer,
   RequestMethod,
 } from '@neskjs/common';
@@ -13,7 +13,7 @@ import { AuthController } from './auth.controller';
   components: [AuthService, JwtStrategy],
   controllers: [AuthController],
 })
-export class AuthModule implements NestModule {
+export class AuthModule implements NeskModule {
   public configure(consumer: MiddlewaresConsumer) {
     consumer
       .apply(passport.authenticate('jwt', { session: false }))

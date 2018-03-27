@@ -1,17 +1,12 @@
 import * as koa from 'koa';
 import * as path from 'path';
-import { NeskFactory } from '../../../src/core/nesk-factory';
+import { NeskFactory } from '@neskjs/core/nesk-factory';
 import { ApplicationModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NeskFactory.create(ApplicationModule, {
-    view: { root: __dirname + '/views', extension: 'jade' },
-  });
+  const app = await NeskFactory.create(ApplicationModule);
 
-  app.use(async (ctx, next) => {
-    await next();
-    console.log(2)
-  })
+  app.engine(__dirname + '/views', {extension: 'jade'});
 
   await app.listen(3000);
 }

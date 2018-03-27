@@ -7,16 +7,18 @@ import { Logger } from '@neskjs/common/services/logger.service';
 import { ControllerMappingMessage } from '../helpers/messages';
 import { Resolver } from './interfaces/resolver.interface';
 import { RouterExceptionFilters } from './router-exception-filters';
+import { RouterExtensionContext } from './router-extension-context';
 import { MetadataScanner } from '../metadata-scanner';
 import { RouterExplorer } from './interfaces/explorer.inteface';
 import { KoaRouterExplorer } from './router-explorer';
 import { ApplicationConfig } from './../application-config';
 import { NotFoundException, BadRequestException } from '@neskjs/common';
 import { MODULE_PATH } from '@neskjs/common/constants';
+import { HttpStatus } from '@neskjs/common';
 
 export class RoutesResolver implements Resolver {
   private readonly logger = new Logger(RoutesResolver.name, true);
-  private readonly routerProxy = new RouterProxy();
+  private readonly routerProxy = new RouterProxy(new RouterExtensionContext());
   private readonly routerExceptionsFilter: RouterExceptionFilters;
   private readonly routerBuilder: RouterExplorer;
 
@@ -46,9 +48,6 @@ export class RoutesResolver implements Resolver {
     });
     koa.use(router.routes());
     koa.use(router.allowedMethods());
-    // this.setupNotFoundHandler(router);
-    // this.setupExceptionHandler(router);
-    // this.setupExceptionHandler(koa);
   }
 
   public setupRouters(
@@ -68,39 +67,37 @@ export class RoutesResolver implements Resolver {
     });
   }
 
-  // public setupNotFoundHandler(koa: Application) {
-  //   const callback = (ctx, next) => {
-  //     throw new NotFoundException(`Cannot ${ctx.method} ${ctx.url}`);
-  //   };
-  //   const exceptionHandler = this.routerExceptionsFilter.create(
-  //     {},
-  //     callback as any,
-  //   );
-  //   const proxy = this.routerProxy.createProxy(callback, exceptionHandler);
-  //   koa.use(proxy);
-  // }
+  public setupErrorHandler(koa: Application) {
+    const callback = ctx => {
+      return this.mapExternalException(ctx);
+    };
+    const exceptionHandler = this.routerExceptionsFilter.create(
+      {},
+      callback as any,
+    );
+    const wrapperExceptionHandler = ctx => {
+      const exception = callback(ctx);
+      if (exception instanceof Error) {
+        exceptionHandler.next(exception, ctx);
+      }
+    };
+    const proxy = this.routerProxy.createExceptionLayerProxy(
+      wrapperExceptionHandler,
+    );
+    koa.use(proxy);
+  }
 
-  // public setupExceptionHandler(koa: Application) {
-  //   const callback = (err, ctx, next) => {
-  //     throw this.mapExternalException(err);
-  //   };
-  //   const exceptionHandler = this.routerExceptionsFilter.create(
-  //     {},
-  //     callback as any,
-  //   );
-  //   const proxy = this.routerProxy.createExceptionLayerProxy(
-  //     callback,
-  //     exceptionHandler,
-  //   );
-  //   koa.use(proxy);
-  // }
-
-  // public mapExternalException(err: any) {
-  //   switch (true) {
-  //     case (err instanceof SyntaxError): 
-  //       return new BadRequestException(err.message);
-  //     default: 
-  //       return err; 
-  //   }
-  // }
+  public mapExternalException(ctx) {
+    switch (ctx.status) {
+      case HttpStatus.BAD_REQUEST:
+        return new BadRequestException(
+          (ctx.response.body && ctx.response.body.message) ||
+            `Bad Request ${ctx.method} ${ctx.url}`,
+        );
+      case HttpStatus.NOT_FOUND:
+        return new NotFoundException(`Cannot ${ctx.method} ${ctx.url}`);
+      default:
+        return;
+    }
+  }
 }

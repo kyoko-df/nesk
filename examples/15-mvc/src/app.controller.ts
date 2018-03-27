@@ -6,13 +6,6 @@ export class AppController {
   @Render('index')
   async root(@Ctx() ctx) {
     return { message: 'Hello world!' };
-    // console.log(ctx)
     // await ctx.render('index', { message: 'Hello world!' })
-  }
-
-  @Get('abc')
-  @Render('index')
-  test() {
-    return { message: 'test' };
   }
 }

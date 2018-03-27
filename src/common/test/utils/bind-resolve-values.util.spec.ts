@@ -2,14 +2,14 @@ import 'mocha';
 import 'reflect-metadata';
 import { expect } from 'chai';
 import { BindResolveMiddlewareValues } from '../../utils/bind-resolve-values.util';
-import { NestMiddleware } from '../../interfaces/middlewares/nest-middleware.interface';
+import { NeskMiddleware } from '../../interfaces/middlewares/nesk-middleware.interface';
 
 describe('BindResolveMiddlewareValues', () => {
   let type;
   const arg1 = 3,
     arg2 = 4;
 
-  class Test implements NestMiddleware {
+  class Test implements NeskMiddleware {
     public resolve(a, b) {
       return () => [a, b];
     }

@@ -12,7 +12,7 @@ import { SocketServerProvider } from './socket-server-provider';
 import { NAMESPACE_METADATA, PORT_METADATA } from './constants';
 import { Metatype } from '@neskjs/common/interfaces/metatype.interface';
 import { MetadataScanner } from '@neskjs/core/metadata-scanner';
-import { NestContainer } from '@neskjs/core/injector/container';
+import { NeskContainer } from '@neskjs/core/injector/container';
 import { MiddlewaresInjector } from './middlewares-injector';
 import { ApplicationConfig } from '@neskjs/core/application-config';
 import { WsContextCreator } from './context/ws-context-creator';
@@ -30,7 +30,7 @@ export class WebSocketsController {
 
   constructor(
     private readonly socketServerProvider: SocketServerProvider,
-    private readonly container: NestContainer,
+    private readonly container: NeskContainer,
     private readonly config: ApplicationConfig,
     private readonly contextCreator: WsContextCreator,
   ) {

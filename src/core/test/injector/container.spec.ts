@@ -1,12 +1,12 @@
 import { expect } from 'chai';
 import * as sinon from 'sinon';
-import { NestContainer } from '../../injector/container';
+import { NeskContainer } from '../../injector/container';
 import { Module } from '../../../common/decorators/modules/module.decorator';
 import { UnknownModuleException } from '../../errors/exceptions/unknown-module.exception';
 import { Global } from '../../../common/index';
 
 describe('NestContainer', () => {
-  let container: NestContainer;
+  let container: NeskContainer;
 
   @Module({})
   class TestModule {}
@@ -16,7 +16,7 @@ describe('NestContainer', () => {
   class GlobalTestModule {}
 
   beforeEach(() => {
-    container = new NestContainer();
+    container = new NeskContainer();
   });
 
   it('should "addComponent" throw "UnknownModuleException" when module is not stored in collection', () => {

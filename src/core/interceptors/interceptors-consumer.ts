@@ -1,13 +1,13 @@
 import iterate from 'iterare';
-import { GUARDS_METADATA } from '../../common/constants';
+import { GUARDS_METADATA } from '@neskjs/common/constants';
 import {
   isUndefined,
   isFunction,
   isNil,
   isEmpty,
-} from '../../common/utils/shared.utils';
-import { Controller } from '../../common/interfaces';
-import { HttpStatus, ExecutionContext, NestInterceptor } from '../../common';
+} from '@neskjs/common/utils/shared.utils';
+import { Controller } from '@neskjs/common/interfaces';
+import { HttpStatus, ExecutionContext, NeskInterceptor } from '@neskjs/common';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/observable/defer';
@@ -17,8 +17,8 @@ import 'rxjs/add/operator/switchMap';
 
 export class InterceptorsConsumer {
   public async intercept(
-    interceptors: NestInterceptor[],
-    dataOrRequest: any,
+    interceptors: NeskInterceptor[],
+    data: any,
     instance: Controller,
     callback: (...args) => any,
     next: () => Promise<any>,
@@ -30,7 +30,7 @@ export class InterceptorsConsumer {
     const start$ = Observable.defer(() => this.transformDeffered(next));
     const result$ = await interceptors.reduce(
       async (stream$, interceptor) =>
-        await interceptor.intercept(dataOrRequest, context, await stream$),
+        await interceptor.intercept(data, context, await stream$),
       Promise.resolve(start$),
     );
     return await result$.toPromise();

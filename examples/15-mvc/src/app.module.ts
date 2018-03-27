@@ -1,10 +1,9 @@
-import { Module } from '../../../src/common';
+import { Module } from '@neskjs/common';
 import { AppController } from './app.controller';
-import { TestController } from './test.controller';
 
 @Module({
   imports: [],
-  controllers: [AppController, TestController],
+  controllers: [AppController],
   components: [],
 })
 export class ApplicationModule {}

@@ -6,13 +6,15 @@ import { isEmpty, isObject } from '@neskjs/common/utils/shared.utils';
 import { InvalidExceptionFilterException } from '../errors/exceptions/invalid-exception-filter.exception';
 import { HttpException } from '@neskjs/common';
 
+const ERROR_EVENT = 'error';
+
 export class ExceptionsHandler {
   private static readonly logger = new Logger(ExceptionsHandler.name);
   private filters: ExceptionFilterMetadata[] = [];
 
-  public next(exception: Error | HttpException | any, response) {
-    if (this.invokeCustomFilters(exception, response)) return;
-
+  public next(exception: Error | HttpException | any, ctx) {
+    const { response } = ctx;
+    if (this.invokeCustomFilters(exception, ctx)) return;
     if (
       !(
         exception instanceof HttpException ||
@@ -41,6 +43,7 @@ export class ExceptionsHandler {
         };
     response.status = exception.getStatus()
     response.json(message);
+    ctx.app.emit(ERROR_EVENT, exception, ctx);
   }
 
   public setCustomFilters(filters: ExceptionFilterMetadata[]) {
@@ -50,7 +53,7 @@ export class ExceptionsHandler {
     this.filters = filters;
   }
 
-  public invokeCustomFilters(exception, response): boolean {
+  public invokeCustomFilters(exception, ctx): boolean {
     if (isEmpty(this.filters)) return false;
 
     const filter = this.filters.find(({ exceptionMetatypes, func }) => {
@@ -61,7 +64,7 @@ export class ExceptionsHandler {
         );
       return hasMetatype;
     });
-    filter && filter.func(exception, response);
+    filter && filter.func(exception, ctx);
     return !!filter;
   }
 }

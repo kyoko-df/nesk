@@ -1,16 +1,16 @@
 import 'reflect-metadata';
 import iterate from 'iterare';
-import { Controller, NestInterceptor } from '../../common/interfaces';
-import { INTERCEPTORS_METADATA } from '../../common/constants';
+import { Controller, NeskInterceptor } from '@neskjs/common/interfaces';
+import { INTERCEPTORS_METADATA } from '@neskjs/common/constants';
 import {
   isUndefined,
   isFunction,
   isNil,
   isEmpty,
-} from '../../common/utils/shared.utils';
+} from '@neskjs/common/utils/shared.utils';
 import { ContextCreator } from './../helpers/context-creator';
 import { NeskContainer } from '../injector/container';
-import { ConfigurationProvider } from '../../common/interfaces/configuration-provider.interface';
+import { ConfigurationProvider } from '@neskjs/common/interfaces/configuration-provider.interface';
 
 export class InterceptorsContextCreator extends ContextCreator {
   private moduleContext: string;
@@ -26,7 +26,7 @@ export class InterceptorsContextCreator extends ContextCreator {
     instance: Controller,
     callback: (...args) => any,
     module: string,
-  ): NestInterceptor[] {
+  ): NeskInterceptor[] {
     this.moduleContext = module;
     return this.createContext(instance, callback, INTERCEPTORS_METADATA);
   }
@@ -46,7 +46,7 @@ export class InterceptorsContextCreator extends ContextCreator {
           .filter((wrapper: any) => wrapper && wrapper.instance)
           .map(wrapper => wrapper.instance)
           .filter(
-            (interceptor: NestInterceptor) =>
+            (interceptor: NeskInterceptor) =>
               interceptor && isFunction(interceptor.intercept),
           )
           .toArray() as R);

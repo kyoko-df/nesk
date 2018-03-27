@@ -1,20 +1,20 @@
 import * as express from 'express';
 import * as optional from 'optional';
-import { NestContainer } from '@neskjs/core/injector/container';
-import { NestModuleMetatype } from '@neskjs/common/interfaces/modules/module-metatype.interface';
-import { NestApplication, NestApplicationContext } from '@neskjs/core';
-import { INestApplication, INestMicroservice } from '@neskjs/common';
+import { NeskContainer } from '@neskjs/core/injector/container';
+import { NeskModuleMetatype } from '@neskjs/common/interfaces/modules/module-metatype.interface';
+import { NeskApplication, NeskApplicationContext } from '@neskjs/core';
+import { INeskApplication, INeskMicroservice } from '@neskjs/common';
 import { MicroserviceConfiguration } from '@neskjs/common/interfaces/microservices/microservice-configuration.interface';
 import { MicroservicesPackageNotFoundException } from '@neskjs/core/errors/exceptions/microservices-package-not-found.exception';
 import { ApplicationConfig } from '@neskjs/core/application-config';
 
 const { NestMicroservice } =
-  optional('@neskjs/microservices/nest-microservice') || ({} as any);
+  optional('@neskjs/microservices/nesk-microservice') || ({} as any);
 
-export class TestingModule extends NestApplicationContext {
+export class TestingModule extends NeskApplicationContext {
   constructor(
-    container: NestContainer,
-    scope: NestModuleMetatype[],
+    container: NeskContainer,
+    scope: NeskModuleMetatype[],
     contextModule,
   ) {
     super(container, scope, contextModule);
@@ -22,8 +22,8 @@ export class TestingModule extends NestApplicationContext {
 
   public createNestApplication(
     expressInstance: any = express(),
-  ): INestApplication {
-    return new NestApplication(
+  ): INeskApplication {
+    return new NeskApplication(
       this.container,
       expressInstance,
       new ApplicationConfig(),
@@ -32,7 +32,7 @@ export class TestingModule extends NestApplicationContext {
 
   public createNestMicroservice(
     config: MicroserviceConfiguration,
-  ): INestMicroservice {
+  ): INeskMicroservice {
     if (!NestMicroservice) {
       throw new MicroservicesPackageNotFoundException();
     }

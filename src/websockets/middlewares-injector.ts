@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import iterate from 'iterare';
 import {
-  NestContainer,
+  NeskContainer,
   InstanceWrapper,
 } from '@neskjs/core/injector/container';
 import { NestGateway } from './index';
@@ -19,7 +19,7 @@ import { ApplicationConfig } from '@neskjs/core/application-config';
 
 export class MiddlewaresInjector {
   constructor(
-    private readonly container: NestContainer,
+    private readonly container: NeskContainer,
     private readonly config: ApplicationConfig,
   ) {}
 

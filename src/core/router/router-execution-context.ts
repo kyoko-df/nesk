@@ -88,19 +88,18 @@ export class RouterExecutionContext {
       httpStatusCode,
     );
 
-    // 执行route回调
     return async (ctx, next) => {
       const args = this.createNullArray(argsLength);
-      fnCanActivate && (await fnCanActivate(ctx.request));
+      fnCanActivate && (await fnCanActivate(ctx));
 
       const handler = async () => {
         fnApplyPipes && (await fnApplyPipes(args, ctx, next));
         return callback.apply(instance, args);
       };
-      // result 是数据用来render
+
       const result = await this.interceptorsConsumer.intercept(
         interceptors,
-        ctx.request,
+        ctx,
         instance,
         callback,
         handler,
@@ -211,10 +210,10 @@ export class RouterExecutionContext {
     instance: Controller,
     callback: (...args) => any,
   ) {
-    const canActivateFn = async request => {
+    const canActivateFn = async context => {
       const canActivate = await this.guardsConsumer.tryActivate(
         guards,
-        request,
+        context,
         instance,
         callback,
       );

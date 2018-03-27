@@ -1,14 +1,14 @@
 import 'reflect-metadata';
-import { Controller } from '../../common/interfaces/controllers/controller.interface';
-import { RequestMethod } from '../../common/enums/request-method.enum';
+import { Controller } from '@neskjs/common/interfaces/controllers/controller.interface';
+import { RequestMethod } from '@neskjs/common/enums/request-method.enum';
 import { RouterProxy, RouterProxyCallback } from './router-proxy';
 import { UnknownRequestMappingException } from '../errors/exceptions/unknown-request-mapping.exception';
 import { KoaAdapter } from '../adapters/koa-adapter';
-import { Metatype } from '../../common/interfaces/metatype.interface';
-import { isUndefined, validatePath } from '../../common/utils/shared.utils';
+import { Metatype } from '@neskjs/common/interfaces/metatype.interface';
+import { isUndefined, validatePath } from '@neskjs/common/utils/shared.utils';
 import { RouterMethodFactory } from '../helpers/router-method-factory';
-import { PATH_METADATA, METHOD_METADATA } from '../../common/constants';
-import { Logger } from '../../common/services/logger.service';
+import { PATH_METADATA, METHOD_METADATA } from '@neskjs/common/constants';
+import { Logger } from '@neskjs/common/services/logger.service';
 import { RouteMappedMessage } from '../helpers/messages';
 import { RouterExecutionContext } from './router-execution-context';
 import { ExceptionsFilter } from './interfaces/exceptions-filter.interface';
@@ -144,7 +144,6 @@ export class KoaRouterExplorer implements RouterExplorer {
       module,
       requestMethod,
     );
-    // 这里构造完成了router[method](path, controller)
     routerMethod(path, proxy);
   }
 

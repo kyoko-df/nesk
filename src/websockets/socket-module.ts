@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import {
-  NestContainer,
+  NeskContainer,
   InstanceWrapper,
 } from '@neskjs/core/injector/container';
 import { NestGateway } from './interfaces/nest-gateway.interface';

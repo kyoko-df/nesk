@@ -9,7 +9,7 @@ import iterate from 'iterare';
 import {
   CanActivate,
   ExceptionFilter,
-  NestInterceptor,
+  NeskInterceptor,
   OnModuleDestroy,
   PipeTransform,
   WebSocketAdapter,
@@ -125,10 +125,6 @@ export class NeskApplication extends NeskApplicationContext
       this.appOptions && this.appOptions.bodyParser !== false;
     useBodyParser && this.setupParserMiddlewares();
 
-    const useViewRender =
-      this.applyOptions && this.appOptions.view && this.appOptions.view.enable !== false;
-    useViewRender && this.setupRenderMiddlewares();
-
     await this.setupModules();
     await this.setupRouter();
 
@@ -151,13 +147,6 @@ export class NeskApplication extends NeskApplicationContext
     }
   }
 
-  public setupRenderMiddlewares() {
-    const { enable, root, ...opts } = this.appOptions.view;
-    if (!this.isMiddlewareApplied(this.koa, views)) {
-      this.koa.use(views(root, opts || {}))
-    }
-  }
-
   public isMiddlewareApplied(app, ctor: any): boolean {
     return (
       !!app.middleware &&
@@ -171,6 +160,7 @@ export class NeskApplication extends NeskApplicationContext
     const router = KoaAdapter.createRouter();
     await this.setupMiddlewares(router);
 
+    this.routesResolver.setupErrorHandler(this.koa);
     this.routesResolver.resolve(router, this.koa);
     // this.koa.use(validatePath(this.config.getGlobalPrefix()), router);
     router.prefix(validatePath(this.config.getGlobalPrefix()));
@@ -221,22 +211,7 @@ export class NeskApplication extends NeskApplicationContext
   }
 
   public engine(...args): this {
-    this.koa.engine(...args);
-    return this;
-  }
-
-  public set(...args): this {
-    this.koa.set(...args);
-    return this;
-  }
-
-  public disable(...args): this {
-    this.koa.disable(...args);
-    return this;
-  }
-
-  public enable(...args): this {
-    this.koa.enable(...args);
+    this.koa.use(views(...args));
     return this;
   }
 
@@ -294,7 +269,7 @@ export class NeskApplication extends NeskApplicationContext
     return this;
   }
 
-  public useGlobalInterceptors(...interceptors: NestInterceptor[]): this {
+  public useGlobalInterceptors(...interceptors: NeskInterceptor[]): this {
     this.config.useGlobalInterceptors(...interceptors);
     return this;
   }

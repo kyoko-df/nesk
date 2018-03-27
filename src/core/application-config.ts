@@ -3,7 +3,7 @@ import {
   PipeTransform,
   WebSocketAdapter,
   ExceptionFilter,
-  NestInterceptor,
+  NeskInterceptor,
   CanActivate,
 } from '@neskjs/common';
 import { ConfigurationProvider } from '@neskjs/common/interfaces/configuration-provider.interface';
@@ -11,7 +11,7 @@ import { ConfigurationProvider } from '@neskjs/common/interfaces/configuration-p
 export class ApplicationConfig implements ConfigurationProvider {
   private globalPipes: PipeTransform<any>[] = [];
   private globalFilters: ExceptionFilter[] = [];
-  private globalInterceptors: NestInterceptor[] = [];
+  private globalInterceptors: NeskInterceptor[] = [];
   private globalGuards: CanActivate[] = [];
   private globalPrefix = '';
 
@@ -57,15 +57,15 @@ export class ApplicationConfig implements ConfigurationProvider {
     return this.globalPipes;
   }
 
-  public getGlobalInterceptors(): NestInterceptor[] {
+  public getGlobalInterceptors(): NeskInterceptor[] {
     return this.globalInterceptors;
   }
 
-  public addGlobalInterceptor(interceptor: NestInterceptor) {
+  public addGlobalInterceptor(interceptor: NeskInterceptor) {
     this.globalInterceptors.push(interceptor);
   }
 
-  public useGlobalInterceptors(...interceptors: NestInterceptor[]) {
+  public useGlobalInterceptors(...interceptors: NeskInterceptor[]) {
     this.globalInterceptors = this.globalInterceptors.concat(interceptors);
   }
 

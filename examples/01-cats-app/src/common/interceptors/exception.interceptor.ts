@@ -1,6 +1,6 @@
 import {
   Interceptor,
-  NestInterceptor,
+  NeskInterceptor,
   ExecutionContext,
   HttpStatus,
 } from '../../../../../src/common';
@@ -10,9 +10,9 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 @Interceptor()
-export class ExceptionInterceptor implements NestInterceptor {
+export class ExceptionInterceptor implements NeskInterceptor {
   intercept(
-    dataOrRequest,
+    koaCtx,
     context: ExecutionContext,
     stream$: Observable<any>,
   ): Observable<any> {

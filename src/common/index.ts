@@ -27,7 +27,7 @@ export {
   CanActivate,
   RpcExceptionFilter,
   WsExceptionFilter,
-  NestInterceptor,
+  NeskInterceptor,
   DynamicModule,
   INeskApplicationContext,
 } from './interfaces';

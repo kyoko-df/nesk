@@ -8,7 +8,6 @@ export class RouterResponseController {
     response.status = httpStatusCode;
     if (isNil(result)) {
       return;
-      // return response.send();
     }
     return isObject(result) ? response.json(result) : response.send(String(result));
   }

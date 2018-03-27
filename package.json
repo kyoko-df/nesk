@@ -1,6 +1,6 @@
 {
   "name": "neskjs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Modern, fast, powerful koajs web framework",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
   "engines": {
     "node": ">=6.11.0"
   },
-  "author": "Kamil Mysliwiec",
+  "author": "chendafu",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.17.1",

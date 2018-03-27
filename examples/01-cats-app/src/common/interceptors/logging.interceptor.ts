@@ -1,11 +1,11 @@
-import { Interceptor, NestInterceptor, ExecutionContext } from '../../../../../src/common';
+import { Interceptor, NeskInterceptor, ExecutionContext } from '../../../../../src/common';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 
 @Interceptor()
-export class LoggingInterceptor implements NestInterceptor {
+export class LoggingInterceptor implements NeskInterceptor {
   intercept(
-    dataOrRequest,
+    koaCtx,
     context: ExecutionContext,
     stream$: Observable<any>,
   ): Observable<any> {

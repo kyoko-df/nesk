@@ -1,5 +1,5 @@
 import * as multer from 'multer';
-import { NestInterceptor } from './../interfaces/nesk-interceptor.interface';
+import { NeskInterceptor } from './../interfaces/nesk-interceptor.interface';
 import { Observable } from 'rxjs/Observable';
 import { MulterOptions } from '../interfaces/external/multer-options.interface';
 import { mixin } from '../decorators/core/component.decorator';
@@ -7,7 +7,7 @@ import { transformException } from './multer/multer.utils';
 
 export function FileInterceptor(fieldName: string, options?: MulterOptions) {
   return mixin(
-    class implements NestInterceptor {
+    class implements NeskInterceptor {
       readonly upload = multer(options);
 
       async intercept(
