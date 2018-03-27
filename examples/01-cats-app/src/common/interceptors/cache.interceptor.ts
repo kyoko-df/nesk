@@ -1,4 +1,4 @@
-import { Interceptor, NeskInterceptor, ExecutionContext } from '../../../../../src/common';
+import { Interceptor, NeskInterceptor, ExecutionContext } from '@neskjs/common';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 

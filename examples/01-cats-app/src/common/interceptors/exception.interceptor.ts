@@ -3,8 +3,8 @@ import {
   NeskInterceptor,
   ExecutionContext,
   HttpStatus,
-} from '../../../../../src/common';
-import { HttpException } from '../../../../../src/common';
+} from '@neskjs/common';
+import { HttpException } from '@neskjs/common';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';

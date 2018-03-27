@@ -1,4 +1,4 @@
-import { Middleware, NeskMiddleware, KoaMiddleware } from '../../../../../src/common';
+import { Middleware, NeskMiddleware, KoaMiddleware } from '@neskjs/common';
 
 @Middleware()
 export class LoggerMiddleware implements NeskMiddleware {

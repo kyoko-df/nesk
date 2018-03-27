@@ -1,10 +1,10 @@
-import { HttpException } from '../../../../../src/common';
+import { HttpException } from '@neskjs/common';
 import {
   PipeTransform,
   Pipe,
   ArgumentMetadata,
   HttpStatus,
-} from '../../../../../src/common';
+} from '@neskjs/common';
 import { validate } from 'class-validator';
 import { plainToClass } from 'class-transformer';
 
