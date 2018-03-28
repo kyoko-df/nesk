@@ -1,6 +1,6 @@
 {
   "name": "@neskjs/websockets",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Modern, fast, powerful koajs web framework (@websockets)",
   "author": "chendafu",
   "license": "MIT",
