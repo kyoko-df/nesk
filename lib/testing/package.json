@@ -1,0 +1,14 @@
+{
+  "name": "@neskjs/testing",
+  "version": "0.0.1",
+  "description": "Modern, fast, powerful koajs web framework (@testing)",
+  "author": "chendafu",
+  "license": "MIT",
+  "dependencies": {
+    "optional": "0.1.4"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^0.0.1",
+    "@nestjs/core": "^0.0.1"
+  }
+}

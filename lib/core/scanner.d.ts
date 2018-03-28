@@ -1,0 +1,40 @@
+import 'reflect-metadata';
+import { NeskContainer } from './injector/container';
+import { Controller } from '@neskjs/common/interfaces/controllers/controller.interface';
+import { Injectable } from '@neskjs/common/interfaces/injectable.interface';
+import { NeskModuleMetatype } from '@neskjs/common/interfaces/modules/module-metatype.interface';
+import { Metatype } from '@neskjs/common/interfaces/metatype.interface';
+import { MetadataScanner } from '../core/metadata-scanner';
+import { DynamicModule } from '@neskjs/common';
+import { ApplicationConfig } from './application-config';
+export declare class DependenciesScanner {
+    private readonly container;
+    private readonly metadataScanner;
+    private readonly applicationConfig;
+    private readonly applicationProvidersApplyMap;
+    constructor(container: NeskContainer, metadataScanner: MetadataScanner, applicationConfig?: ApplicationConfig);
+    scan(module: NeskModuleMetatype): void;
+    scanForModules(module: NeskModuleMetatype | DynamicModule, scope?: NeskModuleMetatype[]): void;
+    storeModule(module: any, scope: NeskModuleMetatype[]): void;
+    scanModulesForDependencies(): void;
+    reflectRelatedModules(module: NeskModuleMetatype, token: string): void;
+    reflectComponents(module: NeskModuleMetatype, token: string): void;
+    reflectComponentMetadata(component: Metatype<Injectable>, token: string): void;
+    reflectControllers(module: NeskModuleMetatype, token: string): void;
+    reflectDynamicMetadata(obj: Metatype<Injectable>, token: string): void;
+    reflectExports(module: NeskModuleMetatype, token: string): void;
+    reflectGatewaysMiddlewares(component: Metatype<Injectable>, token: string): void;
+    reflectGuards(component: Metatype<Injectable>, token: string): void;
+    reflectInterceptors(component: Metatype<Injectable>, token: string): void;
+    reflectKeyMetadata(component: Metatype<Injectable>, key: string, method: string): any;
+    storeRelatedModule(related: any, token: string): void;
+    storeComponent(component: any, token: string): string;
+    storeInjectable(component: Metatype<Injectable>, token: string): void;
+    storeExportedComponent(exportedComponent: Metatype<Injectable>, token: string): void;
+    storeRoute(route: Metatype<Controller>, token: string): void;
+    reflectMetadata(metatype: any, metadata: string): any;
+    applyApplicationProviders(): void;
+    getApplyProvidersMap(): {
+        [type: string]: Function;
+    };
+}

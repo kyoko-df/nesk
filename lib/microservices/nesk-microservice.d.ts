@@ -1,0 +1,37 @@
+import { NeskContainer } from '@neskjs/core/injector/container';
+import { MicroserviceConfiguration } from './interfaces/microservice-configuration.interface';
+import { INeskMicroservice, WebSocketAdapter, CanActivate, PipeTransform, NeskInterceptor, ExceptionFilter } from '@neskjs/common';
+import { ApplicationConfig } from '@neskjs/core/application-config';
+import { NeskApplicationContext } from '@neskjs/core/nesk-application-context';
+export declare class NeskMicroservice extends NeskApplicationContext implements INeskMicroservice {
+    private readonly applicationConfig;
+    private readonly logger;
+    private readonly microservicesModule;
+    private readonly socketModule;
+    private readonly microserviceConfig;
+    private readonly server;
+    private isTerminated;
+    private isInitialized;
+    private isInitHookCalled;
+    constructor(container: NeskContainer, config: MicroserviceConfiguration, applicationConfig: ApplicationConfig);
+    setupModules(): void;
+    setupListeners(): void;
+    useWebSocketAdapter(adapter: WebSocketAdapter): this;
+    useGlobalFilters(...filters: ExceptionFilter[]): this;
+    useGlobalPipes(...pipes: PipeTransform<any>[]): this;
+    useGlobalInterceptors(...interceptors: NeskInterceptor[]): this;
+    useGlobalGuards(...guards: CanActivate[]): this;
+    listen(callback: () => void): void;
+    listenAsync(): Promise<any>;
+    close(): void;
+    setIsInitialized(isInitialized: boolean): void;
+    setIsTerminated(isTerminaed: boolean): void;
+    setIsInitHookCalled(isInitHookCalled: boolean): void;
+    private closeApplication();
+    private callInitHook();
+    private callModuleInitHook(module);
+    private hasOnModuleInitHook(instance);
+    private callDestroyHook();
+    private callModuleDestroyHook(module);
+    private hasOnModuleDestroyHook(instance);
+}

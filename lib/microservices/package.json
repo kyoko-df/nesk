@@ -1,0 +1,19 @@
+{
+  "name": "@neskjs/microservices",
+  "version": "0.0.1",
+  "description": "Modern, fast, powerful koajs web framework(@microservices)",
+  "author": "chendafu",
+  "license": "MIT",
+  "dependencies": {
+    "iterare": "0.0.8",
+    "json-socket": "^0.2.1",
+    "optional": "0.1.4",
+    "redis": "^2.7.1"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^0.0.1",
+    "@nestjs/core": "^0.0.1",
+    "reflect-metadata": "0.1.10",
+    "rxjs": "^5.4.2"
+  }
+}

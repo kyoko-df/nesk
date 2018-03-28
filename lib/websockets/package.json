@@ -1,0 +1,17 @@
+{
+  "name": "@neskjs/websockets",
+  "version": "0.0.1",
+  "description": "Modern, fast, powerful koajs web framework (@websockets)",
+  "author": "chendafu",
+  "license": "MIT",
+  "dependencies": {
+    "iterare": "0.0.8",
+    "socket.io": "^2.0.3"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^0.0.1",
+    "@nestjs/core": "^0.0.1",
+    "reflect-metadata": "0.1.10",
+    "rxjs": "^5.4.2"
+  }
+}
