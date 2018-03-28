@@ -1,6 +1,6 @@
 {
   "name": "neskjs",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "Modern, fast, powerful koajs web framework",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "publish:next": "./node_modules/.bin/lerna publish --npm-tag=next --skip-git"
   },
   "engines": {
-    "node": ">=6.11.0"
+    "node": ">=8.0.0"
   },
   "author": "chendafu",
   "license": "MIT",
@@ -86,7 +86,7 @@
       "src/**/*.spec.ts",
       "src/core/adapters/*.ts",
       "src/websockets/adapters/*.ts",
-      "src/**/nest-*.ts",
+      "src/**/nesk-*.ts",
       "src/core/errors/**/*",
       "src/common/exceptions/*.ts",
       "src/common/http/*.ts",
