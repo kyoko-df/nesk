@@ -103,7 +103,7 @@ interceptors即拦截器，它可以：
 - 转换从函数抛出的异常
 - 根据所选条件完全重写函数 (例如, 缓存目的)
 
-本示例有两个拦截器一个用来记录函数执行的时间，另一个对结果进行一层包装，这两个需求都是开发中很常见的需求，而且拦截器会提供一个rxjs的观察者流来处理函数返回，支持异步函数，我们可以通过map()来mutate这个流的结果，可以通过do运算符来观察函数观察序列的执行状况，另外可以通过不返回流的方式，从而阻止函数的执行，LoggingInterceptorl例子如下：
+本示例有两个拦截器一个用来记录函数执行的时间，另一个对结果进行一层包装，这两个需求都是开发中很常见的需求，而且拦截器会提供一个rxjs的观察者流来处理函数返回，支持异步函数，我们可以通过map()来mutate这个流的结果，可以通过do运算符来观察函数观察序列的执行状况，另外可以通过不返回流的方式，从而阻止函数的执行，LoggingInterceptor例子如下：
 
 ```ts
 @Interceptor()
@@ -145,17 +145,21 @@ export class CreateCatDto {
 1. 支持Koa
 2. 适配Aconite
 
-支持Koa我们在Nest的基础上做了一些小改动完成了Nesk来兼容Koa体系。而Aconite框架本身就具有一个很完整的cli工具，我们只需要扩展cli工具再配合NeskAconite的Adapter层，就可以完成Nesk的落地，最后启动处的代码变成：
+支持Koa我们在Nest的基础上做了一些小改动完成了Nesk来兼容Koa体系。我们只需要完成Nesk和Aconite中间的Adapter层，就可以完成Nesk的落地，最后启动处的代码变成：
 
 ```ts
 import { NeskFactory } from '@neskjs/core';
 import { NeskAconite } from '@neskjs/aconite';
 import { ApplicationModule } from './app.module';
-import { middlewares } 
-import { config } from './config';
+import { config } from './common/config';
+import { middwares } from './common/middlware';
 
 async function bootstrap() {
-  const server = new NeskAconite(config);
+  const server = new NeskAconite({
+    projectRoot: __dirname,
+    middlewares,
+    config
+  });
   const app = await NeskFactory.create(ApplicationModule, server);
   await app.listen(3000);
 }
@@ -168,8 +172,8 @@ Nesk的地址[Nesk](https://github.com/kyoko-df/nesk)，我们对Nesk做了基�
 
 其实从一个更好的方面来说，我们应当允许nest接受不同的底层框架，即既可以使用express，也可以使用koa，通过一个adapter层抹平差异。不过这一块的改造成本会大一些。
 
-另一方面nest有一些本身的不足，在依赖注入上，还是选择了ReflectiveInjector，而angular已经开始使用了StaticInjector，理论上StaticInjector减少了对Map层级的查找，有利于性能的表现，这也是我们决定分叉出一个nesk的原因，可以做一些更大胆的内部代码修改。另外angular的依赖注入更强大，有例如useFactory和deps等方便测试替换的功能，是需要nest补充的.
+另一方面nest有一些本身的不足，在依赖注入上，还是选择了ReflectiveInjector，而Angular已经开始使用了StaticInjector，理论上StaticInjector减少了对Map层级的查找，有更好的性能，这也是我们决定分叉出一个nesk的原因，可以做一些更大胆的内部代码修改。另外angular的依赖注入更强大，有例如useFactory和deps等方便测试替换的功能，是需要nest补充的.
 
-最后所有的基于Koa的框架都会问到一个问题，能不能兼容eggjs(笑)，其实无论是Nest还是Nesk都是一个强制开发规范的框架，只要eggjs还建立在koa的基础上，就可以完成集成，只是eggjs在启动层面的改动较大，而且开发范式和nest差异比较多，两者的融合并没有显著的优势。
+最后所有的基于Koa的框架都会问到一个问题，能不能兼容eggjs(:))，其实无论是Nest还是Nesk都是一个强制开发规范的框架，只要eggjs还建立在koa的基础上，就可以完成集成，只是eggjs在启动层面的改动较大，而且开发范式和nest差异比较多，两者的融合并没有显著的优势。
 
-总之Node作为一个比较灵活的后端开发方式，每个人心中都有自己觉得合适的开发范式，如果你喜欢这种方式，不妨尝试下nest或者nesk。
+总之Node作为一个比较灵活的后端开发方式，每个人心中都有自己觉得合适的开发范式，如果你喜欢这种方式，不妨尝试下Nest或者Nesk。

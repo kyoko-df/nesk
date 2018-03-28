@@ -57,12 +57,7 @@ export class NeskFactoryStatic {
     const container = new NeskContainer(applicationConfig);
 
     this.applyLogger(appOptions);
-    await this.initialize(
-      module,
-      container,
-      applicationConfig,
-      koaInstance,
-    );
+    await this.initialize(module, container, applicationConfig, koaInstance);
     return this.createNeskInstance<NeskApplication>(
       new NeskApplication(
         container,

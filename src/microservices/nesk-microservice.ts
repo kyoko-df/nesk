@@ -46,7 +46,7 @@ export class NeskMicroservice extends NeskApplicationContext
     private readonly applicationConfig: ApplicationConfig,
   ) {
     super(container, [], null);
-  
+
     const ioAdapter = IoAdapter ? new IoAdapter() : null;
     this.applicationConfig.setIoAdapter(ioAdapter);
     this.microservicesModule.setup(container, this.applicationConfig);
@@ -58,12 +58,13 @@ export class NeskMicroservice extends NeskApplicationContext
     this.server = strategy
       ? strategy
       : ServerFactory.create(this.microserviceConfig);
-    
+
     this.selectContextModule();
   }
 
   public setupModules() {
-    this.socketModule && this.socketModule.setup(this.container, this.applicationConfig);
+    this.socketModule &&
+      this.socketModule.setup(this.container, this.applicationConfig);
     this.microservicesModule.setupClients(this.container);
 
     this.setupListeners();
@@ -109,7 +110,7 @@ export class NeskMicroservice extends NeskApplicationContext
   }
 
   public async listenAsync(): Promise<any> {
-    return await new Promise((resolve) => this.listen(resolve));
+    return await new Promise(resolve => this.listen(resolve));
   }
 
   public close() {

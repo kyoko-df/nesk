@@ -101,7 +101,10 @@ export class NeskApplication extends NeskApplicationContext
 
   public createServer(): any {
     if (this.appOptions && this.appOptions.httpsOptions) {
-      return https.createServer(this.appOptions.httpsOptions, this.koa.callback());
+      return https.createServer(
+        this.appOptions.httpsOptions,
+        this.koa.callback(),
+      );
     }
     return http.createServer(this.koa.callback());
   }
@@ -150,9 +153,7 @@ export class NeskApplication extends NeskApplicationContext
   public isMiddlewareApplied(app, ctor: any): boolean {
     return (
       !!app.middleware &&
-      !!app.middleware.filter(
-        layer => layer instanceof ctor,
-      ).length
+      !!app.middleware.filter(layer => layer instanceof ctor).length
     );
   }
 
