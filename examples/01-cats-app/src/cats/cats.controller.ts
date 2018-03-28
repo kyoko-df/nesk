@@ -7,7 +7,7 @@ import {
   ReflectMetadata,
   UseInterceptors,
   Param,
-} from '../../../../src/common';
+} from '@neskjs/common';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from './interfaces/cat.interface';
@@ -39,6 +39,6 @@ export class CatsController {
     @Param('id', new ParseIntPipe())
     id,
   ) {
-    return this.catsService.find(id);
+    return this.catsService.findOne(id);
   }
 }

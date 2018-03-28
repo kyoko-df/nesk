@@ -1,4 +1,4 @@
-import { Component } from '../../../../src/common';
+import { Component } from '@neskjs/common';
 import { Cat } from './interfaces/cat.interface';
 import { CatsModule } from './cats.module';
 
@@ -14,7 +14,7 @@ export class CatsService {
     return this.cats;
   }
 
-  find(id: number): Cat {
+  findOne(id: number): Cat {
     return this.cats[id];
   }
 }

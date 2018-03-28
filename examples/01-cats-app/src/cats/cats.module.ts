@@ -1,4 +1,4 @@
-import { Module } from '../../../../src/common';
+import { Module } from '@neskjs/common';
 import { CatsController } from './cats.controller';
 import { CatsService } from './cats.service';
 

@@ -26,6 +26,7 @@ export class ExceptionsHandler {
         statusCode: 500,
         message: messages.UNKNOWN_EXCEPTION_MESSAGE,
       });
+      ctx.app.emit(ERROR_EVENT, exception, ctx);
       if (isObject(exception) && (exception as Error).message) {
         return ExceptionsHandler.logger.error(
           (exception as Error).message,

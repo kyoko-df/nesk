@@ -89,11 +89,6 @@ export class RoutesResolver implements Resolver {
 
   public mapExternalException(ctx) {
     switch (ctx.status) {
-      case HttpStatus.BAD_REQUEST:
-        return new BadRequestException(
-          (ctx.response.body && ctx.response.body.message) ||
-            `Bad Request ${ctx.method} ${ctx.url}`,
-        );
       case HttpStatus.NOT_FOUND:
         return new NotFoundException(`Cannot ${ctx.method} ${ctx.url}`);
       default:

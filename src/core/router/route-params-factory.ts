@@ -9,7 +9,7 @@ export class RouteParamsFactory implements IRouteParamsFactory {
   ) {
     switch (key) {
       case RouteParamtypes.CTX:
-        return ctx;
+        return data? ctx[data] : ctx;
       case RouteParamtypes.REQUEST:
         return ctx.request;
       case RouteParamtypes.RESPONSE:
