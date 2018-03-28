@@ -17,5 +17,8 @@
     "@nestjs/common": "^0.0.1",
     "reflect-metadata": "0.1.10",
     "rxjs": "^5.4.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
