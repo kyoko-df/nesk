@@ -1,5 +1,11 @@
 ## 从Nest到Nesk -- 模块化Node框架的尝试到实践
 
+首先上一下项目地址（:>):
+
+[Nest](https://github.com/nestjs/nest)
+
+[Nesk](https://github.com/kyoko-df/nesk)
+
 ### Nest初认识
 
 Nest是一个深受angular激发的基于express的node框架，按照官网说明是一个旨在提供一个开箱即用的应用程序体系结构，允许轻松创建高度可测试，可扩展，松散耦合且易于维护的应用程序。
@@ -44,6 +50,11 @@ export class ApplicationModule implements NestModule {
 })
 export class CatsModule {}
 ```
+
+这里看到nest的第一层入口module，也就是模块化开发的根本，所有的controller，component等等都可以根据业务切分到某个模块，然后模块之间还可以嵌套，成为一个完整的体系，借用张nest官方的图：
+
+![module](./Modules_1.png)
+
 
 在nest中的component概念其实一切可以注入的对象，对于依赖注入这个概念在此不做深入解释，可以理解为开发者不需要实例化类，框架会进行实例化且保存为单例。
 
