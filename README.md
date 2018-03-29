@@ -2,6 +2,15 @@
 
 > Nest Koa版本，fork自 [Nest@4.6.5](https://github.com/nestjs/nest)，整体流程和方法和Nest基本一致，底层换成了koa框架。
 
+## 安装
+
+```
+npm install @neskjs/commom
+npm install @neskjs/core
+```
+
+cli在路上，或者也可以使用nest生态工具修改一下
+
 ## 区别点
 
 ### 方法扩展
