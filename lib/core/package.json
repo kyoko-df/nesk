@@ -1,6 +1,6 @@
 {
   "name": "@neskjs/core",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Modern, fast, powerful koajs web framework(@Core)",
   "author": "chendafu",
   "license": "MIT",
@@ -8,10 +8,10 @@
     "iterare": "0.0.8",
     "koa": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
+    "koa-cors": "^0.0.16",
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.2",
     "koa-views": "^6.1.4",
-    "koa-cors": "^0.0.16",
     "optional": "0.1.4"
   },
   "peerDependencies": {
