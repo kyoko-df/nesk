@@ -14,14 +14,21 @@ export class RouterExtensionContext {
   }
 
   private addJsonMethod(response) {
-    return (obj: string | number | boolean | object) => {
+    return (obj?: string | number | boolean | object) => {
+      if (!obj) {
+        return;
+      }
       response.set(CONTENT_TYPE, APPLICATION_JSON);
       response.body = obj;
     };
   }
 
   private addSendMethod(response) {
-    return (body: string | number | boolean | object | Buffer) =>
-      (response.body = body);
+    return (body?: string | number | boolean | object | Buffer) => {
+      if (!body) {
+        return;
+      }
+      response.body = body;
+    };
   }
 }

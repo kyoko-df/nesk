@@ -160,7 +160,7 @@ export class CreateCatDto {
 
 ```ts
 import { NeskFactory } from '@neskjs/core';
-import { NeskAconite } from '@neskjs/aconite';
+import { NeskAconite } from '@hujiang/nesk-aconite';
 import { ApplicationModule } from './app.module';
 import { config } from './common/config';
 import { middwares } from './common/middlware';
@@ -172,7 +172,7 @@ async function bootstrap() {
     config
   });
   const app = await NeskFactory.create(ApplicationModule, server);
-  await app.listen(3000);
+  await app.listen(config.port);
 }
 ```
 
