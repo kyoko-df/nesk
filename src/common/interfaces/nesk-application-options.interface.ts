@@ -7,4 +7,5 @@ export interface NeskApplicationOptions extends NeskApplicationContextOptions {
   cors?: boolean | CorsOptions;
   bodyParser?: boolean;
   httpsOptions?: HttpsOptions;
+  errorHandler?: boolean;
 }

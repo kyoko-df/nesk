@@ -161,7 +161,10 @@ export class NeskApplication extends NeskApplicationContext
     const router = KoaAdapter.createRouter();
     await this.setupMiddlewares(router);
 
-    this.routesResolver.setupErrorHandler(this.koa);
+    const useErrorHandler =
+      this.appOptions && this.appOptions.errorHandler !== false;
+    useErrorHandler && this.routesResolver.setupErrorHandler(this.koa);
+
     this.routesResolver.resolve(router, this.koa);
     // this.koa.use(validatePath(this.config.getGlobalPrefix()), router);
     router.prefix(validatePath(this.config.getGlobalPrefix()));

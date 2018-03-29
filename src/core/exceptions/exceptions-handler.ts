@@ -44,7 +44,6 @@ export class ExceptionsHandler {
         };
     response.status = exception.getStatus()
     response.json(message);
-    ctx.app.emit(ERROR_EVENT, exception, ctx);
   }
 
   public setCustomFilters(filters: ExceptionFilterMetadata[]) {

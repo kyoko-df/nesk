@@ -14,8 +14,8 @@ export const mapToClass = middleware => {
   }
   return assignToken(
     class {
-      public resolve = (...args) => (req, res, next) =>
-        middleware(req, res, next);
+      public resolve = (...args) => (ctx, next) =>
+        middleware(ctx, next);
     },
   );
 };
