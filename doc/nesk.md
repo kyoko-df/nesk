@@ -14,9 +14,9 @@ Nest是一个深受angular激发的基于express的node框架，按照官网说�
 
 ### 强大的Nest架构
 
-那首先为什么需要Nest框架，我司从2017年开始大规模使用Node来替代原有的后端View层开发，给予了前端开发除了SPA以外的前后端分离方式。早期Node层的工作很简单-渲染页面代理接口，但在渐渐使用中大家会给Node层更多的寄托，尤其是一些内部项目中，你让后端还要将一些现有的SOA接口进行包装，对方往往是不愿意的。那么我们势必要在Node层承接更多的业务，包括不限于对数据的组合包装，对请求的权限校验，对请求数据的validate等等，早期我们的框架是最传统的MVC架构，但是我们翻阅业务代码，往往最后变成复杂且很难维护的Controller层代码（从权限校验到页面渲染一把撸到底:)）。
+那首先为什么需要Nest框架，我们从去年开始大规模使用Node来替代原有的后端View层开发，给予了前端开发除了SPA以外的前后端分离方式。早期Node层的工作很简单-渲染页面代理接口，但在渐渐使用中大家会给Node层更多的寄托，尤其是一些内部项目中，你让后端还要将一些现有的SOA接口进行包装，对方往往是不愿意的。那么我们势必要在Node层承接更多的业务，包括不限于对数据的组合包装，对请求的权限校验，对请求数据的validate等等，早期我们的框架是最传统的MVC架构，但是我们翻阅业务代码，往往最后变成复杂且很难维护的Controller层代码（从权限校验到页面渲染一把撸到底:)）。
 
-那么我们现在看看Nest可以做什么？我们从一个最简单的官方例子开始看：
+那么我们现在看看Nest可以做什么？从一个最简单的官方例子开始看：
 
 ```ts
 async function bootstrap() {
@@ -27,7 +27,7 @@ async function bootstrap() {
 bootstrap();
 ```
 
-这里我们就启动了一个nest实例，先不看这个ValidationPipe，先看ApplicationModule的内容：
+这里就启动了一个nest实例，先不看这个ValidationPipe，看ApplicationModule的内容：
 
 ```ts
 @Module({
@@ -176,6 +176,14 @@ async function bootstrap() {
 }
 ```
 
+最后Nest有很多@nest scope下的包，方便一些工具接入nest，如果他们与express没有关系，我们其实是可以使用的。但是包内部往往依赖@nest/common或者@nesk/core，这里可以使用module-alias，进行一个重指向（你可以尝试下graphql的例子）:
+
+```
+"_moduleAliases": {
+  "@nestjs/common": "node_modules/@neskjs/common",
+  "@nestjs/core": "node_modules/@neskjs/core"
+}
+```
 
 Nesk的地址[Nesk](https://github.com/kyoko-df/nesk)，我们对Nesk做了基本流程测试目前覆盖了common和core，其它的在等待改进，欢迎一切愿意一起改动的开发者。
 

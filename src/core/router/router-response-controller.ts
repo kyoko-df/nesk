@@ -7,7 +7,7 @@ export class RouterResponseController {
     const result = await this.transformToResult(resultOrDeffered);
     response.status = httpStatusCode;
     if (isNil(result)) {
-      return;
+      return response.send();
     }
     return isObject(result) ? response.json(result) : response.send(String(result));
   }

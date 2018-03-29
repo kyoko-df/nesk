@@ -27,6 +27,23 @@ Koa的集成度没有Express高，所以增加了
 
 在param上也提供ctx()，来获取ctx或者ctx上的方法在controller层使用。
 
+### @Nest包使用
+
+Nest提供了一些例如grahql的包，里面完全没有依赖express，所以不需要在提供@nesk的包，但是这些包会依赖@nestjs/core或者@nestjs/common，所以只需要安装module-alias，然后在package.json里添加
+
+```
+"_moduleAliases": {
+  "@nestjs/common": "node_modules/@neskjs/common",
+  "@nestjs/core": "node_modules/@neskjs/core"
+}
+```
+
+最后在very开始的地方注入：
+
+```js
+require('module-alias/register')
+```
+
 ## 注意
 
 1. 如果你完全没看懂上面在说什么，请先熟悉[Nest中文指南](https://docs.nestjs.cn/)

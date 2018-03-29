@@ -1,11 +1,11 @@
 import {
   Module,
   MiddlewaresConsumer,
-  NestModule,
+  NeskModule,
   RequestMethod,
 } from '@neskjs/common';
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
-import { GraphQLModule, GraphQLFactory } from '@neskjs/graphql';
+import { graphqlKoa, graphiqlKoa } from 'apollo-server-koa';
+import { GraphQLModule, GraphQLFactory } from '@nestjs/graphql';
 
 import { CatsModule } from './cats/cats.module';
 import { SubscriptionsModule } from './subscriptions/subscriptions.module';
@@ -13,7 +13,7 @@ import { SubscriptionsModule } from './subscriptions/subscriptions.module';
 @Module({
   imports: [SubscriptionsModule.forRoot(), CatsModule, GraphQLModule],
 })
-export class ApplicationModule implements NestModule {
+export class ApplicationModule implements NeskModule {
   constructor(
     private readonly subscriptionsModule: SubscriptionsModule,
     private readonly graphQLFactory: GraphQLFactory,
@@ -25,13 +25,13 @@ export class ApplicationModule implements NestModule {
 
     consumer
       .apply(
-        graphiqlExpress({
+        graphiqlKoa({
           endpointURL: '/graphql',
           subscriptionsEndpoint: `ws://localhost:3001/subscriptions`,
         }),
       )
       .forRoutes({ path: '/graphiql', method: RequestMethod.GET })
-      .apply(graphqlExpress(req => ({ schema, rootValue: req })))
+      .apply(graphqlKoa(req => ({ schema, rootValue: req })))
       .forRoutes({ path: '/graphql', method: RequestMethod.ALL });
   }
 

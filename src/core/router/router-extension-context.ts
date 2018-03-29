@@ -16,7 +16,7 @@ export class RouterExtensionContext {
   private addJsonMethod(response) {
     return (obj?: string | number | boolean | object) => {
       if (!obj) {
-        return;
+        return null;
       }
       response.set(CONTENT_TYPE, APPLICATION_JSON);
       response.body = obj;
@@ -26,7 +26,7 @@ export class RouterExtensionContext {
   private addSendMethod(response) {
     return (body?: string | number | boolean | object | Buffer) => {
       if (!body) {
-        return;
+        return null;
       }
       response.body = body;
     };

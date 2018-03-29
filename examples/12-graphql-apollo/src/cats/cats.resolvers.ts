@@ -1,5 +1,5 @@
 import { Component, UseGuards } from '@neskjs/common';
-import { Query, Mutation, Resolver, DelegateProperty, Subscription } from '@neskjs/graphql';
+import { Query, Mutation, Resolver, DelegateProperty, Subscription } from '@nestjs/graphql';
 import { PubSub } from 'graphql-subscriptions';
 
 import { Cat } from './interfaces/cat.interface';
