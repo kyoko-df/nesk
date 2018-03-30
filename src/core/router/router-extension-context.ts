@@ -1,34 +1,36 @@
-const CONTENT_TYPE = 'Content-Type';
-const APPLICATION_JSON = 'application/json';
+import { isNil, isObject } from '@neskjs/common/utils/shared.utils';
+
+const [METHOD_SET, METHOD_BODY, METHOD_JSON, METHOD_SEND] = [
+  'set',
+  'body',
+  'json',
+  'send',
+];
 
 export class RouterExtensionContext {
   public create(context) {
-    const { request, response } = context;
-    this.createResponse(response);
-    return context;
+    let { response } = context;
+    response = this.createProxy(response);
+    return Object.assign({}, context, { response });
   }
 
-  public createResponse(response) {
-    response.json = this.addJsonMethod(response);
-    response.send = this.addSendMethod(response);
+  public createProxy(response) {
+    const proxy = this.createResponseProxy();
+    return new Proxy(response, {
+      get: proxy,
+    });
   }
 
-  private addJsonMethod(response) {
-    return (obj?: string | number | boolean | object) => {
-      if (!obj) {
-        return null;
+  private createResponseProxy() {
+    return (receiver, prop) => {
+      if (prop === METHOD_JSON || prop === METHOD_BODY) {
+        return (body?: string | number | boolean | object | Buffer) => {
+          if (isNil(body)) return null;
+          receiver[METHOD_BODY] = body;
+        };
       }
-      response.set(CONTENT_TYPE, APPLICATION_JSON);
-      response.body = obj;
-    };
-  }
 
-  private addSendMethod(response) {
-    return (body?: string | number | boolean | object | Buffer) => {
-      if (!body) {
-        return null;
-      }
-      response.body = body;
+      return receiver[prop];
     };
   }
 }

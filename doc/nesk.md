@@ -1,4 +1,4 @@
-## 从Nest到Nesk -- 模块化Node框架的尝试到实践
+## 从Nest到Nesk -- 模块化Node框架的实践
 
 首先上一下项目地址（:>):
 
@@ -56,7 +56,7 @@ export class CatsModule {}
 ![module](./Modules_1.png)
 
 
-在nest中的component概念其实一切可以注入的对象，对于依赖注入这个概念在此不做深入解释，可以理解为开发者不需要实例化类，框架会进行实例化且保存为单例。
+在nest中的component概念其实一切可以注入的对象，对于依赖注入这个概念在此不做深入解释，可以理解为开发者不需要实例化类，框架会进行实例化且保存为单例供使用。
 
 ```ts
 @Controller('cats')
@@ -150,7 +150,7 @@ export class CreateCatDto {
 
 ### Nesk-一个落地方案的尝试
 
-虽然我个人很喜欢Nest，但是我们公司已经有一套基于koa2的成熟框架Aconite，而Nest是基于express的，查看了下Nest的源码，对express有一定的依赖，但是koa2和express在都支持async语法后，差异属于可控范围下。另外nest接受一个express的实例，在nesk中我们只需要调整为koa实例，那么也可以是继承于koa的任何项目实例，我们的框架在2.0版本也是一个在koa上继承下来的node框架，基于此，我们只需要一个简单的adapter层就可以无缝接入Aconite到nesk中，这样减少了nesk和内部服务的捆绑，而将所有的公共内部服务整合保留在aconite中。Nest对于我们来说只是一个更完美的开发范式，不承接任何公共模块。
+虽然我个人很喜欢Nest，但是我们公司已经有一套基于koa2的成熟框架Aconite，而Nest是基于express的，查看了下Nest的源码，对express有一定的依赖，但是koa2和express在都支持async语法后，差异属于可控范围下。另外nest接受一个express的实例，在nesk中我们只需要调整为koa实例，那么也可以是继承于koa的任何项目实例，我们的框架在2.0版本也是一个在koa上继承下来的node框架，基于此，我们只需要一个简单的adapter层就可以无缝接入Aconite到nesk中，这样减少了nesk和内部服务的捆绑，而将所有的公共内部服务整合保留在Aconite中。Nest对于我们来说只是一个更完美的开发范式，不承接任何公共模块。
 
 所以我们需要的工作可以简单总结为：
 1. 支持Koa
@@ -176,7 +176,7 @@ async function bootstrap() {
 }
 ```
 
-最后Nest有很多@nest scope下的包，方便一些工具接入nest，如果他们与express没有关系，我们其实是可以使用的。但是包内部往往依赖@nest/common或者@nesk/core，这里可以使用module-alias，进行一个重指向（你可以尝试下graphql的例子）:
+最后Nest有很多@nest scope下的包，方便一些工具接入nest，如果他们与express没有关系，我们其实是可以直接使用的。但是包内部往往依赖@nest/common或者@nesk/core，这里可以使用module-alias，进行一个重指向（你可以尝试下graphql的例子）:
 
 ```
 "_moduleAliases": {
