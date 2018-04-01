@@ -2,6 +2,10 @@
 
 > Nest Koa版本，fork自 [Nest@4.6.5](https://github.com/nestjs/nest)，整体流程和方法和Nest基本一致，底层换成了koa框架。
 
+## 版本依赖
+
+Node>=8.0.0，Koa2
+
 ## 安装
 
 ```

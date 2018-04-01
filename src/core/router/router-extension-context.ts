@@ -9,8 +9,7 @@ const [METHOD_SET, METHOD_BODY, METHOD_JSON, METHOD_SEND] = [
 
 export class RouterExtensionContext {
   public create(context) {
-    let { response } = context;
-    response = this.createProxy(response);
+    const response = this.createProxy(context.response);
     return Object.assign({}, context, { response });
   }
 
